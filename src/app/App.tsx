@@ -8,10 +8,12 @@ import { ProcessSection } from "./components/ProcessSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
 import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
+import { Preloader } from "./components/Preloader";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-[#F5F1EA] overflow-x-hidden">
+      <Preloader />
       <Navigation />
       <HeroSection />
       <BrandStory />

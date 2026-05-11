@@ -26,13 +26,13 @@ export function Navigation() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="font-['Cormorant_Garamond'] tracking-wider"
-          style={{ fontSize: '28px', fontWeight: 300, letterSpacing: '0.12em', color: '#1B1B1B' }}
+          className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500"
+          style={{ fontSize: '28px', fontWeight: 300, letterSpacing: '0.12em', color: scrolled ? '#1B1B1B' : '#F5F1EA' }}
         >
           YY INTERIORS
         </motion.div>
 
-        <div className="flex items-center gap-12 font-['Inter']" style={{ fontSize: '14px', fontWeight: 400, letterSpacing: '0.05em', color: '#1B1B1B' }}>
+        <div className="flex items-center gap-12 font-['Inter'] transition-colors duration-500" style={{ fontSize: '14px', fontWeight: 400, letterSpacing: '0.05em', color: scrolled ? '#1B1B1B' : '#F5F1EA' }}>
           <a href="#portfolio" className="hover:opacity-60 transition-opacity duration-300">PORTFOLIO</a>
           <a href="#services" className="hover:opacity-60 transition-opacity duration-300">SERVICES</a>
           <a href="#process" className="hover:opacity-60 transition-opacity duration-300">PROCESS</a>
