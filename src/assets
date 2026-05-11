@@ -1,0 +1,6 @@
+# Assets Directory
+
+This directory is for static assets like images, fonts, and other files that need to be imported by the application.
+
+The Vite configuration includes a custom resolver for Figma assets:
+- Files referenced as `figma:asset/filename.ext` will be resolved from this directory.
