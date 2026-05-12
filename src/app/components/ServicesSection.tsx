@@ -52,24 +52,24 @@ export function ServicesSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="services" ref={ref} className="py-32 px-8 bg-[#1B1B1B]">
+    <section id="services" ref={ref} className="py-20 md:py-32 px-6 md:px-8 bg-[#1B1B1B]">
       <div className="max-w-[1800px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
-          <p className="font-['Inter'] mb-4" style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.2em', color: '#8C6A4A' }}>
+          <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', color: '#8C6A4A' }}>
             SERVICES
           </p>
-          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.2, color: '#F5F1EA' }}>
+          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.2, color: '#F5F1EA' }}>
             What We Create
           </h2>
         </motion.div>
 
-        <div className="overflow-x-auto scrollbar-hide">
-          <div className="flex gap-8 pb-8" style={{ width: 'max-content' }}>
+        <div className="overflow-x-auto scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
+          <div className="flex gap-6 md:gap-8 pb-8" style={{ width: 'max-content' }}>
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -79,7 +79,7 @@ export function ServicesSection() {
                 onHoverStart={() => setHoveredIndex(index)}
                 onHoverEnd={() => setHoveredIndex(null)}
                 className="relative group cursor-pointer"
-                style={{ width: '400px', height: '500px' }}
+                style={{ width: 'clamp(280px, 80vw, 400px)', height: 'clamp(350px, 60vh, 500px)' }}
               >
                 <div className="relative w-full h-full overflow-hidden">
                   <ImageWithFallback
@@ -93,16 +93,16 @@ export function ServicesSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/90 via-[#1B1B1B]/40 to-transparent" />
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <motion.div
                     initial={{ y: 0 }}
                     animate={{ y: hoveredIndex === index ? -10 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <h3 className="font-['Cormorant_Garamond'] mb-3" style={{ fontSize: '28px', fontWeight: 400, color: '#F5F1EA' }}>
+                    <h3 className="font-['Cormorant_Garamond'] mb-2 md:mb-3" style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 400, color: '#F5F1EA' }}>
                       {service.title}
                     </h3>
-                    <p className="font-['Inter']" style={{ fontSize: '14px', fontWeight: 300, lineHeight: 1.6, color: '#D8CBB8' }}>
+                    <p className="font-['Inter']" style={{ fontSize: 'clamp(12px, 2vw, 14px)', fontWeight: 300, lineHeight: 1.6, color: '#D8CBB8' }}>
                       {service.description}
                     </p>
                   </motion.div>

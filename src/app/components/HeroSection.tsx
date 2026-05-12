@@ -12,6 +12,15 @@ export function HeroSection() {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#1B1B1B]/60 via-[#1B1B1B]/40 to-[#1B1B1B]/70" />
+        {/* Technical Architectural Overlay */}
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+          <svg width="100%" height="100%">
+            <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F5F1EA" strokeWidth="0.5" />
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#hero-grid)" />
+          </svg>
+        </div>
       </div>
 
       <div className="relative h-full flex flex-col items-center justify-center px-8 text-center">
@@ -38,9 +47,9 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="font-['Inter'] mb-12 max-w-2xl mx-auto"
+            className="font-['Inter'] mb-8 md:mb-12 max-w-2xl mx-auto px-4 md:px-0"
             style={{
-              fontSize: '18px',
+              fontSize: 'clamp(14px, 2vw, 18px)',
               fontWeight: 300,
               lineHeight: 1.8,
               letterSpacing: '0.05em',
@@ -56,9 +65,9 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 1 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-12 py-4 border border-[#F5F1EA]/30 font-['Inter'] hover:bg-[#F5F1EA]/10 transition-all duration-300"
+            className="px-8 md:px-12 py-3 md:py-4 border border-[#F5F1EA]/30 font-['Inter'] hover:bg-[#F5F1EA]/10 transition-all duration-300"
             style={{
-              fontSize: '13px',
+              fontSize: '12px',
               fontWeight: 400,
               letterSpacing: '0.15em',
               color: '#F5F1EA'

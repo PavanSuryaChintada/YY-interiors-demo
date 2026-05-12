@@ -48,26 +48,26 @@ export function ProjectsSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section id="portfolio" ref={ref} className="py-32 px-8 bg-[#F5F1EA]">
+    <section id="portfolio" ref={ref} className="py-20 md:py-32 px-6 md:px-8 bg-[#F5F1EA]">
       <div className="max-w-[1600px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
-          <p className="font-['Inter'] mb-4" style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.2em', color: '#8C6A4A' }}>
+          <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', color: '#8C6A4A' }}>
             FEATURED WORK
           </p>
-          <h2 className="font-['Cormorant_Garamond'] mb-6" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.2, color: '#1B1B1B' }}>
+          <h2 className="font-['Cormorant_Garamond'] mb-4 md:mb-6" style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.2, color: '#1B1B1B' }}>
             Selected Projects
           </h2>
-          <p className="font-['Inter'] max-w-2xl mx-auto" style={{ fontSize: '16px', fontWeight: 300, lineHeight: 1.8, color: '#1B1B1B' }}>
+          <p className="font-['Inter'] max-w-2xl mx-auto" style={{ fontSize: 'clamp(14px, 2vw, 16px)', fontWeight: 300, lineHeight: 1.8, color: '#1B1B1B' }}>
             A curated collection of spaces that embody our design philosophy
           </p>
         </motion.div>
 
-        <Masonry columnsCount={3} gutter="24px">
+        <Masonry columnsCount={window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3} gutter="24px">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -82,23 +82,30 @@ export function ProjectsSection() {
                   alt={project.title}
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-[#1B1B1B]/0 group-hover:bg-[#1B1B1B]/60 transition-all duration-500" />
+                <div className="absolute inset-0 bg-[#1B1B1B]/10 group-hover:bg-[#1B1B1B]/60 transition-all duration-500" />
 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileHover={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100"
+                  className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 opacity-0 group-hover:opacity-100"
                 >
-                  <h3 className="font-['Cormorant_Garamond'] mb-2" style={{ fontSize: '28px', fontWeight: 400, color: '#F5F1EA' }}>
+                  <h3 className="font-['Cormorant_Garamond'] mb-1 md:mb-2" style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 400, color: '#F5F1EA' }}>
                     {project.title}
                   </h3>
-                  <div className="font-['Inter'] flex items-center gap-4" style={{ fontSize: '13px', fontWeight: 300, color: '#D8CBB8' }}>
+                  <div className="font-['Inter'] flex items-center gap-3 md:gap-4" style={{ fontSize: '11px', fontWeight: 300, color: '#D8CBB8' }}>
                     <span>{project.location}</span>
                     <span>•</span>
                     <span>{project.style}</span>
                   </div>
                 </motion.div>
+                
+                {/* Always visible title on mobile for better UX */}
+                <div className="md:hidden absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#1B1B1B]/80 to-transparent">
+                  <h3 className="font-['Cormorant_Garamond']" style={{ fontSize: '18px', fontWeight: 400, color: '#F5F1EA' }}>
+                    {project.title}
+                  </h3>
+                </div>
               </div>
             </motion.div>
           ))}

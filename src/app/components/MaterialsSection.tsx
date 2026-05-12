@@ -64,6 +64,19 @@ export function MaterialsSection() {
                   className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/80 to-transparent opacity-60" />
+                
+                {/* Technical Overlay */}
+                <div className="absolute inset-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <svg width="100%" height="100%" className="text-[#8C6A4A]">
+                    <line x1="10" y1="10" x2="50" y2="10" stroke="currentColor" strokeWidth="0.5" />
+                    <line x1="10" y1="8" x2="10" y2="12" stroke="currentColor" strokeWidth="0.5" />
+                    <line x1="50" y1="8" x2="50" y2="12" stroke="currentColor" strokeWidth="0.5" />
+                    <text x="12" y="22" className="text-[8px] fill-current uppercase tracking-tighter">Spec-00{index + 1}</text>
+                    
+                    <circle cx="90%" cy="10%" r="8" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
+                    <text x="89%" y="11.5%" className="text-[6px] fill-current">A</text>
+                  </svg>
+                </div>
               </div>
 
               <div className="text-center">

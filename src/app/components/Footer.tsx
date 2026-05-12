@@ -15,15 +15,25 @@ export function Footer() {
             YY INTERIORS
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-['Inter']"
-            style={{ fontSize: '13px', fontWeight: 300, color: '#D8CBB8' }}
+            className="flex flex-col items-center md:items-start gap-1"
           >
-            © 2026 YY Interiors. All rights reserved.
-          </motion.p>
+            <p
+              className="font-['Inter']"
+              style={{ fontSize: '12px', fontWeight: 300, color: '#D8CBB8' }}
+            >
+              © 2026 YY Interiors. All rights reserved.
+            </p>
+            <p
+              className="font-['Inter']"
+              style={{ fontSize: '11px', fontWeight: 300, color: '#8C6A4A', letterSpacing: '0.05em' }}
+            >
+              Developed by <span className="font-medium">AR Tech Studio</span>
+            </p>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
