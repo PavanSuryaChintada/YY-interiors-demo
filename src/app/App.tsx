@@ -3,6 +3,7 @@ import { HeroSection } from "./components/HeroSection";
 import { BrandStory } from "./components/BrandStory";
 import { ServicesSection } from "./components/ServicesSection";
 import { ProjectsSection } from "./components/ProjectsSection";
+import { ArchitectureSection } from "./components/ArchitectureSection";
 import { MaterialsSection } from "./components/MaterialsSection";
 import { ProcessSection } from "./components/ProcessSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
@@ -14,20 +15,24 @@ import { DesignPhilosophy } from "./components/DesignPhilosophy";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#F5F1EA] overflow-x-hidden cursor-none md:cursor-auto">
+    <div className="min-h-screen bg-[#F5F1EA] overflow-x-hidden cursor-none">
       <ArchitecturalCursor />
       <Preloader />
       <Navigation />
-      <HeroSection />
-      <BrandStory />
-      <DesignPhilosophy />
-      <ServicesSection />
-      <ProjectsSection />
-      <MaterialsSection />
-      <ProcessSection />
-      <TestimonialsSection />
-      <ContactSection />
+      <main>
+        <HeroSection />
+        <BrandStory />
+        <ProjectsSection />
+        <ArchitectureSection />
+        <ServicesSection />
+        <DesignPhilosophy />
+        <MaterialsSection />
+        <TestimonialsSection />
+        <ProcessSection />
+        <ContactSection />
+      </main>
       <Footer />
     </div>
   );
 }
+

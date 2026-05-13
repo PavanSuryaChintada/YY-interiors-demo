@@ -1,115 +1,111 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
-import { Phone, Mail, MapPin, Instagram, Linkedin, Facebook } from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="contact" ref={ref} className="py-32 px-8 bg-[#F5F1EA] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#8C6A4A]/5 -z-0" />
+    <section id="contact" ref={ref} className="relative py-32 md:py-48 px-6 md:px-12 bg-[#1B1B1B] overflow-hidden">
+      {/* Cinematic Background */}
+      <div className="absolute inset-0 opacity-40">
+        <ImageWithFallback
+          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw1fHxsdXh1cnklMjBpbnRlcmlvciUyMG1vZGVybnxlbnwxfHx8fDE3Nzg0NDExNjN8MA&ixlib=rb-4.1.0&q=80&w=1920"
+          alt="Luxury Interior Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B] via-[#1B1B1B]/60 to-[#1B1B1B]" />
+      </div>
 
       <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            <p className="font-['Inter'] mb-4" style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.2em', color: '#8C6A4A' }}>
-              GET IN TOUCH
+            <p className="font-['Inter'] mb-6 text-[#8C6A4A] text-[11px] uppercase tracking-[0.4em] font-medium">
+              Consultation
             </p>
-            <h2 className="font-['Cormorant_Garamond'] mb-6" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.2, color: '#1B1B1B' }}>
-              Let's Design Something Timeless
+            <h2 className="font-['Cormorant_Garamond'] text-[clamp(40px,5vw,72px)] font-light leading-[1.1] text-[#F5F1EA] mb-8">
+              Let’s Create <br />
+              <span className="italic">Something Timeless.</span>
             </h2>
-            <p className="font-['Inter'] mb-12" style={{ fontSize: '16px', fontWeight: 300, lineHeight: 1.8, color: '#1B1B1B' }}>
-              Begin your journey to a beautifully crafted space. We'd love to hear about your vision.
+            <p className="font-['Inter'] text-[18px] leading-[1.8] text-[#F5F1EA]/70 font-light mb-12 max-w-md">
+              An extraordinary space begins with a bold vision. Partner with us to craft a legacy of elegance.
             </p>
-
-            <div className="space-y-6 mb-12">
-              <div className="flex items-center gap-4">
-                <Phone size={20} color="#8C6A4A" strokeWidth={1.5} />
-                <span className="font-['Inter']" style={{ fontSize: '15px', fontWeight: 400, color: '#1B1B1B' }}>+91 98765 43210</span>
+            
+            <div className="space-y-4">
+              <p className="font-['Inter'] text-[10px] uppercase tracking-widest text-[#8C6A4A]">Studio Presence</p>
+              <div className="grid grid-cols-2 gap-8 font-['Cormorant_Garamond'] text-[#F5F1EA] text-[20px]">
+                <p>Mumbai • <span className="opacity-50 text-[14px] font-['Inter']">Design HQ</span></p>
+                <p>Dubai • <span className="opacity-50 text-[14px] font-['Inter']">Global Studio</span></p>
+                <p>London • <span className="opacity-50 text-[14px] font-['Inter']">Curation Lab</span></p>
+                <p>Singapore • <span className="opacity-50 text-[14px] font-['Inter']">Execution Office</span></p>
               </div>
-              <div className="flex items-center gap-4">
-                <Mail size={20} color="#8C6A4A" strokeWidth={1.5} />
-                <span className="font-['Inter']" style={{ fontSize: '15px', fontWeight: 400, color: '#1B1B1B' }}>hello@yyinteriors.com</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <MapPin size={20} color="#8C6A4A" strokeWidth={1.5} />
-                <span className="font-['Inter']" style={{ fontSize: '15px', fontWeight: 400, color: '#1B1B1B' }}>Mumbai, India</span>
-              </div>
-            </div>
-
-            <div className="flex gap-6">
-              {[Instagram, Linkedin, Facebook].map((Icon, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  className="w-12 h-12 border border-[#1B1B1B]/20 flex items-center justify-center hover:border-[#8C6A4A] hover:bg-[#8C6A4A]/10 transition-all duration-300"
-                >
-                  <Icon size={20} color="#1B1B1B" strokeWidth={1.5} />
-                </motion.a>
-              ))}
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white p-12 shadow-sm"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="bg-white/5 backdrop-blur-2xl p-10 md:p-16 border border-[#F5F1EA]/10"
           >
-            <form className="space-y-6">
-              <div>
+            <form className="space-y-8">
+              <div className="group relative">
+                <label className="font-['Inter'] text-[9px] uppercase tracking-widest text-[#8C6A4A] absolute -top-4 left-0 opacity-0 group-focus-within:opacity-100 transition-opacity">Full Name</label>
                 <input
                   type="text"
-                  placeholder="Your Name"
-                  className="w-full px-0 py-4 border-b border-[#1B1B1B]/20 bg-transparent font-['Inter'] focus:border-[#8C6A4A] focus:outline-none transition-colors"
-                  style={{ fontSize: '15px', fontWeight: 300, color: '#1B1B1B' }}
+                  placeholder="Full Name"
+                  className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors"
                 />
               </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full px-0 py-4 border-b border-[#1B1B1B]/20 bg-transparent font-['Inter'] focus:border-[#8C6A4A] focus:outline-none transition-colors"
-                  style={{ fontSize: '15px', fontWeight: 300, color: '#1B1B1B' }}
-                />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="group relative">
+                  <select className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors appearance-none cursor-pointer">
+                    <option value="" className="bg-[#1B1B1B]">Project Type</option>
+                    <option value="residence" className="bg-[#1B1B1B]">Bespoke Residence</option>
+                    <option value="villa" className="bg-[#1B1B1B]">Luxury Villa</option>
+                    <option value="workspace" className="bg-[#1B1B1B]">Executive Workspace</option>
+                    <option value="commercial" className="bg-[#1B1B1B]">Hospitality/Commercial</option>
+                  </select>
+                </div>
+                <div className="group relative">
+                  <select className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors appearance-none cursor-pointer">
+                    <option value="" className="bg-[#1B1B1B]">Investment Range</option>
+                    <option value="elite" className="bg-[#1B1B1B]">$100k - $250k</option>
+                    <option value="premium" className="bg-[#1B1B1B]">$250k - $500k</option>
+                    <option value="prestige" className="bg-[#1B1B1B]">$500k+</option>
+                  </select>
+                </div>
               </div>
-              <div>
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="w-full px-0 py-4 border-b border-[#1B1B1B]/20 bg-transparent font-['Inter'] focus:border-[#8C6A4A] focus:outline-none transition-colors"
-                  style={{ fontSize: '15px', fontWeight: 300, color: '#1B1B1B' }}
-                />
-              </div>
-              <div>
+
+              <div className="group relative">
                 <textarea
-                  placeholder="Tell us about your project"
-                  rows={5}
-                  className="w-full px-0 py-4 border-b border-[#1B1B1B]/20 bg-transparent font-['Inter'] focus:border-[#8C6A4A] focus:outline-none transition-colors resize-none"
-                  style={{ fontSize: '15px', fontWeight: 300, color: '#1B1B1B' }}
+                  placeholder="Consultation Request / Message"
+                  rows={4}
+                  className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors resize-none"
                 />
               </div>
 
               <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, backgroundColor: "#F5F1EA", color: "#1B1B1B" }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-5 bg-[#1B1B1B] text-[#F5F1EA] font-['Inter'] hover:bg-[#8C6A4A] transition-colors duration-300"
-                style={{ fontSize: '13px', fontWeight: 500, letterSpacing: '0.15em' }}
+                className="w-full py-5 bg-[#8C6A4A] text-[#F5F1EA] font-['Inter'] uppercase tracking-[0.3em] text-[12px] font-medium transition-all duration-500"
               >
-                SEND MESSAGE
+                Inquire Excellence
               </motion.button>
             </form>
           </motion.div>
+
         </div>
       </div>
     </section>
   );
 }
+
