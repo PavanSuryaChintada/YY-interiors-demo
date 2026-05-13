@@ -22,6 +22,8 @@ export function HeroSection() {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#1B1B1B]/65 via-[#1B1B1B]/45 to-[#1B1B1B]/75" />
+        {/* Strong top scrim — keeps nav area clear of hero text bleed-through */}
+        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#111111]/80 to-transparent" />
         {/* Subtle architectural grid overlay */}
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
           <svg width="100%" height="100%">

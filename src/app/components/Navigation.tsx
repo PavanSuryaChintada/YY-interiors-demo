@@ -30,7 +30,7 @@ export function Navigation() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-8 md:py-5 transition-all duration-500 ${
-          navBg ? "bg-[#F5F1EA]/92 backdrop-blur-xl shadow-sm" : "bg-transparent"
+          navBg ? "bg-[#F5F1EA]/92 backdrop-blur-xl shadow-sm" : "bg-[#1B1B1B]/20 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-[1600px] mx-auto flex items-center justify-between">
@@ -39,10 +39,10 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.7 }}
-            className="flex flex-col gap-0.5 z-50"
+            className="flex flex-col gap-0.5 z-50 shrink-0"
           >
             <span
-              className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500"
+              className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500 whitespace-nowrap"
               style={{
                 fontSize: "clamp(20px, 4vw, 26px)",
                 fontWeight: 500,
@@ -53,7 +53,7 @@ export function Navigation() {
               YY INTERIORS
             </span>
             <span
-              className="font-['Inter'] hidden sm:block"
+              className="font-['Inter'] hidden sm:block whitespace-nowrap"
               style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.28em", color: "#8C6A4A" }}
             >
               ELITE INTERIOR ARCHITECTURE STUDIO
