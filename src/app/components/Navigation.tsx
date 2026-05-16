@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router";
 
 const navLinks = [
   { name: "PORTFOLIO", href: "#portfolio" },
@@ -12,6 +13,8 @@ const navLinks = [
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const isProjectPage = location.pathname.startsWith('/project/');
 
   useEffect(() => {
     const handleScroll = () => {

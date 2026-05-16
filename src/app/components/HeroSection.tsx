@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { ChevronDown } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const containerVariants = {
@@ -14,7 +13,7 @@ const itemVariants = {
 
 export function HeroSection() {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden bg-[#1B1B1B]">
       <div className="absolute inset-0">
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080"
@@ -65,6 +64,7 @@ export function HeroSection() {
             Designing Spaces That Feel Timeless
           </motion.h1>
 
+          {/* Descriptive Text */}
           <motion.p
             variants={itemVariants}
             className="font-['Inter'] mb-12 max-w-2xl mx-auto"
@@ -77,7 +77,8 @@ export function HeroSection() {
               textShadow: "0 1px 8px rgba(0,0,0,0.3)",
             }}
           >
-            Award-winning luxury interior design studio crafting emotionally immersive spaces with architectural precision
+            A globally recognized luxury design house specializing in <br className="hidden md:block" />
+            bespoke residences and visionary spatial architecture.
           </motion.p>
 
           <motion.div
@@ -120,18 +121,29 @@ export function HeroSection() {
           </motion.div>
         </div>
 
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
           className="absolute bottom-12"
         >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown size={32} color="#F5F1EA" strokeWidth={1} />
-          </motion.div>
+          <span className="font-['Inter'] text-[10px] uppercase tracking-[0.4em] text-[#D8CBB8] opacity-60">
+            Discover More
+          </span>
+          <div className="relative w-[1px] h-20 bg-[#F5F1EA]/10 overflow-hidden">
+            <motion.div
+              animate={{ 
+                y: [-80, 80] 
+              }}
+              transition={{ 
+                duration: 2.5, 
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
+              className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-[#F5F1EA] to-transparent"
+            />
+          </div>
         </motion.div>
       </motion.div>
     </section>

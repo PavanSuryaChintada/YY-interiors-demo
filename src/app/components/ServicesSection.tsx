@@ -45,8 +45,36 @@ const services = [
   },
 ];
 
+// Double the services for seamless looping
+const extendedServices = [...services, ...services];
+
 export function ServicesSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationId: number;
+    let lastTime = 0;
+    const speed = 1; // Pixels per frame approx
+
+    const scroll = (time: number) => {
+      if (!isPaused && scrollContainer) {
+        scrollContainer.scrollLeft += speed;
+        
+        // Loop logic: if we reached the end of the first set of items
+        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+          scrollContainer.scrollLeft = 0;
+        }
+      }
+      animationId = requestAnimationFrame(scroll);
+    };
+
+    animationId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationId);
+  }, [isPaused]);
 
   return (
     <section id="services" className="py-20 md:py-32 px-6 md:px-8 bg-[#1B1B1B]">
@@ -65,6 +93,7 @@ export function ServicesSection() {
             What We Create
           </h2>
         </motion.div>
+      </div>
 
         <div className="overflow-x-auto scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
           <div className="flex gap-6 md:gap-8 pb-8" style={{ width: "max-content" }}>
@@ -103,6 +132,7 @@ export function ServicesSection() {
                     </p>
                   </motion.div>
                 </div>
+              </div>
 
                 <motion.div
                   initial={{ scaleX: 0 }}

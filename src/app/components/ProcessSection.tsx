@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-const steps = [
+const stages = [
   {
     number: "01",
     title: "Consultation",
@@ -50,10 +50,15 @@ export function ProcessSection() {
           <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
             From Vision to Reality
           </h2>
-        </motion.div>
+        </div>
 
         <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-[#8C6A4A]/20" />
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] bg-[#1B1B1B]/5" />
+          <motion.div 
+            style={{ scaleY: pathLength }}
+            className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] bg-[#8C6A4A] origin-top z-10"
+          />
 
           <div className="space-y-12 md:space-y-24">
             {steps.map((step, index) => (
@@ -99,8 +104,9 @@ export function ProcessSection() {
                   <div className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-[#8C6A4A]" />
                 </div>
 
-                <div className="hidden md:block flex-1" />
-              </motion.div>
+                {/* Spacer for non-content side */}
+                <div className="hidden md:block md:w-[45%]" />
+              </div>
             ))}
           </div>
         </div>
@@ -108,3 +114,4 @@ export function ProcessSection() {
     </section>
   );
 }
+

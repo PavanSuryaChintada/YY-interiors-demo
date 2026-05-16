@@ -7,7 +7,8 @@ export function ContactSection() {
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#8C6A4A]/5 -z-0" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -37,19 +38,6 @@ export function ContactSection() {
                 <MapPin size={20} color="#8C6A4A" strokeWidth={1.5} />
                 <span className="font-['Inter']" style={{ fontSize: "16px", fontWeight: 400, color: "#1B1B1B" }}>Mumbai, India</span>
               </div>
-            </div>
-
-            <div className="flex gap-6">
-              {[Instagram, Linkedin, Facebook].map((Icon, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  className="w-12 h-12 border border-[#1B1B1B]/20 flex items-center justify-center hover:border-[#8C6A4A] hover:bg-[#8C6A4A]/10 transition-all duration-300"
-                >
-                  <Icon size={20} color="#1B1B1B" strokeWidth={1.5} />
-                </motion.a>
-              ))}
             </div>
           </motion.div>
 
@@ -93,8 +81,10 @@ export function ContactSection() {
               </motion.button>
             </form>
           </motion.div>
+
         </div>
       </div>
     </section>
   );
 }
+

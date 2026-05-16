@@ -74,13 +74,34 @@ export function ProjectsSection() {
               transition={{ duration: 0.9, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="group cursor-pointer relative overflow-hidden"
             >
-              <div className="relative overflow-hidden">
-                <ImageWithFallback
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-[#1B1B1B]/10 group-hover:bg-[#1B1B1B]/60 transition-all duration-500" />
+              <Link to={`/project/${project.slug}`} className="block group">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#1B1B1B]/5 mb-8">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-full h-full"
+                  >
+                    <ImageWithFallback
+                      src={project.mainImage}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
+                  
+                  {/* Enhanced Hover Overlay */}
+                  <div className="absolute inset-0 bg-[#1B1B1B]/0 group-hover:bg-[#1B1B1B]/40 backdrop-blur-[2px] transition-all duration-700 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div className="text-center translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                      <p className="font-['Inter'] text-[#F5F1EA]/60 text-[9px] uppercase tracking-[0.4em] mb-4">
+                        {project.location}
+                      </p>
+                      <div className="px-8 py-4 border border-[#F5F1EA]/20 bg-[#F5F1EA]/10 backdrop-blur-md">
+                        <p className="font-['Inter'] text-[#F5F1EA] text-[11px] uppercase tracking-[0.3em] font-medium">
+                          View Project —
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <h3 className="font-['Cormorant_Garamond'] mb-1 md:mb-2" style={{ fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 500, color: "#F5F1EA" }}>
@@ -99,10 +120,22 @@ export function ProjectsSection() {
                     {project.title}
                   </h3>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
-        </Masonry>
+        </div>
+
+        {/* View All Button */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mt-32 flex justify-center"
+        >
+          <Link to="/projects" className="group flex items-center gap-6 font-['Inter'] text-[11px] uppercase tracking-[0.3em] text-[#1B1B1B] py-4 px-12 border border-[#1B1B1B]/10 hover:border-[#1B1B1B] transition-all duration-500">
+            Explore All Projects
+            <span className="group-hover:translate-x-2 transition-transform duration-500">→</span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
