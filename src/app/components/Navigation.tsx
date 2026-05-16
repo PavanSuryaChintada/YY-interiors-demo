@@ -56,8 +56,8 @@ export function Navigation() {
               YY INTERIORS
             </span>
             <span
-              className="font-['Inter'] hidden sm:block whitespace-nowrap"
-              style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.28em", color: "#8C6A4A" }}
+              className="font-['Inter'] hidden sm:block whitespace-nowrap transition-colors duration-500"
+              style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.28em", color: navBg ? "#8C6A4A" : "rgba(216,203,184,0.7)" }}
             >
               ELITE INTERIOR ARCHITECTURE STUDIO
             </span>

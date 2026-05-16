@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const containerVariants = {
@@ -12,39 +13,54 @@ const itemVariants = {
 };
 
 export function HeroSection() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-[#1B1B1B]">
-      <div className="absolute inset-0">
+    <section ref={ref} id="hero" className="relative h-screen w-full overflow-hidden bg-[#1B1B1B]">
+      {/* Parallax background */}
+      <motion.div
+        style={{ y: imageY, scale: imageScale }}
+        className="absolute inset-0 origin-center"
+      >
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080"
           alt="Luxury interior design"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1B1B1B]/65 via-[#1B1B1B]/45 to-[#1B1B1B]/75" />
-        {/* Strong top scrim — keeps nav area clear of hero text bleed-through */}
-        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#111111]/80 to-transparent" />
-        {/* Subtle architectural grid overlay */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-          <svg width="100%" height="100%">
-            <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F5F1EA" strokeWidth="0.5" />
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#hero-grid)" />
-          </svg>
-        </div>
+      </motion.div>
+
+      {/* Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1B1B1B]/65 via-[#1B1B1B]/45 to-[#1B1B1B]/75 pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#111111]/80 to-transparent pointer-events-none" />
+
+      {/* Subtle architectural grid */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+        <svg width="100%" height="100%">
+          <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F5F1EA" strokeWidth="0.5" />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#hero-grid)" />
+        </svg>
       </div>
 
+      {/* Content with parallax fade-out */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{ y: contentY, opacity }}
         className="relative h-full flex flex-col items-center justify-center px-8 text-center"
       >
-        <div className="max-w-5xl w-full">
+        <div className="max-w-5xl w-full mb-24">
           <motion.p
             variants={itemVariants}
             className="font-['Inter'] mb-6"
-            style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.32em", color: "#8C6A4A" }}
+            style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.32em", color: "#D8CBB8", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
           >
             AWARD-WINNING LUXURY DESIGN STUDIO
           </motion.p>
@@ -64,7 +80,6 @@ export function HeroSection() {
             Designing Spaces That Feel Timeless
           </motion.h1>
 
-          {/* Descriptive Text */}
           <motion.p
             variants={itemVariants}
             className="font-['Inter'] mb-12 max-w-2xl mx-auto"
@@ -77,7 +92,8 @@ export function HeroSection() {
               textShadow: "0 1px 8px rgba(0,0,0,0.3)",
             }}
           >
-            A globally recognized luxury design house specializing in <br className="hidden md:block" />
+            A globally recognized luxury design house specializing in{" "}
+            <br className="hidden md:block" />
             bespoke residences and visionary spatial architecture.
           </motion.p>
 
@@ -126,22 +142,16 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="absolute bottom-12"
+          className="absolute bottom-10 flex flex-col items-center gap-3"
         >
-          <span className="font-['Inter'] text-[10px] uppercase tracking-[0.4em] text-[#D8CBB8] opacity-60">
+          <span className="font-['Inter'] text-[9px] uppercase tracking-[0.45em] text-[#D8CBB8]/70">
             Discover More
           </span>
-          <div className="relative w-[1px] h-20 bg-[#F5F1EA]/10 overflow-hidden">
+          <div className="relative w-[1px] h-16 bg-[#F5F1EA]/10 overflow-hidden">
             <motion.div
-              animate={{ 
-                y: [-80, 80] 
-              }}
-              transition={{ 
-                duration: 2.5, 
-                repeat: Infinity, 
-                ease: "linear" 
-              }}
-              className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-[#F5F1EA] to-transparent"
+              animate={{ y: [-64, 64] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-[#D8CBB8] to-transparent"
             />
           </div>
         </motion.div>
