@@ -56,39 +56,48 @@ export function ContactSection() {
             className="bg-white/5 backdrop-blur-2xl p-10 md:p-16 border border-[#F5F1EA]/10"
           >
             <form className="space-y-8">
-              <div className="group relative">
-                <label className="font-['Inter'] text-[9px] uppercase tracking-widest text-[#8C6A4A] absolute -top-4 left-0 opacity-0 group-focus-within:opacity-100 transition-opacity">Full Name</label>
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="group relative">
+                  <label className="font-['Inter'] text-[9px] uppercase tracking-widest text-[#8C6A4A] absolute -top-4 left-0 opacity-0 group-focus-within:opacity-100 transition-opacity">Full Name</label>
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors"
+                  />
+                </div>
+                <div className="group relative">
+                  <label className="font-['Inter'] text-[9px] uppercase tracking-widest text-[#8C6A4A] absolute -top-4 left-0 opacity-0 group-focus-within:opacity-100 transition-opacity">Email Address</label>
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors"
+                  />
+                </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="group relative">
-                  <select className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors appearance-none cursor-pointer">
-                    <option value="" className="bg-[#1B1B1B]">Project Type</option>
-                    <option value="residence" className="bg-[#1B1B1B]">Bespoke Residence</option>
-                    <option value="villa" className="bg-[#1B1B1B]">Luxury Villa</option>
-                    <option value="workspace" className="bg-[#1B1B1B]">Executive Workspace</option>
-                    <option value="commercial" className="bg-[#1B1B1B]">Hospitality/Commercial</option>
-                  </select>
+                  <label className="font-['Inter'] text-[9px] uppercase tracking-widest text-[#8C6A4A] absolute -top-4 left-0 opacity-0 group-focus-within:opacity-100 transition-opacity">Phone Number</label>
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors"
+                  />
                 </div>
                 <div className="group relative">
-                  <select className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors appearance-none cursor-pointer">
-                    <option value="" className="bg-[#1B1B1B]">Investment Range</option>
-                    <option value="elite" className="bg-[#1B1B1B]">$100k - $250k</option>
-                    <option value="premium" className="bg-[#1B1B1B]">$250k - $500k</option>
-                    <option value="prestige" className="bg-[#1B1B1B]">$500k+</option>
-                  </select>
+                  <label className="font-['Inter'] text-[9px] uppercase tracking-widest text-[#8C6A4A] absolute -top-4 left-0 opacity-0 group-focus-within:opacity-100 transition-opacity">Project Location</label>
+                  <input
+                    type="text"
+                    placeholder="Project Location (City, Country)"
+                    className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors"
+                  />
                 </div>
               </div>
 
               <div className="group relative">
                 <textarea
-                  placeholder="Consultation Request / Message"
-                  rows={4}
+                  placeholder="Tell us about your vision..."
+                  rows={6}
                   className="w-full bg-transparent border-b border-[#F5F1EA]/20 py-4 font-['Inter'] text-[#F5F1EA] focus:outline-none focus:border-[#8C6A4A] transition-colors resize-none"
                 />
               </div>

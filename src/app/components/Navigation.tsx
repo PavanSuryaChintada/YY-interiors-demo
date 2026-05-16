@@ -1,10 +1,13 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const isProjectPage = location.pathname.startsWith('/project/');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,10 +18,10 @@ export function Navigation() {
   }, []);
 
   const navLinks = [
-    { name: "PORTFOLIO", href: "#portfolio" },
-    { name: "SERVICES", href: "#services" },
-    { name: "PROCESS", href: "#process" },
-    { name: "CONTACT", href: "#contact" },
+    { name: "PORTFOLIO", href: "/#portfolio" },
+    { name: "SERVICES", href: "/#services" },
+    { name: "PROCESS", href: "/#process" },
+    { name: "CONTACT", href: "/#contact" },
   ];
 
   return (
@@ -28,27 +31,34 @@ export function Navigation() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-8 md:py-6 transition-all duration-500 ${
-          scrolled || isOpen ? "bg-[#F5F1EA]/80 backdrop-blur-xl shadow-sm" : "bg-transparent"
+          scrolled || isOpen || isProjectPage ? "bg-[#F5F1EA]/80 backdrop-blur-xl shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500 z-50"
-            style={{ fontSize: 'clamp(20px, 4vw, 28px)', fontWeight: 300, letterSpacing: '0.12em', color: (scrolled || isOpen) ? '#1B1B1B' : '#F5F1EA' }}
-          >
-            YY INTERIORS
-          </motion.div>
+          <Link to="/">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500 z-50 cursor-pointer"
+              style={{ 
+                fontSize: 'clamp(20px, 4vw, 28px)', 
+                fontWeight: 300, 
+                letterSpacing: '0.12em', 
+                color: (scrolled || isOpen || isProjectPage) ? '#1B1B1B' : '#F5F1EA' 
+              }}
+            >
+              YY INTERIORS
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-12 font-['Inter'] transition-colors duration-500" style={{ fontSize: '14px', fontWeight: 400, letterSpacing: '0.05em', color: scrolled ? '#1B1B1B' : '#F5F1EA' }}>
+          <div className="hidden md:flex items-center gap-12 font-['Cormorant_Garamond'] transition-colors duration-500" style={{ fontSize: '18px', fontWeight: 400, letterSpacing: '0.15em', color: (scrolled || isProjectPage) ? '#1B1B1B' : '#F5F1EA' }}>
             {navLinks.map((link) => (
               <a 
                 key={link.name}
                 href={link.href} 
-                className="hover:opacity-60 transition-opacity duration-300"
+                className="hover:opacity-60 transition-opacity duration-300 italic"
               >
                 {link.name}
               </a>

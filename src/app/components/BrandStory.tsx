@@ -13,7 +13,7 @@ export function BrandStory() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <section ref={containerRef} className="py-32 md:py-56 px-6 md:px-12 bg-[#F5F1EA] overflow-hidden">
+    <section ref={containerRef} className="pt-32 pb-12 md:pt-56 md:pb-24 px-6 md:px-12 bg-[#F5F1EA] overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
         <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 items-start">
           
