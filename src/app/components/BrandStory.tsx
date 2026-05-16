@@ -78,7 +78,7 @@ export function BrandStory() {
               />
               <div className="absolute -bottom-4 -left-4 md:-bottom-8 md:-left-8 w-32 h-32 md:w-64 md:h-64 bg-[#8C6A4A]/15 -z-10" />
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

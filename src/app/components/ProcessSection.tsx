@@ -50,18 +50,21 @@ export function ProcessSection() {
           <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
             From Vision to Reality
           </h2>
-        </div>
+        </motion.div>
 
         <div className="relative">
           {/* Vertical Timeline Line */}
           <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] bg-[#1B1B1B]/5" />
-          <motion.div 
-            style={{ scaleY: pathLength }}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 1.5, ease: "linear" }}
             className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] bg-[#8C6A4A] origin-top z-10"
           />
 
           <div className="space-y-12 md:space-y-24">
-            {steps.map((step, index) => (
+            {stages.map((stage, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
@@ -80,10 +83,10 @@ export function ProcessSection() {
                     className="font-['Cormorant_Garamond'] mb-1 md:mb-3"
                     style={{ fontSize: "clamp(48px, 6vw, 72px)", fontWeight: 400, color: "#8C6A4A", opacity: 0.25 }}
                   >
-                    {step.number}
+                    {stage.number}
                   </div>
                   <h3 className="font-['Cormorant_Garamond'] mb-2 md:mb-3" style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 500, color: "#1B1B1B" }}>
-                    {step.title}
+                    {stage.title}
                   </h3>
                   <p
                     className="font-['Inter'] max-w-md"
@@ -96,7 +99,7 @@ export function ProcessSection() {
                       marginRight: index % 2 === 0 ? "0" : "auto",
                     }}
                   >
-                    {step.description}
+                    {stage.description}
                   </p>
                 </div>
 
@@ -106,7 +109,7 @@ export function ProcessSection() {
 
                 {/* Spacer for non-content side */}
                 <div className="hidden md:block md:w-[45%]" />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -114,4 +117,3 @@ export function ProcessSection() {
     </section>
   );
 }
-

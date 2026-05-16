@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const services = [
@@ -45,26 +45,23 @@ const services = [
   },
 ];
 
-// Double the services for seamless looping
 const extendedServices = [...services, ...services];
 
 export function ServicesSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
     let animationId: number;
-    let lastTime = 0;
-    const speed = 1; // Pixels per frame approx
+    const speed = 1;
 
-    const scroll = (time: number) => {
+    const scroll = () => {
       if (!isPaused && scrollContainer) {
         scrollContainer.scrollLeft += speed;
-        
-        // Loop logic: if we reached the end of the first set of items
         if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
           scrollContainer.scrollLeft = 0;
         }
@@ -95,55 +92,58 @@ export function ServicesSection() {
         </motion.div>
       </div>
 
-        <div className="overflow-x-auto scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
-          <div className="flex gap-6 md:gap-8 pb-8" style={{ width: "max-content" }}>
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.9, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                onHoverStart={() => setHoveredIndex(index)}
-                onHoverEnd={() => setHoveredIndex(null)}
-                className="relative group cursor-pointer"
-                style={{ width: "clamp(280px, 80vw, 400px)", height: "clamp(350px, 60vh, 500px)" }}
-              >
-                <div className="relative w-full h-full overflow-hidden">
-                  <ImageWithFallback
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-700"
-                    style={{ transform: hoveredIndex === index ? "scale(1.08)" : "scale(1)" }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/90 via-[#1B1B1B]/40 to-transparent" />
-                </div>
-
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <motion.div
-                    animate={{ y: hoveredIndex === index ? -10 : 0 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <h3 className="font-['Cormorant_Garamond'] mb-2 md:mb-3" style={{ fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 500, color: "#F5F1EA" }}>
-                      {service.title}
-                    </h3>
-                    <p className="font-['Inter']" style={{ fontSize: "clamp(13px, 1vw, 16px)", fontWeight: 400, lineHeight: 1.7, color: "#D8CBB8" }}>
-                      {service.description}
-                    </p>
-                  </motion.div>
-                </div>
+      <div
+        ref={scrollRef}
+        className="overflow-x-auto scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div className="flex gap-6 md:gap-8 pb-8" style={{ width: "max-content" }}>
+          {extendedServices.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.9, delay: (index % services.length) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              onHoverStart={() => setHoveredIndex(index)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              className="relative group cursor-pointer"
+              style={{ width: "clamp(280px, 80vw, 400px)", height: "clamp(350px, 60vh, 500px)" }}
+            >
+              <div className="relative w-full h-full overflow-hidden">
+                <ImageWithFallback
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-700"
+                  style={{ transform: hoveredIndex === index ? "scale(1.08)" : "scale(1)" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1B1B1B]/90 via-[#1B1B1B]/40 to-transparent" />
               </div>
 
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                 <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: hoveredIndex === index ? 1 : 0 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute bottom-0 left-0 h-[2px] bg-[#8C6A4A] origin-left"
-                  style={{ width: "100%" }}
-                />
-              </motion.div>
-            ))}
-          </div>
+                  animate={{ y: hoveredIndex === index ? -10 : 0 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <h3 className="font-['Cormorant_Garamond'] mb-2 md:mb-3" style={{ fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 500, color: "#F5F1EA" }}>
+                    {service.title}
+                  </h3>
+                  <p className="font-['Inter']" style={{ fontSize: "clamp(13px, 1vw, 16px)", fontWeight: 400, lineHeight: 1.7, color: "#D8CBB8" }}>
+                    {service.description}
+                  </p>
+                </motion.div>
+              </div>
+
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: hoveredIndex === index ? 1 : 0 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute bottom-0 left-0 h-[2px] bg-[#8C6A4A] origin-left"
+                style={{ width: "100%" }}
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
