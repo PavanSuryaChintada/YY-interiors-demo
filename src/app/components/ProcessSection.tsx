@@ -1,62 +1,54 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { motion } from "motion/react";
 
 const stages = [
   {
-    id: "01",
-    title: "Vision",
-    description: "Deep immersion into your lifestyle, aspirations, and the unique soul of the site.",
-    detail: "Discovery & Dialogue"
+    number: "01",
+    title: "Consultation",
+    description: "Understanding your vision, lifestyle, and spatial needs through in-depth dialogue",
   },
   {
-    id: "02",
-    title: "Concept",
-    description: "Translating abstract desires into architectural language through sketches and mood curation.",
-    detail: "Spatial Narrative"
+    number: "02",
+    title: "Concept Design",
+    description: "Translating ideas into architectural concepts with mood boards and sketches",
   },
   {
-    id: "03",
-    title: "Visualization",
-    description: "Photorealistic digital manifestations that allow you to feel the space before it exists.",
-    detail: "Digital Craft"
+    number: "03",
+    title: "3D Visualization",
+    description: "Bringing designs to life with photorealistic renderings and walkthroughs",
   },
   {
-    id: "04",
+    number: "04",
+    title: "Material Selection",
+    description: "Curating premium materials, finishes, and bespoke furnishings",
+  },
+  {
+    number: "05",
     title: "Execution",
-    description: "Meticulous coordination with elite artisans and engineers to realize every detail.",
-    detail: "Technical Precision"
+    description: "Meticulous project management ensuring precision and quality",
   },
   {
-    id: "05",
-    title: "Transformation",
-    description: "The final reveal where structure becomes home and vision becomes reality.",
-    detail: "Living Masterpiece"
-  }
+    number: "06",
+    title: "Final Styling",
+    description: "The finishing touches that transform a space into an experience",
+  },
 ];
 
 export function ProcessSection() {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const pathLength = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
-
   return (
-    <section id="process" ref={containerRef} className="py-20 md:py-32 px-6 md:px-12 bg-[#F5F1EA] overflow-hidden">
+    <section id="process" className="py-20 md:py-32 px-6 md:px-8 bg-[#F5F1EA]">
       <div className="max-w-[1400px] mx-auto">
-        <div className="mb-16 md:mb-24">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="font-['Inter'] text-[#8C6A4A] text-[10px] uppercase tracking-[0.4em] font-medium mb-4"
-          >
-            The Journey
-          </motion.p>
-          <h2 className="font-['Cormorant_Garamond'] text-[clamp(36px,4vw,56px)] font-light text-[#1B1B1B] leading-none">
-            Architecting <br />
-            <span className="italic">Excellence.</span>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-16 md:mb-20"
+        >
+          <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
+            OUR PROCESS
+          </p>
+          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
+            From Vision to Reality
           </h2>
         </div>
 
@@ -68,42 +60,49 @@ export function ProcessSection() {
             className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] bg-[#8C6A4A] origin-top z-10"
           />
 
-          <div className="space-y-20 md:space-y-32">
-            {stages.map((stage, index) => (
-              <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                
-                {/* Stage Number / Indicator */}
-                <div className="absolute left-[-5px] md:left-1/2 md:-translate-x-1/2 z-20">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 10, delay: 0.2 }}
-                    className="w-[40px] h-[40px] rounded-full bg-[#1B1B1B] flex items-center justify-center text-[#F5F1EA] font-['Inter'] text-[11px] font-medium border-[6px] border-[#F5F1EA]"
+          <div className="space-y-12 md:space-y-24">
+            {steps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                className={`flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12 ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
+              >
+                <div
+                  className="flex-1 pl-12 md:pl-0 text-left md:text-right"
+                  style={{ textAlign: index % 2 === 0 ? "right" : "left" }}
+                >
+                  <div
+                    className="font-['Cormorant_Garamond'] mb-1 md:mb-3"
+                    style={{ fontSize: "clamp(48px, 6vw, 72px)", fontWeight: 400, color: "#8C6A4A", opacity: 0.25 }}
                   >
-                    {stage.id}
-                  </motion.div>
+                    {step.number}
+                  </div>
+                  <h3 className="font-['Cormorant_Garamond'] mb-2 md:mb-3" style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 500, color: "#1B1B1B" }}>
+                    {step.title}
+                  </h3>
+                  <p
+                    className="font-['Inter'] max-w-md"
+                    style={{
+                      fontSize: "clamp(16px, 1.1vw, 18px)",
+                      fontWeight: 400,
+                      lineHeight: 1.8,
+                      color: "#1B1B1B",
+                      marginLeft: index % 2 === 0 ? "auto" : "0",
+                      marginRight: index % 2 === 0 ? "0" : "auto",
+                    }}
+                  >
+                    {step.description}
+                  </p>
                 </div>
 
-                {/* Content */}
-                <motion.div
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className={`w-full md:w-[45%] pl-16 md:pl-0 ${index % 2 === 0 ? 'md:text-right md:pr-16' : 'md:text-left md:pl-16'}`}
-                >
-                  <p className="font-['Inter'] text-[#8C6A4A] text-[9px] uppercase tracking-[0.2em] mb-3">
-                    {stage.detail}
-                  </p>
-                  <h3 className="font-['Cormorant_Garamond'] text-[28px] md:text-[36px] font-light text-[#1B1B1B] mb-4">
-                    {stage.title}
-                  </h3>
-                  <p className="font-['Inter'] text-[14px] md:text-[15px] leading-[1.7] text-[#1B1B1B]/70 font-light">
-                    {stage.description}
-                  </p>
-                  
-                  {/* Decorative Architectural Line */}
-                  <div className={`mt-6 h-[1px] w-10 bg-[#8C6A4A]/30 ${index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'}`} />
-                </motion.div>
+                <div className="absolute left-0 md:relative w-8 h-8 md:w-16 md:h-16 rounded-full border-2 border-[#8C6A4A] bg-[#F5F1EA] flex items-center justify-center z-10 shrink-0">
+                  <div className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-[#8C6A4A]" />
+                </div>
 
                 {/* Spacer for non-content side */}
                 <div className="hidden md:block md:w-[45%]" />
