@@ -1,18 +1,19 @@
 import { useParams, Link } from "react-router";
 import { motion } from "motion/react";
-import { projects } from "../data/projects";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { useEffect } from "react";
+import { useContent } from "../../context/ContentContext";
 
 export function ProjectDetail() {
   const { slug } = useParams();
-  const project = projects.find((p) => p.slug === slug);
+  const { content } = useContent();
+  const projectData = content.projects.find((p) => p.id === slug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  if (!project) {
+  if (!projectData) {
     return (
       <div className="h-screen flex items-center justify-center bg-[#F5F1EA]">
         <h1 className="font-['Cormorant_Garamond'] text-4xl">Project Not Found</h1>
@@ -21,9 +22,21 @@ export function ProjectDetail() {
     );
   }
 
+  // Extend with mock data for fields not yet in CMS
+  const project = {
+    ...projectData,
+    mainImage: projectData.image,
+    category: projectData.style,
+    client: "Confidential Client",
+    area: "850 sqm",
+    year: "2025",
+    description: "Every element was meticulously sourced and curated to reflect a specific mood. We focused on the tactile experience—from the temperature of the floors to the grain of the paneling.",
+    images: [projectData.image, projectData.image, projectData.image, projectData.image],
+  };
+
   // Calculate Next Project
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  const nextProject = projects[(currentIndex + 1) % projects.length];
+  const currentIndex = content.projects.findIndex((p) => p.id === slug);
+  const nextProject = content.projects[(currentIndex + 1) % content.projects.length];
 
   return (
     <div className="bg-[#F5F1EA] min-h-screen pb-32">
@@ -145,7 +158,7 @@ export function ProjectDetail() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col items-center">
           <p className="font-['Inter'] text-[10px] uppercase tracking-[0.5em] text-[#8C6A4A] mb-8">Next Project</p>
           <Link 
-            to={`/project/${nextProject.slug}`} 
+            to={`/project/${nextProject.id}`} 
             className="group font-['Cormorant_Garamond'] text-[clamp(40px,8vw,120px)] font-light italic text-[#1B1B1B] hover:text-[#8C6A4A] transition-colors duration-500 text-center"
           >
             {nextProject.title} →

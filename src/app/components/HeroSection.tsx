@@ -101,10 +101,11 @@ export function HeroSection() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <motion.button
+            <motion.a
+              href="/#portfolio"
               whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.14)" }}
               whileTap={{ scale: 0.97 }}
-              className="px-10 py-4 font-['Inter']"
+              className="px-10 py-4 font-['Inter'] inline-flex items-center justify-center"
               style={{
                 fontSize: "12px",
                 fontWeight: 500,
@@ -117,12 +118,13 @@ export function HeroSection() {
               }}
             >
               {content.hero.cta1}
-            </motion.button>
+            </motion.a>
 
-            <motion.button
+            <motion.a
+              href="/#contact"
               whileHover={{ scale: 1.03, backgroundColor: "#7a5c3f" }}
               whileTap={{ scale: 0.97 }}
-              className="px-10 py-4 font-['Inter']"
+              className="px-10 py-4 font-['Inter'] inline-flex items-center justify-center"
               style={{
                 fontSize: "12px",
                 fontWeight: 500,
@@ -133,7 +135,7 @@ export function HeroSection() {
               }}
             >
               {content.hero.cta2}
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
 

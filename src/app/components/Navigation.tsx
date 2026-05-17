@@ -5,10 +5,10 @@ import { Link, useLocation } from "react-router";
 import { useContent } from "../../context/ContentContext";
 
 const navLinks = [
-  { name: "PORTFOLIO", href: "#portfolio" },
-  { name: "SERVICES", href: "#services" },
-  { name: "PROCESS", href: "#process" },
-  { name: "CONTACT", href: "#contact" },
+  { name: "PORTFOLIO", href: "/#portfolio" },
+  { name: "SERVICES", href: "/#services" },
+  { name: "PROCESS", href: "/#process" },
+  { name: "CONTACT", href: "/#contact" },
 ];
 
 export function Navigation() {
@@ -35,35 +35,37 @@ export function Navigation() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-8 md:py-5 transition-all duration-500 ${
-          navBg ? "bg-[#F5F1EA]/92 backdrop-blur-xl shadow-sm" : "bg-[#1B1B1B]/20 backdrop-blur-sm"
+          navBg ? "bg-[#F5F1EA]/92 backdrop-blur-xl shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="max-w-[1600px] mx-auto flex items-center justify-between">
           {/* Brand + tagline */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="flex flex-col gap-0.5 z-50 shrink-0"
-          >
-            <span
-              className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500 whitespace-nowrap"
-              style={{
-                fontSize: "clamp(20px, 4vw, 26px)",
-                fontWeight: 500,
-                letterSpacing: "0.12em",
-                color: navBg ? "#1B1B1B" : "#F5F1EA",
-              }}
+          <Link to="/">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+              className="flex flex-col gap-0.5 z-50 shrink-0"
             >
-              {content.navigation.brandName}
-            </span>
-            <span
-              className="font-['Inter'] hidden sm:block whitespace-nowrap transition-colors duration-500"
-              style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.28em", color: navBg ? "#8C6A4A" : "rgba(216,203,184,0.7)" }}
-            >
-              {content.navigation.tagline}
-            </span>
-          </motion.div>
+              <span
+                className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500 whitespace-nowrap"
+                style={{
+                  fontSize: "clamp(20px, 4vw, 26px)",
+                  fontWeight: 500,
+                  letterSpacing: "0.12em",
+                  color: navBg ? "#1B1B1B" : "#F5F1EA",
+                }}
+              >
+                {content.navigation.brandName}
+              </span>
+              <span
+                className="font-['Inter'] hidden sm:block whitespace-nowrap transition-colors duration-500"
+                style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.28em", color: navBg ? "#8C6A4A" : "rgba(216,203,184,0.7)" }}
+              >
+                {content.navigation.tagline}
+              </span>
+            </motion.div>
+          </Link>
 
           {/* Desktop navigation */}
           <motion.div
@@ -84,7 +86,7 @@ export function Navigation() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/#contact"
               className="px-6 py-2.5 transition-all duration-300 hover:bg-[#8C6A4A] hover:border-[#8C6A4A] hover:text-[#F5F1EA]"
               style={{
                 color: navBg ? "#1B1B1B" : "#F5F1EA",
