@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router";
+import { useContent } from "../../context/ContentContext";
 
 const navLinks = [
   { name: "PORTFOLIO", href: "#portfolio" },
@@ -11,6 +12,7 @@ const navLinks = [
 ];
 
 export function Navigation() {
+  const { content } = useContent();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -53,13 +55,13 @@ export function Navigation() {
                 color: navBg ? "#1B1B1B" : "#F5F1EA",
               }}
             >
-              YY INTERIORS
+              {content.navigation.brandName}
             </span>
             <span
               className="font-['Inter'] hidden sm:block whitespace-nowrap transition-colors duration-500"
               style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.28em", color: navBg ? "#8C6A4A" : "rgba(216,203,184,0.7)" }}
             >
-              ELITE INTERIOR ARCHITECTURE STUDIO
+              {content.navigation.tagline}
             </span>
           </motion.div>
 

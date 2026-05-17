@@ -1,0 +1,380 @@
+export interface SiteContent {
+  navigation: {
+    brandName: string;
+    tagline: string;
+  };
+  hero: {
+    eyebrow: string;
+    heading: string;
+    subheading: string;
+    cta1: string;
+    cta2: string;
+    image: string;
+  };
+  brandStory: {
+    eyebrow: string;
+    heading: string;
+    paragraph1: string;
+    paragraph2: string;
+    paragraph3: string;
+    stats: Array<{ number: string; label: string }>;
+    image: string;
+  };
+  projects: Array<{
+    id: string;
+    title: string;
+    location: string;
+    style: string;
+    image: string;
+  }>;
+  architecture: {
+    eyebrow: string;
+    heading1: string;
+    heading2: string;
+    body: string;
+    stats: Array<{ label: string; value: string }>;
+    cardEyebrow: string;
+    cardTitle: string;
+    cardBody: string;
+  };
+  services: Array<{
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+  }>;
+  philosophy: {
+    eyebrow: string;
+    heading: string;
+    headingItalic: string;
+    pillars: Array<{ num: string; heading: string; body: string }>;
+    image1: string;
+    image2: string;
+    statNumber: string;
+    statLabel: string;
+    statDescription: string;
+  };
+  materials: Array<{
+    id: string;
+    name: string;
+    description: string;
+    image: string;
+  }>;
+  testimonials: Array<{
+    id: string;
+    quote: string;
+    client: string;
+    project: string;
+  }>;
+  process: Array<{
+    id: string;
+    number: string;
+    title: string;
+    description: string;
+  }>;
+  contact: {
+    eyebrow: string;
+    heading: string;
+    subheading: string;
+    phone: string;
+    email: string;
+    address: string;
+  };
+  footer: {
+    brandName: string;
+    tagline: string;
+    copyright: string;
+    developer: string;
+  };
+}
+
+export const defaultContent: SiteContent = {
+  navigation: {
+    brandName: "YY INTERIORS",
+    tagline: "ELITE INTERIOR ARCHITECTURE STUDIO",
+  },
+  hero: {
+    eyebrow: "AWARD-WINNING LUXURY DESIGN STUDIO",
+    heading: "Designing Spaces That Feel Timeless",
+    subheading:
+      "A globally recognized luxury design house specializing in bespoke residences and visionary spatial architecture.",
+    cta1: "EXPLORE PORTFOLIO",
+    cta2: "BOOK CONSULTATION",
+    image:
+      "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  },
+  brandStory: {
+    eyebrow: "OUR PHILOSOPHY",
+    heading: "Crafting Emotion Through Space",
+    paragraph1:
+      "At YY Interiors, we believe that luxury is not about opulence—it's about creating spaces that resonate with the soul. Each project is a careful orchestration of light, texture, and form.",
+    paragraph2:
+      "Our approach blends architectural rigor with emotional sensitivity, resulting in interiors that feel both timeless and deeply personal. We work with premium materials, artisanal craftsmanship, and a refined aesthetic that transcends trends.",
+    paragraph3:
+      "From concept to execution, every detail is considered, every surface is intentional, and every space is designed to evoke a feeling of serene sophistication.",
+    stats: [
+      { number: "15+", label: "Years Excellence" },
+      { number: "200+", label: "Projects Completed" },
+      { number: "12", label: "Design Awards" },
+    ],
+    image:
+      "https://images.unsplash.com/photo-1666037805138-f227944ed8d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  },
+  projects: [
+    {
+      id: "p1",
+      title: "Modern Minimalist Residence",
+      location: "Mumbai, India",
+      style: "Contemporary",
+      image:
+        "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "p2",
+      title: "Luxury Penthouse Suite",
+      location: "Delhi, India",
+      style: "Modern Luxury",
+      image:
+        "https://images.unsplash.com/photo-1666037805138-f227944ed8d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "p3",
+      title: "Serene Bedroom Retreat",
+      location: "Bangalore, India",
+      style: "Transitional",
+      image:
+        "https://images.unsplash.com/photo-1640109478916-f445f8f19b11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsdXh1cnklMjBiZWRyb29tJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzc4NDQxMTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "p4",
+      title: "Architectural Kitchen",
+      location: "Gurgaon, India",
+      style: "Contemporary",
+      image:
+        "https://images.unsplash.com/photo-1704383014594-01bc24b6b840?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBraXRjaGVuJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MXx8fHwxNzc4NDQxMTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "p5",
+      title: "Elegant Living Space",
+      location: "Pune, India",
+      style: "Classic Modern",
+      image:
+        "https://images.unsplash.com/photo-1669387448840-610c588f003d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "p6",
+      title: "Tranquil Master Suite",
+      location: "Hyderabad, India",
+      style: "Minimalist",
+      image:
+        "https://images.unsplash.com/photo-1639751907353-3629fc00d2b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBsdXh1cnklMjBiZWRyb29tJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzc4NDQxMTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+  ],
+  architecture: {
+    eyebrow: "Spatial Planning",
+    heading1: "The Geometry",
+    heading2: "of Emotion.",
+    body: "We believe architecture is more than just structure; it's the choreography of light, shadow, and movement. Our technical precision ensures every line serves a purpose, creating spaces that breathe and inspire.",
+    stats: [
+      { label: "Precision", value: "0.01mm" },
+      { label: "Drafting", value: "BIM-Led" },
+      { label: "Acoustics", value: "Curated" },
+      { label: "Flow", value: "Kinetic" },
+    ],
+    cardEyebrow: "Structure Alpha-01",
+    cardTitle: "Master Suite Optimization",
+    cardBody: "Optimizing spatial flow through calculated geometric intersections.",
+  },
+  services: [
+    {
+      id: "s1",
+      title: "Residential Interiors",
+      description: "Complete home transformations with architectural sophistication",
+      image:
+        "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "s2",
+      title: "Luxury Living Rooms",
+      description: "Curated spaces for elevated everyday living",
+      image:
+        "https://images.unsplash.com/photo-1669387448840-610c588f003d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "s3",
+      title: "Modular Kitchens",
+      description: "Where functionality meets refined aesthetics",
+      image:
+        "https://images.unsplash.com/photo-1704383014594-01bc24b6b840?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBraXRjaGVuJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MXx8fHwxNzc4NDQxMTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "s4",
+      title: "Bedroom Design",
+      description: "Sanctuaries of comfort and tranquility",
+      image:
+        "https://images.unsplash.com/photo-1640109478916-f445f8f19b11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsdXh1cnklMjBiZWRyb29tJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzc4NDQxMTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "s5",
+      title: "Commercial Interiors",
+      description: "Brand experiences through spatial design",
+      image:
+        "https://images.unsplash.com/photo-1687180498602-5a1046defaa4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw2fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "s6",
+      title: "Space Planning",
+      description: "Optimizing flow and spatial harmony",
+      image:
+        "https://images.unsplash.com/photo-1690489965043-ec15758cce71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "s7",
+      title: "Furniture Styling",
+      description: "Curated selections and custom pieces",
+      image:
+        "https://images.unsplash.com/photo-1628744876497-eb30460be9f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxMHx8bHV4dXJ5JTIwaW50ZXJpb3IlMjBkZXNpZ24lMjBsaXZpbmclMjByb29tfGVufDF8fHx8MTc3ODM1NDE3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "s8",
+      title: "Renovation & Execution",
+      description: "End-to-end project realization",
+      image:
+        "https://images.unsplash.com/photo-1672927936377-97d1be3976cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw1fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+  ],
+  philosophy: {
+    eyebrow: "DESIGN INTELLIGENCE",
+    heading: "The Physics of",
+    headingItalic: "Emotional Space",
+    pillars: [
+      {
+        num: "01",
+        heading: "Light as a Material",
+        body: "We treat light with the same rigor as marble or timber — studying its arc through every hour of the day to sculpt atmosphere that shifts with living.",
+      },
+      {
+        num: "02",
+        heading: "Emotional Geometry",
+        body: "Every proportion is tuned to the human body and spirit. Ceiling heights, threshold widths, and sight-lines are calibrated to produce a precise emotional response.",
+      },
+      {
+        num: "03",
+        heading: "Silence in Detail",
+        body: "Restraint is the hardest discipline in luxury. We remove until only what is essential and beautiful remains — each surface earns its place.",
+      },
+    ],
+    image1:
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image2:
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw1fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGJlZHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    statNumber: "98",
+    statLabel: "NPS SCORE",
+    statDescription: "Client satisfaction across 200+ projects",
+  },
+  materials: [
+    {
+      id: "m1",
+      name: "Italian Marble",
+      description: "Timeless elegance",
+      image:
+        "https://images.unsplash.com/photo-1566041510394-cf7c8fe21800?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJibGUlMjB0ZXh0dXJlJTIwbHV4dXJ5fGVufDF8fHx8MTc3ODQ0MTE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "m2",
+      name: "Walnut Wood",
+      description: "Natural warmth",
+      image:
+        "https://images.unsplash.com/photo-1774437290572-0e414eb62db9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHx3b29kJTIwdGV4dHVyZSUyMGludGVyaW9yfGVufDF8fHx8MTc3ODQ0MTE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "m3",
+      name: "Brushed Bronze",
+      description: "Refined accents",
+      image:
+        "https://images.unsplash.com/photo-1760237655540-8197ef24838b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHx3b29kJTIwdGV4dHVyZSUyMGludGVyaW9yfGVufDF8fHx8MTc3ODQ0MTE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      id: "m4",
+      name: "Luxury Fabrics",
+      description: "Tactile comfort",
+      image:
+        "https://images.unsplash.com/photo-1715518283046-54e007167620?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b29kJTIwdGV4dHVyZSUyMGludGVyaW9yfGVufDF8fHx8MTc3ODQ0MTE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+  ],
+  testimonials: [
+    {
+      id: "t1",
+      quote:
+        "YY Interiors transformed our home into a sanctuary. Every detail reflects our personality while maintaining an elevated aesthetic we never thought possible.",
+      client: "Ananya Sharma",
+      project: "Modern Residence, Mumbai",
+    },
+    {
+      id: "t2",
+      quote:
+        "The level of craftsmanship and attention to detail is extraordinary. Our space feels like it belongs in a design magazine, yet it's deeply personal.",
+      client: "Rajesh Malhotra",
+      project: "Luxury Penthouse, Delhi",
+    },
+    {
+      id: "t3",
+      quote:
+        "Working with YY Interiors was a masterclass in design. They listened, understood, and delivered beyond our wildest expectations.",
+      client: "Priya Menon",
+      project: "Contemporary Villa, Bangalore",
+    },
+  ],
+  process: [
+    {
+      id: "pr1",
+      number: "01",
+      title: "Consultation",
+      description: "Understanding your vision, lifestyle, and spatial needs through in-depth dialogue",
+    },
+    {
+      id: "pr2",
+      number: "02",
+      title: "Concept Design",
+      description: "Translating ideas into architectural concepts with mood boards and sketches",
+    },
+    {
+      id: "pr3",
+      number: "03",
+      title: "3D Visualization",
+      description: "Bringing designs to life with photorealistic renderings and walkthroughs",
+    },
+    {
+      id: "pr4",
+      number: "04",
+      title: "Material Selection",
+      description: "Curating premium materials, finishes, and bespoke furnishings",
+    },
+    {
+      id: "pr5",
+      number: "05",
+      title: "Execution",
+      description: "Meticulous project management ensuring precision and quality",
+    },
+    {
+      id: "pr6",
+      number: "06",
+      title: "Final Styling",
+      description: "The finishing touches that transform a space into an experience",
+    },
+  ],
+  contact: {
+    eyebrow: "GET IN TOUCH",
+    heading: "Let's Design Something Timeless",
+    subheading: "Begin your journey to a beautifully crafted space. We'd love to hear about your vision.",
+    phone: "+91 98765 43210",
+    email: "hello@yyinteriors.com",
+    address: "Mumbai, India",
+  },
+  footer: {
+    brandName: "YY INTERIORS",
+    tagline: "ELITE INTERIOR ARCHITECTURE STUDIO",
+    copyright: "© 2026 YY Interiors. All rights reserved.",
+    developer: "AR Tech Studio",
+  },
+};

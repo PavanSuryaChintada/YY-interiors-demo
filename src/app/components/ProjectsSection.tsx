@@ -1,47 +1,11 @@
 import { motion } from "motion/react";
 import Masonry from "react-responsive-masonry";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-
-const projects = [
-  {
-    title: "Modern Minimalist Residence",
-    location: "Mumbai, India",
-    style: "Contemporary",
-    image: "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    title: "Luxury Penthouse Suite",
-    location: "Delhi, India",
-    style: "Modern Luxury",
-    image: "https://images.unsplash.com/photo-1666037805138-f227944ed8d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    title: "Serene Bedroom Retreat",
-    location: "Bangalore, India",
-    style: "Transitional",
-    image: "https://images.unsplash.com/photo-1640109478916-f445f8f19b11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsdXh1cnklMjBiZWRyb29tJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzc4NDQxMTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    title: "Architectural Kitchen",
-    location: "Gurgaon, India",
-    style: "Contemporary",
-    image: "https://images.unsplash.com/photo-1704383014594-01bc24b6b840?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBraXRjaGVuJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MXx8fHwxNzc4NDQxMTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    title: "Elegant Living Space",
-    location: "Pune, India",
-    style: "Classic Modern",
-    image: "https://images.unsplash.com/photo-1669387448840-610c588f003d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    title: "Tranquil Master Suite",
-    location: "Hyderabad, India",
-    style: "Minimalist",
-    image: "https://images.unsplash.com/photo-1639751907353-3629fc00d2b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBsdXh1cnklMjBiZWRyb29tJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzc4NDQxMTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-];
+import { useContent } from "../../context/ContentContext";
 
 export function ProjectsSection() {
+  const { content } = useContent();
+  const projects = content.projects;
   return (
     <section id="portfolio" className="py-20 md:py-32 px-6 md:px-8 bg-[#F5F1EA]">
       <div className="max-w-[1600px] mx-auto">
@@ -66,7 +30,7 @@ export function ProjectsSection() {
         <Masonry columnsCount={3} gutter="24px">
           {projects.map((project, index) => (
             <motion.div
-              key={index}
+              key={project.id}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}

@@ -1,25 +1,9 @@
 import { motion } from "motion/react";
 import { Quote } from "lucide-react";
-
-const testimonials = [
-  {
-    quote: "YY Interiors transformed our home into a sanctuary. Every detail reflects our personality while maintaining an elevated aesthetic we never thought possible.",
-    client: "Ananya Sharma",
-    project: "Modern Residence, Mumbai",
-  },
-  {
-    quote: "The level of craftsmanship and attention to detail is extraordinary. Our space feels like it belongs in a design magazine, yet it's deeply personal.",
-    client: "Rajesh Malhotra",
-    project: "Luxury Penthouse, Delhi",
-  },
-  {
-    quote: "Working with YY Interiors was a masterclass in design. They listened, understood, and delivered beyond our wildest expectations.",
-    client: "Priya Menon",
-    project: "Contemporary Villa, Bangalore",
-  },
-];
+import { useContent } from "../../context/ContentContext";
 
 export function TestimonialsSection() {
+  const { content } = useContent();
   return (
     <section className="py-32 px-8 bg-[#1B1B1B]">
       <div className="max-w-[1400px] mx-auto">
@@ -39,9 +23,9 @@ export function TestimonialsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {content.testimonials.map((testimonial, index) => (
             <motion.div
-              key={index}
+              key={testimonial.id}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}

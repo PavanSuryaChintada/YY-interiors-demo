@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\prave\\\\Downloads\\\\yy-interiors-demo\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git rebase *)",
+      "Bash(git commit -m 'fix: resolve JSX and runtime errors from broken remote changes *)",
+      "Skill(frontend-design)",
+      "Skill(frontend-design:*)",
+      "Bash(git commit -m 'feat: cinematic scroll animations, precision cursor, and scroll progress panel *)",
+      "Bash(git commit -m 'redesign: replace amateur SVG drawing with editorial photo composition in DesignPhilosophy *)",
+      "Bash(grep -n \"yyinteriors\\\\|yy@#\\\\$123\\\\|secret-route\\\\|sessionStorage\" src/app/pages/AdminPanel.tsx)"
+    ]
+  }
+}

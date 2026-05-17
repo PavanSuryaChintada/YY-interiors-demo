@@ -1,8 +1,10 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ArchitecturalElements } from "./ArchitecturalElements";
+import { useContent } from "../../context/ContentContext";
 
 export function ArchitectureSection() {
+  const { content } = useContent();
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -30,24 +32,19 @@ export function ArchitectureSection() {
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <p className="font-['Inter'] mb-4 text-[#8C6A4A] text-[11px] uppercase tracking-[0.3em] font-medium">
-              Spatial Planning
+              {content.architecture.eyebrow}
             </p>
             <h2 className="font-['Cormorant_Garamond'] text-[clamp(40px,5vw,72px)] font-light leading-[1.1] text-[#1B1B1B] mb-8">
-              The Geometry <br />
-              <span className="italic">of Emotion.</span>
+              {content.architecture.heading1} <br />
+              <span className="italic">{content.architecture.heading2}</span>
             </h2>
             <p className="font-['Inter'] text-[16px] leading-[1.8] text-[#1B1B1B]/70 font-light max-w-lg">
-              We believe architecture is more than just structure; it's the choreography of light, shadow, and movement. Our technical precision ensures every line serves a purpose, creating spaces that breathe and inspire.
+              {content.architecture.body}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 gap-12 pt-8">
-            {[
-              { label: "Precision", value: "0.01mm" },
-              { label: "Drafting", value: "BIM-Led" },
-              { label: "Acoustics", value: "Curated" },
-              { label: "Flow", value: "Kinetic" }
-            ].map((stat, idx) => (
+            {content.architecture.stats.map((stat, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
@@ -112,13 +109,12 @@ export function ArchitectureSection() {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="relative z-20 bg-[#1B1B1B] text-[#F5F1EA] p-6 backdrop-blur-xl border border-[#F5F1EA]/10 shadow-2xl"
           >
-            <p className="font-['Inter'] text-[9px] uppercase tracking-[0.2em] mb-2 opacity-60">Structure Alpha-01</p>
-            <p className="font-['Cormorant_Garamond'] text-[20px] mb-4">Master Suite Optimization</p>
+            <p className="font-['Inter'] text-[9px] uppercase tracking-[0.2em] mb-2 opacity-60">{content.architecture.cardEyebrow}</p>
+            <p className="font-['Cormorant_Garamond'] text-[20px] mb-4">{content.architecture.cardTitle}</p>
             <div className="flex gap-4">
               <div className="w-12 h-[1px] bg-[#8C6A4A] mt-3" />
               <p className="font-['Inter'] text-[11px] font-light leading-relaxed opacity-80">
-                Optimizing spatial flow through <br />
-                calculated geometric intersections.
+                {content.architecture.cardBody}
               </p>
             </div>
           </motion.div>

@@ -1,30 +1,9 @@
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-
-const materials = [
-  {
-    name: "Italian Marble",
-    description: "Timeless elegance",
-    image: "https://images.unsplash.com/photo-1566041510394-cf7c8fe21800?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJibGUlMjB0ZXh0dXJlJTIwbHV4dXJ5fGVufDF8fHx8MTc3ODQ0MTE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    name: "Walnut Wood",
-    description: "Natural warmth",
-    image: "https://images.unsplash.com/photo-1774437290572-0e414eb62db9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHx3b29kJTIwdGV4dHVyZSUyMGludGVyaW9yfGVufDF8fHx8MTc3ODQ0MTE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    name: "Brushed Bronze",
-    description: "Refined accents",
-    image: "https://images.unsplash.com/photo-1760237655540-8197ef24838b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHx3b29kJTIwdGV4dHVyZSUyMGludGVyaW9yfGVufDF8fHx8MTc3ODQ0MTE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-  {
-    name: "Luxury Fabrics",
-    description: "Tactile comfort",
-    image: "https://images.unsplash.com/photo-1715518283046-54e007167620?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b29kJTIwdGV4dHVyZSUyMGludGVyaW9yfGVufDF8fHx8MTc3ODQ0MTE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-  },
-];
+import { useContent } from "../../context/ContentContext";
 
 export function MaterialsSection() {
+  const { content } = useContent();
   return (
     <section className="py-32 px-8 bg-[#1B1B1B]">
       <div className="max-w-[1600px] mx-auto">
@@ -44,9 +23,9 @@ export function MaterialsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {materials.map((material, index) => (
+          {content.materials.map((material, index) => (
             <motion.div
-              key={index}
+              key={material.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}

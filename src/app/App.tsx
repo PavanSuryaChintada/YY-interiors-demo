@@ -7,23 +7,35 @@ import { ScrollProgressPanel } from "./components/ScrollProgressPanel";
 import { Home } from "./pages/Home";
 import { ProjectDetail } from "./pages/ProjectDetail";
 import { ProjectsCollection } from "./pages/ProjectsCollection";
+import { AdminPanel } from "./pages/AdminPanel";
+import { ContentProvider } from "../context/ContentContext";
 
-export default function App() {
+function SiteLayout() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-[#F5F1EA] overflow-x-hidden cursor-none md:cursor-auto">
-        <Preloader />
-        <ArchitecturalCursor />
-        <ScrollProgressPanel />
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<ProjectsCollection />} />
-          <Route path="/project/:slug" element={<ProjectDetail />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <div className="min-h-screen bg-[#F5F1EA] overflow-x-hidden cursor-none md:cursor-auto">
+      <Preloader />
+      <ArchitecturalCursor />
+      <ScrollProgressPanel />
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<ProjectsCollection />} />
+        <Route path="/project/:slug" element={<ProjectDetail />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 }
 
+export default function App() {
+  return (
+    <ContentProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/sg/secret-route" element={<AdminPanel />} />
+          <Route path="/*" element={<SiteLayout />} />
+        </Routes>
+      </BrowserRouter>
+    </ContentProvider>
+  );
+}

@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useContent } from "../../context/ContentContext";
 
 const containerVariants = {
   hidden: {},
@@ -13,6 +14,7 @@ const itemVariants = {
 };
 
 export function BrandStory() {
+  const { content } = useContent();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
@@ -40,31 +42,21 @@ export function BrandStory() {
                 className="w-8 h-[1px] bg-[#8C6A4A] mb-4 origin-left"
               />
               <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
-                OUR PHILOSOPHY
+                {content.brandStory.eyebrow}
               </p>
               <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
-                Crafting Emotion Through Space
+                {content.brandStory.heading}
               </h2>
             </motion.div>
 
             <motion.div variants={itemVariants} className="space-y-4 md:space-y-6 font-['Inter']" style={{ fontSize: "clamp(16px, 1.1vw, 18px)", fontWeight: 400, lineHeight: 1.9, color: "#1B1B1B" }}>
-              <p>
-                At YY Interiors, we believe that luxury is not about opulence—it's about creating spaces that resonate with the soul. Each project is a careful orchestration of light, texture, and form.
-              </p>
-              <p>
-                Our approach blends architectural rigor with emotional sensitivity, resulting in interiors that feel both timeless and deeply personal. We work with premium materials, artisanal craftsmanship, and a refined aesthetic that transcends trends.
-              </p>
-              <p>
-                From concept to execution, every detail is considered, every surface is intentional, and every space is designed to evoke a feeling of serene sophistication.
-              </p>
+              <p>{content.brandStory.paragraph1}</p>
+              <p>{content.brandStory.paragraph2}</p>
+              <p>{content.brandStory.paragraph3}</p>
             </motion.div>
 
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8">
-              {[
-                { number: "15+", label: "Years Excellence" },
-                { number: "200+", label: "Projects Completed" },
-                { number: "12", label: "Design Awards" },
-              ].map((stat, i) => (
+              {content.brandStory.stats.map((stat, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
@@ -94,7 +86,7 @@ export function BrandStory() {
             <div className="relative group overflow-hidden">
               <motion.div style={{ y: imageY }} className="w-full">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1666037805138-f227944ed8d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={content.brandStory.image}
                   alt="YY Interiors design philosophy"
                   className="w-full h-[400px] md:h-[500px] lg:h-[640px] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />

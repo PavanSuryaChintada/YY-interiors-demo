@@ -1,6 +1,8 @@
 import { motion } from "motion/react";
+import { useContent } from "../../context/ContentContext";
 
 export function Footer() {
+  const { content } = useContent();
   return (
     <footer className="py-12 px-8 bg-[#1B1B1B] border-t border-[#F5F1EA]/10">
       <div className="max-w-[1600px] mx-auto">
@@ -16,13 +18,13 @@ export function Footer() {
               className="font-['Cormorant_Garamond'] tracking-wider"
               style={{ fontSize: "24px", fontWeight: 500, letterSpacing: "0.12em", color: "#F5F1EA" }}
             >
-              YY INTERIORS
+              {content.footer.brandName}
             </span>
             <span
               className="font-['Inter']"
               style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.25em", color: "#8C6A4A" }}
             >
-              ELITE INTERIOR ARCHITECTURE STUDIO
+              {content.footer.tagline}
             </span>
           </motion.div>
 
@@ -34,10 +36,10 @@ export function Footer() {
             className="flex flex-col items-center md:items-start gap-1"
           >
             <p className="font-['Inter']" style={{ fontSize: "13px", fontWeight: 400, color: "#D8CBB8" }}>
-              © 2026 YY Interiors. All rights reserved.
+              {content.footer.copyright}
             </p>
             <p className="font-['Inter']" style={{ fontSize: "11px", fontWeight: 400, color: "#8C6A4A", letterSpacing: "0.05em" }}>
-              Developed by <span style={{ fontWeight: 500 }}>AR Tech Studio</span>
+              Developed by <span style={{ fontWeight: 500 }}>{content.footer.developer}</span>
             </p>
           </motion.div>
 

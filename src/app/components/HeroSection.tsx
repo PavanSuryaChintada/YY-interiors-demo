@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useContent } from "../../context/ContentContext";
 
 const containerVariants = {
   hidden: {},
@@ -13,6 +14,7 @@ const itemVariants = {
 };
 
 export function HeroSection() {
+  const { content } = useContent();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
@@ -28,7 +30,7 @@ export function HeroSection() {
         className="absolute inset-0 origin-center"
       >
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+          src={content.hero.image}
           alt="Luxury interior design"
           className="w-full h-full object-cover"
         />
@@ -62,7 +64,7 @@ export function HeroSection() {
             className="font-['Inter'] mb-6"
             style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.32em", color: "#D8CBB8", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
           >
-            AWARD-WINNING LUXURY DESIGN STUDIO
+            {content.hero.eyebrow}
           </motion.p>
 
           <motion.h1
@@ -77,7 +79,7 @@ export function HeroSection() {
               textShadow: "0 4px 32px rgba(0,0,0,0.45)",
             }}
           >
-            Designing Spaces That Feel Timeless
+            {content.hero.heading}
           </motion.h1>
 
           <motion.p
@@ -92,9 +94,7 @@ export function HeroSection() {
               textShadow: "0 1px 8px rgba(0,0,0,0.3)",
             }}
           >
-            A globally recognized luxury design house specializing in{" "}
-            <br className="hidden md:block" />
-            bespoke residences and visionary spatial architecture.
+            {content.hero.subheading}
           </motion.p>
 
           <motion.div
@@ -116,7 +116,7 @@ export function HeroSection() {
                 border: "1px solid rgba(245,241,234,0.35)",
               }}
             >
-              EXPLORE PORTFOLIO
+              {content.hero.cta1}
             </motion.button>
 
             <motion.button
@@ -132,7 +132,7 @@ export function HeroSection() {
                 border: "1px solid rgba(140,106,74,0.6)",
               }}
             >
-              BOOK CONSULTATION
+              {content.hero.cta2}
             </motion.button>
           </motion.div>
         </div>

@@ -1,7 +1,9 @@
 import { motion } from "motion/react";
 import { Phone, Mail, MapPin, Instagram, Linkedin, Facebook } from "lucide-react";
+import { useContent } from "../../context/ContentContext";
 
 export function ContactSection() {
+  const { content } = useContent();
   return (
     <section id="contact" className="py-32 px-8 bg-[#F5F1EA] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#8C6A4A]/5 -z-0" />
@@ -16,27 +18,27 @@ export function ContactSection() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="font-['Inter'] mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
-              GET IN TOUCH
+              {content.contact.eyebrow}
             </p>
             <h2 className="font-['Cormorant_Garamond'] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
-              Let's Design Something Timeless
+              {content.contact.heading}
             </h2>
             <p className="font-['Inter'] mb-12" style={{ fontSize: "clamp(16px, 1.1vw, 18px)", fontWeight: 400, lineHeight: 1.8, color: "#1B1B1B" }}>
-              Begin your journey to a beautifully crafted space. We'd love to hear about your vision.
+              {content.contact.subheading}
             </p>
 
             <div className="space-y-6 mb-12">
               <div className="flex items-center gap-4">
                 <Phone size={20} color="#8C6A4A" strokeWidth={1.5} />
-                <span className="font-['Inter']" style={{ fontSize: "16px", fontWeight: 400, color: "#1B1B1B" }}>+91 98765 43210</span>
+                <span className="font-['Inter']" style={{ fontSize: "16px", fontWeight: 400, color: "#1B1B1B" }}>{content.contact.phone}</span>
               </div>
               <div className="flex items-center gap-4">
                 <Mail size={20} color="#8C6A4A" strokeWidth={1.5} />
-                <span className="font-['Inter']" style={{ fontSize: "16px", fontWeight: 400, color: "#1B1B1B" }}>hello@yyinteriors.com</span>
+                <span className="font-['Inter']" style={{ fontSize: "16px", fontWeight: 400, color: "#1B1B1B" }}>{content.contact.email}</span>
               </div>
               <div className="flex items-center gap-4">
                 <MapPin size={20} color="#8C6A4A" strokeWidth={1.5} />
-                <span className="font-['Inter']" style={{ fontSize: "16px", fontWeight: 400, color: "#1B1B1B" }}>Mumbai, India</span>
+                <span className="font-['Inter']" style={{ fontSize: "16px", fontWeight: 400, color: "#1B1B1B" }}>{content.contact.address}</span>
               </div>
             </div>
           </motion.div>

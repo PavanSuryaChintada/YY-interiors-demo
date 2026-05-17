@@ -1,26 +1,10 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-
-const pillars = [
-  {
-    num: "01",
-    heading: "Light as a Material",
-    body: "We treat light with the same rigor as marble or timber — studying its arc through every hour of the day to sculpt atmosphere that shifts with living.",
-  },
-  {
-    num: "02",
-    heading: "Emotional Geometry",
-    body: "Every proportion is tuned to the human body and spirit. Ceiling heights, threshold widths, and sight-lines are calibrated to produce a precise emotional response.",
-  },
-  {
-    num: "03",
-    heading: "Silence in Detail",
-    body: "Restraint is the hardest discipline in luxury. We remove until only what is essential and beautiful remains — each surface earns its place.",
-  },
-];
+import { useContent } from "../../context/ContentContext";
 
 export function DesignPhilosophy() {
+  const { content } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
@@ -69,7 +53,7 @@ export function DesignPhilosophy() {
                 className="font-['Inter'] mb-4"
                 style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.3em", color: "#8C6A4A" }}
               >
-                DESIGN INTELLIGENCE
+                {content.philosophy.eyebrow}
               </p>
               <h2
                 className="font-['Cormorant_Garamond']"
@@ -80,12 +64,12 @@ export function DesignPhilosophy() {
                   color: "#F5F1EA",
                 }}
               >
-                The Physics of{" "}
+                {content.philosophy.heading}{" "}
                 <span
                   className="italic"
                   style={{ color: "#D8CBB8" }}
                 >
-                  Emotional Space
+                  {content.philosophy.headingItalic}
                 </span>
               </h2>
             </div>
@@ -95,7 +79,7 @@ export function DesignPhilosophy() {
 
             {/* Philosophy pillars */}
             <div className="space-y-10">
-              {pillars.map((p, i) => (
+              {content.philosophy.pillars.map((p, i) => (
                 <motion.div
                   key={p.num}
                   initial={{ opacity: 0, y: 24 }}
@@ -164,7 +148,7 @@ export function DesignPhilosophy() {
             >
               <motion.div style={{ y: img1Y }}>
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={content.philosophy.image1}
                   alt="Luxury interior — light and space"
                   className="w-full object-cover"
                   style={{ height: "clamp(380px, 55vh, 560px)" }}
@@ -187,7 +171,7 @@ export function DesignPhilosophy() {
             >
               <motion.div style={{ y: img2Y }}>
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw1fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGJlZHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={content.philosophy.image2}
                   alt="Bedroom interior detail"
                   className="w-full object-cover"
                   style={{ height: "clamp(200px, 28vh, 300px)" }}
@@ -208,14 +192,14 @@ export function DesignPhilosophy() {
                 className="font-['Cormorant_Garamond'] mb-1"
                 style={{ fontSize: "clamp(36px, 4vw, 52px)", fontWeight: 500, color: "#F5F1EA", lineHeight: 1 }}
               >
-                98
+                {content.philosophy.statNumber}
               </div>
               <div className="font-['Inter']" style={{ fontSize: "9px", fontWeight: 500, letterSpacing: "0.22em", color: "#8C6A4A" }}>
-                NPS SCORE
+                {content.philosophy.statLabel}
               </div>
               <div className="w-full h-[0.5px] bg-[#8C6A4A]/25 my-3" />
               <div className="font-['Inter']" style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.15em", color: "#D8CBB8/70", lineHeight: 1.6 }}>
-                Client satisfaction<br />across 200+ projects
+                {content.philosophy.statDescription}
               </div>
             </motion.div>
 

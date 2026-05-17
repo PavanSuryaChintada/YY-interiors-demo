@@ -1,39 +1,9 @@
 import { motion } from "motion/react";
-
-const stages = [
-  {
-    number: "01",
-    title: "Consultation",
-    description: "Understanding your vision, lifestyle, and spatial needs through in-depth dialogue",
-  },
-  {
-    number: "02",
-    title: "Concept Design",
-    description: "Translating ideas into architectural concepts with mood boards and sketches",
-  },
-  {
-    number: "03",
-    title: "3D Visualization",
-    description: "Bringing designs to life with photorealistic renderings and walkthroughs",
-  },
-  {
-    number: "04",
-    title: "Material Selection",
-    description: "Curating premium materials, finishes, and bespoke furnishings",
-  },
-  {
-    number: "05",
-    title: "Execution",
-    description: "Meticulous project management ensuring precision and quality",
-  },
-  {
-    number: "06",
-    title: "Final Styling",
-    description: "The finishing touches that transform a space into an experience",
-  },
-];
+import { useContent } from "../../context/ContentContext";
 
 export function ProcessSection() {
+  const { content } = useContent();
+  const stages = content.process;
   return (
     <section id="process" className="py-20 md:py-32 px-6 md:px-8 bg-[#F5F1EA]">
       <div className="max-w-[1400px] mx-auto">
@@ -66,7 +36,7 @@ export function ProcessSection() {
           <div className="space-y-12 md:space-y-24">
             {stages.map((stage, index) => (
               <motion.div
-                key={index}
+                key={stage.id}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
