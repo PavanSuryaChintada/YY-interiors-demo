@@ -39,7 +39,7 @@ export function Footer() {
               {content.footer.copyright}
             </p>
             <p className="font-['Inter']" style={{ fontSize: "11px", fontWeight: 400, color: "#8C6A4A", letterSpacing: "0.05em" }}>
-              Developed by <span style={{ fontWeight: 500 }}>{content.footer.developer}</span>
+              Developed by <span style={{ fontWeight: 500 }}>AR Tech Studio</span>
             </p>
           </motion.div>
 

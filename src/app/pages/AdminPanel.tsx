@@ -854,7 +854,6 @@ function FooterEditor({
       <Field label="Brand name" value={f.brandName} onChange={set("brandName")} />
       <Field label="Tagline" value={f.tagline} onChange={set("tagline")} />
       <Field label="Copyright" value={f.copyright} onChange={set("copyright")} />
-      <Field label="Developer credit" value={f.developer} onChange={set("developer")} />
       <button style={saveButtonStyle} onClick={onSave}>SAVE CHANGES</button>
     </div>
   );
