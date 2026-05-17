@@ -79,6 +79,7 @@ export interface SiteContent {
     phone: string;
     email: string;
     address: string;
+    web3formsKey: string;
   };
   footer: {
     brandName: string;
@@ -370,6 +371,7 @@ export const defaultContent: SiteContent = {
     phone: "+91 98765 43210",
     email: "hello@yyinteriors.com",
     address: "Mumbai, India",
+    web3formsKey: "",
   },
   footer: {
     brandName: "YY INTERIORS",

@@ -831,6 +831,12 @@ function ContactEditor({
       <Field label="Phone" value={c.phone} onChange={set("phone")} />
       <Field label="Email" value={c.email} onChange={set("email")} />
       <Field label="Address" value={c.address} onChange={set("address")} />
+      <div style={{ margin: "24px 0 8px" }}>
+        <Field label="Web3Forms Access Key" value={c.web3formsKey} onChange={set("web3formsKey")} />
+        <p style={{ fontSize: "11px", color: "#8C6A4A", letterSpacing: "0.04em", marginTop: "6px", lineHeight: 1.6 }}>
+          Get your free key at <strong>web3forms.com</strong> — enter the email where you want to receive enquiries, then paste the access key here. Form submissions will be delivered to that inbox.
+        </p>
+      </div>
       <button style={saveButtonStyle} onClick={onSave}>SAVE CHANGES</button>
     </div>
   );
