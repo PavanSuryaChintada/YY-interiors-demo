@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useContent } from "../../context/ContentContext";
+import { useContent, JSONBIN_ID_KEY, JSONBIN_MASTER_KEY } from "../../context/ContentContext";
 import { SiteContent, defaultContent } from "../../data/defaultContent";
 
 // ─── Auth ───────────────────────────────────────────────────────────────────
@@ -1106,8 +1106,126 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
   );
 }
 
+// ─── Connection Editor (JSONBin.io) ───────────────────────────────────────────
+function ConnectionEditor({ onToast }: { onToast: (msg: string) => void }) {
+  const { syncStatus, refreshFromCloud } = useContent();
+  const [binId, setBinId] = useState(localStorage.getItem(JSONBIN_ID_KEY) || "");
+  const [masterKey, setMasterKey] = useState(localStorage.getItem(JSONBIN_MASTER_KEY) || "");
+  const [testing, setTesting] = useState(false);
+  const [creating, setCreating] = useState(false);
+
+  const saveConfig = () => {
+    localStorage.setItem(JSONBIN_ID_KEY, binId.trim());
+    localStorage.setItem(JSONBIN_MASTER_KEY, masterKey.trim());
+    onToast("✓ Connection settings saved");
+  };
+
+  const testConnection = async () => {
+    if (!binId || !masterKey) { onToast("⚠ Enter Bin ID and Master Key first"); return; }
+    setTesting(true);
+    try {
+      const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+        headers: { "X-Master-Key": masterKey },
+      });
+      if (res.ok) {
+        onToast("✓ Connection successful — JSONBin is reachable");
+        await refreshFromCloud();
+      } else {
+        onToast("✗ Connection failed — check your Bin ID and Master Key");
+      }
+    } catch {
+      onToast("✗ Network error — check your internet connection");
+    }
+    setTesting(false);
+  };
+
+  const createNewBin = async () => {
+    if (!masterKey) { onToast("⚠ Enter your Master Key first"); return; }
+    setCreating(true);
+    try {
+      const res = await fetch("https://api.jsonbin.io/v3/b", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Master-Key": masterKey,
+          "X-Bin-Name": "yy-interiors-content",
+          "X-Bin-Private": "false",
+        },
+        body: JSON.stringify(defaultContent),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const newId = data.metadata?.id || "";
+        setBinId(newId);
+        localStorage.setItem(JSONBIN_ID_KEY, newId);
+        localStorage.setItem(JSONBIN_MASTER_KEY, masterKey.trim());
+        onToast(`✓ Bin created! ID: ${newId}`);
+      } else {
+        onToast("✗ Failed to create bin — check your Master Key");
+      }
+    } catch {
+      onToast("✗ Network error");
+    }
+    setCreating(false);
+  };
+
+  const statusColor = { idle: "#888", loading: "#8C6A4A", synced: "#4CAF50", error: "#e57373", "no-config": "#888" }[syncStatus];
+  const statusLabel = { idle: "Not checked", loading: "Syncing…", synced: "Connected & synced", error: "Sync error", "no-config": "Not configured" }[syncStatus];
+
+  return (
+    <div>
+      <SectionHeader title="JSONBin Connection" subtitle="Connect to JSONBin.io so all visitors see admin changes in real time" />
+
+      {/* Status badge */}
+      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "28px", padding: "12px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: statusColor, flexShrink: 0 }} />
+        <span style={{ fontSize: "12px", color: "rgba(245,241,234,0.6)", letterSpacing: "0.05em" }}>{statusLabel}</span>
+      </div>
+
+      {/* Setup instructions */}
+      <div style={{ marginBottom: "28px", padding: "16px 20px", background: "rgba(140,106,74,0.06)", border: "1px solid rgba(140,106,74,0.2)", fontSize: "12px", lineHeight: 1.8, color: "rgba(245,241,234,0.55)" }}>
+        <strong style={{ color: "#D8CBB8", display: "block", marginBottom: "6px" }}>Quick setup (2 minutes):</strong>
+        1. Sign up free at <strong style={{ color: "#8C6A4A" }}>jsonbin.io</strong><br />
+        2. Go to API Keys → copy your <strong style={{ color: "#D8CBB8" }}>Master Key</strong><br />
+        3. Paste it below and click <strong style={{ color: "#D8CBB8" }}>Create New Bin</strong><br />
+        4. Your Bin ID fills automatically — you're done.
+      </div>
+
+      <Field label="Master Key (from jsonbin.io → API Keys)" value={masterKey} onChange={setMasterKey} />
+
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+        <Field label="Bin ID" value={binId} onChange={setBinId} />
+      </div>
+
+      <div style={{ display: "flex", gap: "10px", marginBottom: "24px", flexWrap: "wrap" }}>
+        <button
+          onClick={createNewBin}
+          disabled={creating}
+          style={{ ...saveButtonStyle, flex: 1, opacity: creating ? 0.6 : 1 }}
+        >
+          {creating ? "CREATING…" : "CREATE NEW BIN"}
+        </button>
+        <button
+          onClick={testConnection}
+          disabled={testing}
+          style={{ flex: 1, padding: "12px 20px", background: "transparent", border: "1px solid rgba(140,106,74,0.4)", color: "#D8CBB8", fontFamily: "'Inter', sans-serif", fontSize: "11px", letterSpacing: "0.15em", cursor: testing ? "default" : "pointer", opacity: testing ? 0.6 : 1 }}
+        >
+          {testing ? "TESTING…" : "TEST CONNECTION"}
+        </button>
+      </div>
+
+      <button style={saveButtonStyle} onClick={saveConfig}>SAVE CONNECTION SETTINGS</button>
+
+      <p style={{ marginTop: "20px", fontSize: "11px", color: "rgba(245,241,234,0.3)", lineHeight: 1.7 }}>
+        Your Master Key is stored in this browser only. Every time you save content in any section, it automatically syncs to JSONBin and all visitors will see the updated content.
+      </p>
+    </div>
+  );
+}
+
 // ─── Nav items ────────────────────────────────────────────────────────────────
 const navItems = [
+  { id: "connection", icon: "◎", label: "Connection" },
   { id: "hero", icon: "⬛", label: "Hero" },
   { id: "navigation", icon: "◈", label: "Navigation" },
   { id: "brandStory", icon: "◎", label: "Brand Story" },
@@ -1124,25 +1242,35 @@ const navItems = [
 
 // ─── Main Admin Panel ─────────────────────────────────────────────────────────
 export function AdminPanel() {
-  const { content, updateContent, resetContent } = useContent();
+  const { content, syncStatus, updateContent, resetContent } = useContent();
   const [loggedIn, setLoggedIn] = useState(() => sessionStorage.getItem(SESSION_KEY) === "1");
-  const [activeSection, setActiveSection] = useState("hero");
+  const [activeSection, setActiveSection] = useState("connection");
   const [draft, setDraft] = useState<SiteContent>(content);
   const [toast, setToast] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
 
   // Sync draft when content resets from outside
   useEffect(() => {
     setDraft(content);
   }, [content]);
 
-  const handleSave = () => {
-    updateContent(draft);
-    setToast("✓ Changes saved");
+  const handleSave = async () => {
+    setSaving(true);
+    const result = await updateContent(draft);
+    setSaving(false);
+    if (result.ok) {
+      const hasConfig = !!localStorage.getItem(JSONBIN_ID_KEY);
+      setToast(hasConfig ? "✓ Saved & synced — all visitors will see changes" : "✓ Saved locally — configure Connection to sync to all visitors");
+    } else {
+      setToast(`⚠ Saved locally but cloud sync failed: ${result.error}`);
+    }
   };
 
-  const handleReset = () => {
+  const handleReset = async () => {
     if (!window.confirm("Reset ALL content to defaults? This cannot be undone.")) return;
-    resetContent();
+    setSaving(true);
+    await resetContent();
+    setSaving(false);
     setDraft(defaultContent);
     setToast("✓ Content reset to defaults");
   };
@@ -1158,6 +1286,8 @@ export function AdminPanel() {
 
   const renderSection = () => {
     switch (activeSection) {
+      case "connection":
+        return <ConnectionEditor onToast={setToast} />;
       case "hero":
         return <HeroEditor draft={draft} onChange={setDraft} onSave={handleSave} />;
       case "navigation":
@@ -1208,6 +1338,10 @@ export function AdminPanel() {
           from { opacity: 0; transform: translateY(16px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes savingBar {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
       `}</style>
 
       {/* ── Sidebar ── */}
@@ -1255,9 +1389,16 @@ export function AdminPanel() {
           >
             Content Studio
           </h1>
-          <p style={{ fontSize: "11px", color: "rgba(245,241,234,0.35)", margin: 0 }}>
-            Site management
-          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "2px" }}>
+            <div style={{
+              width: "6px", height: "6px", borderRadius: "50%", flexShrink: 0,
+              background: { idle: "#555", loading: "#8C6A4A", synced: "#4CAF50", error: "#e57373", "no-config": "#555" }[syncStatus],
+              boxShadow: syncStatus === "synced" ? "0 0 6px rgba(76,175,80,0.5)" : syncStatus === "loading" ? "0 0 6px rgba(140,106,74,0.5)" : "none",
+            }} />
+            <p style={{ fontSize: "11px", color: "rgba(245,241,234,0.35)", margin: 0 }}>
+              {{ idle: "Not configured", loading: "Syncing…", synced: "Live — synced to cloud", error: "Sync error", "no-config": "Local only" }[syncStatus]}
+            </p>
+          </div>
         </div>
 
         {/* Nav items */}
@@ -1374,6 +1515,9 @@ export function AdminPanel() {
         {renderSection()}
       </main>
 
+      {saving && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, transparent, #8C6A4A, transparent)", animation: "savingBar 1.2s ease-in-out infinite", zIndex: 9998 }} />
+      )}
       {toast && <Toast message={toast} onClose={() => setToast(null)} />}
     </div>
   );

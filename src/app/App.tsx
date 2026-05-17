@@ -32,7 +32,7 @@ export default function App() {
     <ContentProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/sg/secret-route" element={<AdminPanel />} />
+          <Route path="/secret" element={<AdminPanel />} />
           <Route path="/*" element={<SiteLayout />} />
         </Routes>
       </BrowserRouter>

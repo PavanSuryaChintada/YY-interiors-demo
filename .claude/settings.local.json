@@ -15,7 +15,8 @@
       "Skill(frontend-design:*)",
       "Bash(git commit -m 'feat: cinematic scroll animations, precision cursor, and scroll progress panel *)",
       "Bash(git commit -m 'redesign: replace amateur SVG drawing with editorial photo composition in DesignPhilosophy *)",
-      "Bash(grep -n \"yyinteriors\\\\|yy@#\\\\$123\\\\|secret-route\\\\|sessionStorage\" src/app/pages/AdminPanel.tsx)"
+      "Bash(grep -n \"yyinteriors\\\\|yy@#\\\\$123\\\\|secret-route\\\\|sessionStorage\" src/app/pages/AdminPanel.tsx)",
+      "Bash(git commit -m 'feat: route /secret, JSONBin cloud sync, real-time changes for all visitors *)"
     ]
   }
 }
