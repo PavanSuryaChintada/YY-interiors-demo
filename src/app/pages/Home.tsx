@@ -9,11 +9,15 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { ProcessSection } from "../components/ProcessSection";
 import { ContactSection } from "../components/ContactSection";
 import { CtaSection } from "../components/CtaSection";
+import { AdPlaceholderSection } from "../components/AdPlaceholderSection";
 
 export function Home() {
   return (
     <main>
       <HeroSection />
+      
+      <AdPlaceholderSection size="leaderboard" />
+      
       <BrandStory />
       <CtaSection darkTheme={true} />
       
@@ -21,11 +25,16 @@ export function Home() {
       <ArchitectureSection />
       <CtaSection darkTheme={false} />
       
+      <AdPlaceholderSection size="medium-rectangle" />
+      
       <ServicesSection />
       <DesignPhilosophy />
       <CtaSection darkTheme={true} />
       
       <MaterialsSection />
+      
+      <AdPlaceholderSection size="leaderboard" />
+      
       <TestimonialsSection />
       <CtaSection darkTheme={false} />
       
