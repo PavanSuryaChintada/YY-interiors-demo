@@ -16,7 +16,17 @@
       "Bash(git commit -m 'feat: cinematic scroll animations, precision cursor, and scroll progress panel *)",
       "Bash(git commit -m 'redesign: replace amateur SVG drawing with editorial photo composition in DesignPhilosophy *)",
       "Bash(grep -n \"yyinteriors\\\\|yy@#\\\\$123\\\\|secret-route\\\\|sessionStorage\" src/app/pages/AdminPanel.tsx)",
-      "Bash(git commit -m 'feat: route /secret, JSONBin cloud sync, real-time changes for all visitors *)"
+      "Bash(git commit -m 'feat: route /secret, JSONBin cloud sync, real-time changes for all visitors *)",
+      "Bash(curl -s -X POST https://api.jsonbin.io/v3/b -H 'Content-Type: application/json' -H 'X-Master-Key: $2a$10$Ro0das9cuJ.HYxbbnd4jZ.524VRtM2gB.YN8S1FL63BVqv8Bc5L6y' -H 'X-Bin-Name: yy-interiors-content' -H 'X-Bin-Private: false' -d '{\"test\":\"ping\"}')",
+      "Bash(node --input-type=module)",
+      "Bash(2>&1)",
+      "Bash(curl -s -X PUT https://api.jsonbin.io/v3/b/6a09a264250b1311c36250d0 -H 'Content-Type: application/json' -H 'X-Master-Key: $2a$10$Ro0das9cuJ.HYxbbnd4jZ.524VRtM2gB.YN8S1FL63BVqv8Bc5L6y' --data-binary '@c:\\\\Users\\\\prave\\\\Downloads\\\\yy-interiors-demo\\\\tmp_content.json')",
+      "Bash(del \"c:\\\\Users\\\\prave\\\\Downloads\\\\yy-interiors-demo\\\\tmp_content.json\")",
+      "Bash(git commit *)",
+      "Bash(npx tsc *)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(echo \"EXIT:$?\")",
+      "PowerShell(cd \"c:\\\\Users\\\\prave\\\\Downloads\\\\yy-interiors-demo\"; npx tsc --noEmit 2>&1; Write-Host \"EXIT:$LASTEXITCODE\")"
     ]
   }
 }
