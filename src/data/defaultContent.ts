@@ -91,7 +91,7 @@ export interface SiteContent {
 
 export const defaultContent: SiteContent = {
   navigation: {
-    brandName: "YY INTERIORS",
+    brandName: "Yellow Yards Interiors",
     tagline: "ELITE INTERIOR ARCHITECTURE STUDIO",
   },
   hero: {
@@ -383,9 +383,9 @@ export const defaultContent: SiteContent = {
     web3formsKey: "",
   },
   footer: {
-    brandName: "YY INTERIORS",
-    tagline: "ELITE INTERIOR ARCHITECTURE STUDIO",
-    copyright: "© 2026 YY Interiors. All rights reserved.",
+    brandName: "Yellow Yards Interiors",
+    tagline: "Creating timeless interiors with intelligent design, premium craftsmanship, and personalized execution.",
+    copyright: "© 2026 Yellow Yards Interiors. All rights reserved.",
     developer: "AR Tech Studio",
   },
 };
