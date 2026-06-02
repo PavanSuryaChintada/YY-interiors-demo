@@ -96,11 +96,11 @@ export const defaultContent: SiteContent = {
   },
   hero: {
     eyebrow: "AWARD-WINNING LUXURY DESIGN STUDIO",
-    heading: "Designing Spaces That Feel Timeless",
+    heading: "Luxury Interiors Designed Around Your Lifestyle, Not Templates",
     subheading:
-      "A globally recognized luxury design house specializing in bespoke residences and visionary spatial architecture.",
-    cta1: "EXPLORE PORTFOLIO",
-    cta2: "BOOK CONSULTATION",
+      "From concept to execution, we create premium home interiors that combine elegant design, intelligent storage, and flawless craftsmanship—tailored specifically to your floor plan and lifestyle.",
+    cta1: "Book Free Design Consultation",
+    cta2: "View Our Projects",
     image:
       "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
   },
