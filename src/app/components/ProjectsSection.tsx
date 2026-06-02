@@ -17,13 +17,13 @@ export function ProjectsSection() {
           className="mb-12 md:mb-20"
         >
           <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
-            CURATED PROJECTS
+            OUR PORTFOLIO
           </p>
           <h2 className="font-['Cormorant_Garamond'] mb-4 md:mb-5" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
-            Selected Projects
+            Explore Our Recent Projects
           </h2>
           <p className="font-['Inter'] max-w-xl" style={{ fontSize: "clamp(16px, 1.1vw, 18px)", fontWeight: 400, lineHeight: 1.8, color: "#1B1B1B" }}>
-            A curated collection of spaces that embody our design philosophy — where every surface is intentional and every room tells a story.
+            From modern apartments to luxury villas, we've transformed homes across Hyderabad with personalized interior solutions that balance style, comfort, and functionality.
           </p>
         </motion.div>
 
