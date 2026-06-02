@@ -59,26 +59,44 @@ export function CtaSection({ darkTheme = true }: CtaSectionProps) {
           Your home deserves more than standard designs. Book a free consultation with our design team and discover how thoughtful design can transform the way you live.
         </motion.p>
 
-        <motion.button
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={scrollToContact}
-          className="group relative overflow-hidden flex items-center gap-4 px-10 py-5"
-          style={{
-            backgroundColor: accent,
-            color: "#F5F1EA",
-          }}
+          className="flex flex-col sm:flex-row gap-4"
         >
-          <div className="absolute inset-0 bg-[#7A5A3C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
-          <span className="relative z-10 font-['Inter']" style={{ fontSize: "12px", fontWeight: 500, letterSpacing: "0.2em" }}>
-            Book Free Consultation
-          </span>
-          <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-        </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={scrollToContact}
+            className="group relative overflow-hidden flex items-center gap-4 px-10 py-5"
+            style={{ backgroundColor: accent, color: "#F5F1EA" }}
+          >
+            <div className="absolute inset-0 bg-[#7A5A3C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
+            <span className="relative z-10 font-['Inter']" style={{ fontSize: "12px", fontWeight: 500, letterSpacing: "0.2em" }}>
+              Book Free Consultation
+            </span>
+            <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+          </motion.button>
+
+          <motion.a
+            href="tel:+919876543210"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-4 px-10 py-5 font-['Inter']"
+            style={{
+              fontSize: "12px",
+              fontWeight: 500,
+              letterSpacing: "0.2em",
+              color: fg,
+              border: `1px solid ${darkTheme ? "rgba(245,241,234,0.25)" : "rgba(27,27,27,0.25)"}`,
+              textDecoration: "none",
+            }}
+          >
+            Call Now
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

@@ -135,6 +135,21 @@ export function HeroSection() {
               {content.hero.cta2}
             </motion.button>
           </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-8"
+          >
+            {["8+ Years Experience", "End-to-End Execution", "Customized Designs", "Premium Materials & Finishes"].map((item) => (
+              <span
+                key={item}
+                className="font-['Inter'] flex items-center gap-2"
+                style={{ fontSize: "12px", fontWeight: 400, color: "rgba(216,203,184,0.75)", letterSpacing: "0.04em" }}
+              >
+                <span style={{ color: "#8C6A4A", fontWeight: 600 }}>✔</span> {item}
+              </span>
+            ))}
+          </motion.div>
         </div>
 
         {/* Scroll Indicator */}
