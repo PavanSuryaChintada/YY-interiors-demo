@@ -106,13 +106,13 @@ export const defaultContent: SiteContent = {
   },
   brandStory: {
     eyebrow: "OUR PHILOSOPHY",
-    heading: "Crafting Emotion Through Space",
+    heading: "Designing Homes That Feel Personal",
     paragraph1:
-      "At YY Interiors, we believe that luxury is not about opulence—it's about creating spaces that resonate with the soul. Each project is a careful orchestration of light, texture, and form.",
+      "At Yellow Yards Interiors, we believe every home should reflect the people living in it. That's why we don't follow cookie-cutter designs.",
     paragraph2:
-      "Our approach blends architectural rigor with emotional sensitivity, resulting in interiors that feel both timeless and deeply personal. We work with premium materials, artisanal craftsmanship, and a refined aesthetic that transcends trends.",
+      "We study your floor plan, understand your family's lifestyle, storage requirements, aesthetic preferences, and daily routines before creating a space that's both beautiful and practical.",
     paragraph3:
-      "From concept to execution, every detail is considered, every surface is intentional, and every space is designed to evoke a feeling of serene sophistication.",
+      "Whether it's a luxury apartment, villa, or independent house, our goal is simple: Create a home that looks stunning on Day 1 and functions perfectly for years.",
     stats: [
       { number: "15+", label: "Years Excellence" },
       { number: "200+", label: "Projects Completed" },
