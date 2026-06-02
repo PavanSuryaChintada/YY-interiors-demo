@@ -189,57 +189,57 @@ export const defaultContent: SiteContent = {
   services: [
     {
       id: "s1",
-      title: "Residential Interiors",
-      description: "Complete home transformations with architectural sophistication",
+      title: "Modular Kitchens",
+      description: "Elegant kitchens designed for functionality, storage, and daily convenience.",
       image:
-        "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "https://images.unsplash.com/photo-1704383014594-01bc24b6b840?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBraXRjaGVuJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MXx8fHwxNzc4NDQxMTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
       id: "s2",
-      title: "Luxury Living Rooms",
-      description: "Curated spaces for elevated everyday living",
+      title: "Living Room Interiors",
+      description: "Premium TV units, wall paneling, display units, and entertainment spaces.",
       image:
         "https://images.unsplash.com/photo-1669387448840-610c588f003d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
       id: "s3",
-      title: "Modular Kitchens",
-      description: "Where functionality meets refined aesthetics",
-      image:
-        "https://images.unsplash.com/photo-1704383014594-01bc24b6b840?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBraXRjaGVuJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MXx8fHwxNzc4NDQxMTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-    },
-    {
-      id: "s4",
-      title: "Bedroom Design",
-      description: "Sanctuaries of comfort and tranquility",
+      title: "Bedroom Interiors",
+      description: "Luxury wardrobes, dressers, storage beds, and customized furniture.",
       image:
         "https://images.unsplash.com/photo-1640109478916-f445f8f19b11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsdXh1cnklMjBiZWRyb29tJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzc4NDQxMTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
-      id: "s5",
-      title: "Commercial Interiors",
-      description: "Brand experiences through spatial design",
+      id: "s4",
+      title: "False Ceiling & Lighting",
+      description: "Ambient lighting solutions that elevate the mood of every room.",
       image:
         "https://images.unsplash.com/photo-1687180498602-5a1046defaa4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw2fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
-      id: "s6",
+      id: "s5",
       title: "Space Planning",
-      description: "Optimizing flow and spatial harmony",
+      description: "Optimized layouts that improve flow, usability, and comfort.",
       image:
         "https://images.unsplash.com/photo-1690489965043-ec15758cce71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
-      id: "s7",
-      title: "Furniture Styling",
-      description: "Curated selections and custom pieces",
+      id: "s6",
+      title: "Custom Furniture",
+      description: "Furniture designed specifically for your home and lifestyle.",
       image:
         "https://images.unsplash.com/photo-1628744876497-eb30460be9f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxMHx8bHV4dXJ5JTIwaW50ZXJpb3IlMjBkZXNpZ24lMjBsaXZpbmclMjByb29tfGVufDF8fHx8MTc3ODM1NDE3OHww&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
+      id: "s7",
+      title: "Villa Interiors",
+      description: "End-to-end luxury interior solutions for villas and independent homes.",
+      image:
+        "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
       id: "s8",
-      title: "Renovation & Execution",
-      description: "End-to-end project realization",
+      title: "Renovation Services",
+      description: "Transform existing spaces into modern, functional, and premium environments.",
       image:
         "https://images.unsplash.com/photo-1672927936377-97d1be3976cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw1fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
     },
