@@ -322,23 +322,23 @@ export const defaultContent: SiteContent = {
     {
       id: "t1",
       quote:
-        "YY Interiors transformed our home into a sanctuary. Every detail reflects our personality while maintaining an elevated aesthetic we never thought possible.",
+        "The design perfectly matched our lifestyle and the execution quality exceeded expectations.",
       client: "Ananya Sharma",
-      project: "Modern Residence, Mumbai",
+      project: "Modern Residence, Hyderabad",
     },
     {
       id: "t2",
       quote:
-        "The level of craftsmanship and attention to detail is extraordinary. Our space feels like it belongs in a design magazine, yet it's deeply personal.",
+        "Every inch of storage was thoughtfully planned without compromising aesthetics.",
       client: "Rajesh Malhotra",
-      project: "Luxury Penthouse, Delhi",
+      project: "Luxury Villa, Hyderabad",
     },
     {
       id: "t3",
       quote:
-        "Working with YY Interiors was a masterclass in design. They listened, understood, and delivered beyond our wildest expectations.",
+        "Professional team, transparent communication, and excellent attention to detail.",
       client: "Priya Menon",
-      project: "Contemporary Villa, Bangalore",
+      project: "Contemporary Apartment, Hyderabad",
     },
   ],
   process: [
