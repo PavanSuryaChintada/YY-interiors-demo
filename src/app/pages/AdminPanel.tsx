@@ -266,6 +266,22 @@ function HeroEditor({
       <Field label="CTA Button 1" value={h.cta1} onChange={set("cta1")} />
       <Field label="CTA Button 2" value={h.cta2} onChange={set("cta2")} />
       <ImageField label="Background image URL" value={h.image} onChange={set("image")} />
+      <Divider />
+      <p style={{ ...labelStyle, marginBottom: "12px" }}>TRUST LINE ITEMS</p>
+      {h.trustItems.map((item, i) => (
+        <div key={i} style={{ marginBottom: "10px" }}>
+          <label style={labelStyle}>Item {i + 1}</label>
+          <input
+            type="text"
+            value={item}
+            onChange={(e) => {
+              const updated = h.trustItems.map((t, idx) => (idx === i ? e.target.value : t));
+              onChange({ ...draft, hero: { ...h, trustItems: updated } });
+            }}
+            style={inputStyle}
+          />
+        </div>
+      ))}
       <button style={saveButtonStyle} onClick={onSave}>SAVE CHANGES</button>
     </div>
   );
@@ -865,6 +881,40 @@ function FooterEditor({
   );
 }
 
+function CtaEditor({
+  draft,
+  onChange,
+  onSave,
+}: {
+  draft: SiteContent;
+  onChange: (d: SiteContent) => void;
+  onSave: () => void;
+}) {
+  const c = draft.cta;
+  const set = (key: keyof typeof c) => (v: string) =>
+    onChange({ ...draft, cta: { ...c, [key]: v } });
+  const ps = draft.projectsSection;
+  const setPs = (key: keyof typeof ps) => (v: string) =>
+    onChange({ ...draft, projectsSection: { ...ps, [key]: v } });
+  return (
+    <div>
+      <SectionHeader title="CTA Sections" subtitle="Text shown in all Call-To-Action banners across the site" />
+      <Field label="Eyebrow" value={c.eyebrow} onChange={set("eyebrow")} />
+      <Field label="Heading" value={c.heading} onChange={set("heading")} />
+      <Field label="Heading italic part" value={c.headingItalic} onChange={set("headingItalic")} />
+      <Field label="Body text" value={c.body} onChange={set("body")} multiline />
+      <Field label="Primary button" value={c.button1} onChange={set("button1")} />
+      <Field label="Secondary button" value={c.button2} onChange={set("button2")} />
+      <Divider />
+      <SectionHeader title="Projects Section Header" subtitle="Heading and subtext above the projects grid" />
+      <Field label="Eyebrow" value={ps.eyebrow} onChange={setPs("eyebrow")} />
+      <Field label="Heading" value={ps.heading} onChange={setPs("heading")} />
+      <Field label="Subtext" value={ps.subtext} onChange={setPs("subtext")} multiline />
+      <button style={saveButtonStyle} onClick={onSave}>SAVE CHANGES</button>
+    </div>
+  );
+}
+
 // ─── Login Screen ──────────────────────────────────────────────────────────────
 function LoginScreen({ onLogin }: { onLogin: () => void }) {
   const [username, setUsername] = useState("");
@@ -1235,12 +1285,13 @@ const navItems = [
   { id: "navigation", icon: "◈", label: "Navigation" },
   { id: "brandStory", icon: "◎", label: "Brand Story" },
   { id: "projects", icon: "▦", label: "Projects" },
-  { id: "architecture", icon: "◻", label: "Architecture" },
+  { id: "architecture", icon: "◻", label: "Feature Section" },
   { id: "services", icon: "◈", label: "Services" },
-  { id: "philosophy", icon: "◆", label: "Philosophy" },
+  { id: "philosophy", icon: "◆", label: "Why Choose Us" },
   { id: "materials", icon: "▪", label: "Materials" },
   { id: "testimonials", icon: "❝", label: "Testimonials" },
   { id: "process", icon: "≡", label: "Process" },
+  { id: "cta", icon: "▶", label: "CTA Sections" },
   { id: "contact", icon: "◉", label: "Contact" },
   { id: "footer", icon: "▼", label: "Footer" },
 ];
@@ -1313,6 +1364,8 @@ export function AdminPanel() {
         return <TestimonialsEditor draft={draft} onChange={setDraft} onSave={handleSave} />;
       case "process":
         return <ProcessEditor draft={draft} onChange={setDraft} onSave={handleSave} />;
+      case "cta":
+        return <CtaEditor draft={draft} onChange={setDraft} onSave={handleSave} />;
       case "contact":
         return <ContactEditor draft={draft} onChange={setDraft} onSave={handleSave} />;
       case "footer":

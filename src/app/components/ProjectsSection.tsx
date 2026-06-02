@@ -6,6 +6,7 @@ import { useContent } from "../../context/ContentContext";
 export function ProjectsSection() {
   const { content } = useContent();
   const projects = content.projects;
+  const { projectsSection } = content;
   return (
     <section id="portfolio" className="py-20 md:py-32 px-6 md:px-8 bg-[#F5F1EA]">
       <div className="max-w-[1600px] mx-auto">
@@ -17,13 +18,13 @@ export function ProjectsSection() {
           className="mb-12 md:mb-20"
         >
           <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
-            OUR PORTFOLIO
+            {projectsSection.eyebrow}
           </p>
           <h2 className="font-['Cormorant_Garamond'] mb-4 md:mb-5" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
-            Explore Our Recent Projects
+            {projectsSection.heading}
           </h2>
           <p className="font-['Inter'] max-w-xl" style={{ fontSize: "clamp(16px, 1.1vw, 18px)", fontWeight: 400, lineHeight: 1.8, color: "#1B1B1B" }}>
-            From modern apartments to luxury villas, we've transformed homes across Hyderabad with personalized interior solutions that balance style, comfort, and functionality.
+            {projectsSection.subtext}
           </p>
         </motion.div>
 

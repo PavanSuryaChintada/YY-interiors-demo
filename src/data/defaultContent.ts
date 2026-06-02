@@ -10,6 +10,20 @@ export interface SiteContent {
     cta1: string;
     cta2: string;
     image: string;
+    trustItems: string[];
+  };
+  cta: {
+    eyebrow: string;
+    heading: string;
+    headingItalic: string;
+    body: string;
+    button1: string;
+    button2: string;
+  };
+  projectsSection: {
+    eyebrow: string;
+    heading: string;
+    subtext: string;
   };
   brandStory: {
     eyebrow: string;
@@ -94,6 +108,19 @@ export const defaultContent: SiteContent = {
     brandName: "Yellow Yards Interiors",
     tagline: "ELITE INTERIOR ARCHITECTURE STUDIO",
   },
+  cta: {
+    eyebrow: "YOUR DREAM HOME AWAITS",
+    heading: "Let's Design A Home You'll",
+    headingItalic: "Love Coming Back To",
+    body: "Your home deserves more than standard designs. Book a free consultation with our design team and discover how thoughtful design can transform the way you live.",
+    button1: "Book Free Consultation",
+    button2: "Call Now",
+  },
+  projectsSection: {
+    eyebrow: "OUR PORTFOLIO",
+    heading: "Explore Our Recent Projects",
+    subtext: "From modern apartments to luxury villas, we've transformed homes across Hyderabad with personalized interior solutions that balance style, comfort, and functionality.",
+  },
   hero: {
     eyebrow: "AWARD-WINNING LUXURY DESIGN STUDIO",
     heading: "Luxury Interiors Designed Around Your Lifestyle, Not Templates",
@@ -101,6 +128,7 @@ export const defaultContent: SiteContent = {
       "From concept to execution, we create premium home interiors that combine elegant design, intelligent storage, and flawless craftsmanship—tailored specifically to your floor plan and lifestyle.",
     cta1: "Book Free Design Consultation",
     cta2: "View Our Projects",
+    trustItems: ["8+ Years Experience", "End-to-End Execution", "Customized Designs", "Premium Materials & Finishes"],
     image:
       "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBpbnRlcmlvciUyMGRlc2lnbiUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzc4MzU0MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
   },

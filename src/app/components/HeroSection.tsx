@@ -55,7 +55,7 @@ export function HeroSection() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{ y: contentY, opacity }}
+        style={{ y: contentY, opacity, paddingTop: "88px" }}
         className="relative h-full flex flex-col items-center justify-center px-8 text-center"
       >
         <div className="max-w-5xl w-full mb-24">
@@ -140,7 +140,7 @@ export function HeroSection() {
             variants={itemVariants}
             className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-8"
           >
-            {["8+ Years Experience", "End-to-End Execution", "Customized Designs", "Premium Materials & Finishes"].map((item) => (
+            {content.hero.trustItems.map((item) => (
               <span
                 key={item}
                 className="font-['Inter'] flex items-center gap-2"
