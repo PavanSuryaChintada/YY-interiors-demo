@@ -245,24 +245,39 @@ export const defaultContent: SiteContent = {
     },
   ],
   philosophy: {
-    eyebrow: "DESIGN INTELLIGENCE",
-    heading: "The Physics of",
-    headingItalic: "Emotional Space",
+    eyebrow: "WHY CHOOSE US",
+    heading: "Why Homeowners Choose",
+    headingItalic: "Yellow Yards Interiors",
     pillars: [
       {
         num: "01",
-        heading: "Light as a Material",
-        body: "We treat light with the same rigor as marble or timber — studying its arc through every hour of the day to sculpt atmosphere that shifts with living.",
+        heading: "Personalized Designs",
+        body: "Every design is created around your floor plan and lifestyle requirements.",
       },
       {
         num: "02",
-        heading: "Emotional Geometry",
-        body: "Every proportion is tuned to the human body and spirit. Ceiling heights, threshold widths, and sight-lines are calibrated to produce a precise emotional response.",
+        heading: "Smart Storage Solutions",
+        body: "Maximum storage without compromising aesthetics.",
       },
       {
         num: "03",
-        heading: "Silence in Detail",
-        body: "Restraint is the hardest discipline in luxury. We remove until only what is essential and beautiful remains — each surface earns its place.",
+        heading: "Premium Material Selection",
+        body: "Carefully curated materials that offer durability and elegance.",
+      },
+      {
+        num: "04",
+        heading: "Complete Project Management",
+        body: "From design discussions to final handover, we handle everything.",
+      },
+      {
+        num: "05",
+        heading: "Transparent Communication",
+        body: "Regular updates, milestone tracking, and clear timelines.",
+      },
+      {
+        num: "06",
+        heading: "Quality Craftsmanship",
+        body: "Attention to every detail, from finishes to fittings.",
       },
     ],
     image1:
