@@ -17,8 +17,8 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const key = content.contact.web3formsKey.trim();
-    if (!key) {
+    const url = content.contact.googleSheetUrl?.trim();
+    if (!url) {
       setStatus("error");
       return;
     }
@@ -26,29 +26,22 @@ export function ContactSection() {
     setStatus("sending");
 
     try {
-      const body = new FormData();
-      body.append("access_key", key);
-      body.append("subject", `New Consultation Request — YY Interiors`);
-      body.append("from_name", "YY Interiors Website");
-      body.append("name", form.name);
-      body.append("email", form.email);
-      body.append("phone", form.phone);
-      body.append("message", form.message);
-
-      const res = await fetch("https://api.web3forms.com/submit", {
+      // Google Apps Script requires no-cors — response is opaque but data lands in the sheet
+      await fetch(url, {
         method: "POST",
-        body,
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+        }),
       });
 
-      const data = await res.json();
-
-      if (data.success) {
-        setStatus("success");
-        setForm({ name: "", email: "", phone: "", message: "" });
-        formRef.current?.reset();
-      } else {
-        setStatus("error");
-      }
+      setStatus("success");
+      setForm({ name: "", email: "", phone: "", message: "" });
+      formRef.current?.reset();
     } catch {
       setStatus("error");
     }
@@ -185,9 +178,7 @@ export function ContactSection() {
                   >
                     <AlertCircle size={14} strokeWidth={1.5} />
                     <span className="font-['Inter']" style={{ fontSize: "12px", fontWeight: 400 }}>
-                      {content.contact.web3formsKey.trim()
-                        ? "Something went wrong. Please try again."
-                        : "Contact form not configured yet. Please try emailing directly."}
+                      Something went wrong. Please try again or email us directly.
                     </span>
                   </motion.div>
                 )}

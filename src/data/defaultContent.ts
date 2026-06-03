@@ -93,7 +93,7 @@ export interface SiteContent {
     phone: string;
     email: string;
     address: string;
-    web3formsKey: string;
+    googleSheetUrl: string;
   };
   footer: {
     brandName: string;
@@ -408,7 +408,7 @@ export const defaultContent: SiteContent = {
     phone: "+91 98765 43210",
     email: "hello@yyinteriors.com",
     address: "Mumbai, India",
-    web3formsKey: "",
+    googleSheetUrl: "https://script.google.com/a/macros/yellowyards.in/s/AKfycbw8MMsYBIhOKRbRbQTnavSCtAhkU1o-kShKCVLYhky3Z28zNgsPMpatyoUgH_2prkRW/exec",
   },
   footer: {
     brandName: "Yellow Yards Interiors",
