@@ -26,11 +26,11 @@ export function ContactSection() {
     setStatus("sending");
 
     try {
-      // Google Apps Script requires no-cors — response is opaque but data lands in the sheet
+      // text/plain avoids CORS preflight — Apps Script receives it as e.postData.contents
       await fetch(url, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
