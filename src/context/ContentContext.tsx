@@ -25,7 +25,7 @@ const ContentContext = createContext<ContentContextValue>({
 async function fetchFromCloud(): Promise<SiteContent | null> {
   if (!BIN_ID) return null;
   try {
-    const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`);
+    const res = await fetch('/api/get-content');
     if (!res.ok) return null;
     const data = await res.json();
     return data.record ? ({ ...defaultContent, ...data.record } as SiteContent) : null;
