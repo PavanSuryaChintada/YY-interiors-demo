@@ -2,7 +2,7 @@
 
 A production-grade luxury interior design website with a built-in headless CMS, cloud content sync, and contact form email delivery. Built for **Yellow Yards Interiors**, Hyderabad.
 
-**Live:** [yyinteriors.studio](https://yyinteriors.studio)
+**Live:** [yyinteriors.studio](https://yyinteriors.studio) · [www.yyinteriors.studio](https://www.yyinteriors.studio)
 
 ---
 
