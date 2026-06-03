@@ -39,7 +39,16 @@ export function Footer() {
               {content.footer.copyright}
             </p>
             <p className="font-['Inter']" style={{ fontSize: "11px", fontWeight: 400, color: "#8C6A4A", letterSpacing: "0.05em" }}>
-              Developed by <span style={{ fontWeight: 500 }}>AR Tech Studio</span>
+              Developed by{" "}
+              <a
+                href="https://artechstudio.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontWeight: 500, color: "#8C6A4A", textDecoration: "none" }}
+                className="hover:text-[#D8CBB8] transition-colors duration-300"
+              >
+                AR Tech Studio
+              </a>
             </p>
           </motion.div>
 
