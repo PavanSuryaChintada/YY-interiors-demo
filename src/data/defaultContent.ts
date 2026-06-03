@@ -408,7 +408,7 @@ export const defaultContent: SiteContent = {
     phone: "+91 98765 43210",
     email: "hello@yyinteriors.com",
     address: "Mumbai, India",
-    googleSheetUrl: "https://script.google.com/a/macros/yellowyards.in/s/AKfycbw8MMsYBIhOKRbRbQTnavSCtAhkU1o-kShKCVLYhky3Z28zNgsPMpatyoUgH_2prkRW/exec",
+    googleSheetUrl: "https://script.google.com/macros/s/AKfycbw8MMsYBIhOKRbRbQTnavSCtAhkU1o-kShKCVLYhky3Z28zNgsPMpatyoUgH_2prkRW/exec",
   },
   footer: {
     brandName: "Yellow Yards Interiors",
