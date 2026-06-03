@@ -17,20 +17,13 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const url = content.contact.googleSheetUrl?.trim();
-    if (!url) {
-      setStatus("error");
-      return;
-    }
-
     setStatus("sending");
 
     try {
-      // text/plain avoids CORS preflight — Apps Script receives it as e.postData.contents
-      await fetch(url, {
+      // Route through Vercel function to avoid CORS restrictions on Google Workspace scripts
+      const res = await fetch("/api/submit-contact", {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
@@ -39,9 +32,15 @@ export function ContactSection() {
         }),
       });
 
-      setStatus("success");
-      setForm({ name: "", email: "", phone: "", message: "" });
-      formRef.current?.reset();
+      const data = await res.json();
+
+      if (data.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", phone: "", message: "" });
+        formRef.current?.reset();
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
