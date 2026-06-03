@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useContent, JSONBIN_ID_KEY, JSONBIN_MASTER_KEY } from "../../context/ContentContext";
+import { useContent } from "../../context/ContentContext";
 import { SiteContent, defaultContent } from "../../data/defaultContent";
 
 // ─── Auth ───────────────────────────────────────────────────────────────────
@@ -1164,116 +1164,42 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
 // ─── Connection Editor (JSONBin.io) ───────────────────────────────────────────
 function ConnectionEditor({ onToast }: { onToast: (msg: string) => void }) {
   const { syncStatus, refreshFromCloud } = useContent();
-  const [binId, setBinId] = useState(localStorage.getItem(JSONBIN_ID_KEY) || "");
-  const [masterKey, setMasterKey] = useState(localStorage.getItem(JSONBIN_MASTER_KEY) || "");
   const [testing, setTesting] = useState(false);
-  const [creating, setCreating] = useState(false);
-
-  const saveConfig = () => {
-    localStorage.setItem(JSONBIN_ID_KEY, binId.trim());
-    localStorage.setItem(JSONBIN_MASTER_KEY, masterKey.trim());
-    onToast("✓ Connection settings saved");
-  };
 
   const testConnection = async () => {
-    if (!binId || !masterKey) { onToast("⚠ Enter Bin ID and Master Key first"); return; }
     setTesting(true);
-    try {
-      const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
-        headers: { "X-Master-Key": masterKey },
-      });
-      if (res.ok) {
-        onToast("✓ Connection successful — JSONBin is reachable");
-        await refreshFromCloud();
-      } else {
-        onToast("✗ Connection failed — check your Bin ID and Master Key");
-      }
-    } catch {
-      onToast("✗ Network error — check your internet connection");
-    }
+    await refreshFromCloud();
     setTesting(false);
+    onToast(syncStatus === "synced" ? "✓ Connected — JSONBin is reachable" : "✗ Connection failed — check Vercel env vars");
   };
 
-  const createNewBin = async () => {
-    if (!masterKey) { onToast("⚠ Enter your Master Key first"); return; }
-    setCreating(true);
-    try {
-      const res = await fetch("https://api.jsonbin.io/v3/b", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": masterKey,
-          "X-Bin-Name": "yy-interiors-content",
-          "X-Bin-Private": "false",
-        },
-        body: JSON.stringify(defaultContent),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        const newId = data.metadata?.id || "";
-        setBinId(newId);
-        localStorage.setItem(JSONBIN_ID_KEY, newId);
-        localStorage.setItem(JSONBIN_MASTER_KEY, masterKey.trim());
-        onToast(`✓ Bin created! ID: ${newId}`);
-      } else {
-        onToast("✗ Failed to create bin — check your Master Key");
-      }
-    } catch {
-      onToast("✗ Network error");
-    }
-    setCreating(false);
-  };
-
-  const statusColor = { idle: "#888", loading: "#8C6A4A", synced: "#4CAF50", error: "#e57373", "no-config": "#888" }[syncStatus];
-  const statusLabel = { idle: "Not checked", loading: "Syncing…", synced: "Connected & synced", error: "Sync error", "no-config": "Not configured" }[syncStatus];
+  const statusColor = { idle: "#888", loading: "#8C6A4A", synced: "#4CAF50", error: "#e57373", "no-config": "#e57373" }[syncStatus];
+  const statusLabel = { idle: "Checking…", loading: "Syncing…", synced: "Connected & synced", error: "Sync error — check Vercel env vars", "no-config": "VITE_JSONBIN_BIN_ID not set in environment" }[syncStatus];
 
   return (
     <div>
-      <SectionHeader title="JSONBin Connection" subtitle="Connect to JSONBin.io so all visitors see admin changes in real time" />
+      <SectionHeader title="Cloud Connection" subtitle="Content syncs automatically via Vercel environment variables" />
 
-      {/* Status badge */}
       <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "28px", padding: "12px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: statusColor, flexShrink: 0 }} />
         <span style={{ fontSize: "12px", color: "rgba(245,241,234,0.6)", letterSpacing: "0.05em" }}>{statusLabel}</span>
       </div>
 
-      {/* Setup instructions */}
-      <div style={{ marginBottom: "28px", padding: "16px 20px", background: "rgba(140,106,74,0.06)", border: "1px solid rgba(140,106,74,0.2)", fontSize: "12px", lineHeight: 1.8, color: "rgba(245,241,234,0.55)" }}>
-        <strong style={{ color: "#D8CBB8", display: "block", marginBottom: "6px" }}>Quick setup (2 minutes):</strong>
-        1. Sign up free at <strong style={{ color: "#8C6A4A" }}>jsonbin.io</strong><br />
-        2. Go to API Keys → copy your <strong style={{ color: "#D8CBB8" }}>Master Key</strong><br />
-        3. Paste it below and click <strong style={{ color: "#D8CBB8" }}>Create New Bin</strong><br />
-        4. Your Bin ID fills automatically — you're done.
+      <div style={{ padding: "16px 20px", background: "rgba(140,106,74,0.06)", border: "1px solid rgba(140,106,74,0.2)", fontSize: "12px", lineHeight: 1.9, color: "rgba(245,241,234,0.55)", marginBottom: "24px" }}>
+        <strong style={{ color: "#D8CBB8", display: "block", marginBottom: "8px" }}>Configuration is managed in Vercel:</strong>
+        Vercel Dashboard → Project → Settings → Environment Variables<br /><br />
+        <strong style={{ color: "#8C6A4A" }}>VITE_JSONBIN_BIN_ID</strong> — your JSONBin Bin ID (public)<br />
+        <strong style={{ color: "#8C6A4A" }}>JSONBIN_MASTER_KEY</strong> — your JSONBin Master Key (server-only)<br /><br />
+        <span style={{ color: "rgba(245,241,234,0.35)" }}>The Master Key is never exposed to the browser — all writes go through a secure server function.</span>
       </div>
 
-      <Field label="Master Key (from jsonbin.io → API Keys)" value={masterKey} onChange={setMasterKey} />
-
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-        <Field label="Bin ID" value={binId} onChange={setBinId} />
-      </div>
-
-      <div style={{ display: "flex", gap: "10px", marginBottom: "24px", flexWrap: "wrap" }}>
-        <button
-          onClick={createNewBin}
-          disabled={creating}
-          style={{ ...saveButtonStyle, flex: 1, opacity: creating ? 0.6 : 1 }}
-        >
-          {creating ? "CREATING…" : "CREATE NEW BIN"}
-        </button>
-        <button
-          onClick={testConnection}
-          disabled={testing}
-          style={{ flex: 1, padding: "12px 20px", background: "transparent", border: "1px solid rgba(140,106,74,0.4)", color: "#D8CBB8", fontFamily: "'Inter', sans-serif", fontSize: "11px", letterSpacing: "0.15em", cursor: testing ? "default" : "pointer", opacity: testing ? 0.6 : 1 }}
-        >
-          {testing ? "TESTING…" : "TEST CONNECTION"}
-        </button>
-      </div>
-
-      <button style={saveButtonStyle} onClick={saveConfig}>SAVE CONNECTION SETTINGS</button>
-
-      <p style={{ marginTop: "20px", fontSize: "11px", color: "rgba(245,241,234,0.3)", lineHeight: 1.7 }}>
-        Your Master Key is stored in this browser only. Every time you save content in any section, it automatically syncs to JSONBin and all visitors will see the updated content.
-      </p>
+      <button
+        onClick={testConnection}
+        disabled={testing}
+        style={{ ...saveButtonStyle, opacity: testing ? 0.6 : 1 }}
+      >
+        {testing ? "CHECKING…" : "CHECK CONNECTION"}
+      </button>
     </div>
   );
 }

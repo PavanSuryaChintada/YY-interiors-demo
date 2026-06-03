@@ -2,8 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { SiteContent, defaultContent } from '../data/defaultContent';
 
 const STORAGE_KEY = 'yy_site_content';
-export const JSONBIN_ID_KEY = 'yy_jsonbin_bin_id';
-export const JSONBIN_MASTER_KEY = 'yy_jsonbin_master_key';
+const BIN_ID = import.meta.env.VITE_JSONBIN_BIN_ID as string | undefined;
 
 export type SyncStatus = 'idle' | 'loading' | 'synced' | 'error' | 'no-config';
 
@@ -23,11 +22,10 @@ const ContentContext = createContext<ContentContextValue>({
   refreshFromCloud: async () => {},
 });
 
-async function fetchFromJsonbin(binId: string, masterKey: string): Promise<SiteContent | null> {
+async function fetchFromCloud(): Promise<SiteContent | null> {
+  if (!BIN_ID) return null;
   try {
-    const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
-      headers: { 'X-Master-Key': masterKey },
-    });
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`);
     if (!res.ok) return null;
     const data = await res.json();
     return data.record ? ({ ...defaultContent, ...data.record } as SiteContent) : null;
@@ -36,24 +34,15 @@ async function fetchFromJsonbin(binId: string, masterKey: string): Promise<SiteC
   }
 }
 
-async function pushToJsonbin(
-  binId: string,
-  masterKey: string,
-  content: SiteContent
-): Promise<{ ok: boolean; error?: string }> {
+async function pushToCloud(content: SiteContent): Promise<{ ok: boolean; error?: string }> {
   try {
-    const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': masterKey,
-      },
+    const res = await fetch('/api/update-content', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(content),
     });
-    if (!res.ok) {
-      const body = await res.json().catch(() => ({}));
-      return { ok: false, error: body.message || `HTTP ${res.status}` };
-    }
+    const data = await res.json();
+    if (!res.ok) return { ok: false, error: data.error || `HTTP ${res.status}` };
     return { ok: true };
   } catch (e: unknown) {
     return { ok: false, error: e instanceof Error ? e.message : 'Network error' };
@@ -71,18 +60,10 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
 
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('idle');
 
-  const getBinConfig = () => ({
-    binId: localStorage.getItem(JSONBIN_ID_KEY) || '',
-    masterKey: localStorage.getItem(JSONBIN_MASTER_KEY) || '',
-  });
-
-  // On mount: pull latest from cloud if configured
   const refreshFromCloud = async () => {
-    const { binId, masterKey } = getBinConfig();
-    if (!binId || !masterKey) { setSyncStatus('no-config'); return; }
-
+    if (!BIN_ID) { setSyncStatus('no-config'); return; }
     setSyncStatus('loading');
-    const remote = await fetchFromJsonbin(binId, masterKey);
+    const remote = await fetchFromCloud();
     if (remote) {
       setContent(remote);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(remote));
@@ -97,12 +78,9 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
   const updateContent = async (newContent: SiteContent): Promise<{ ok: boolean; error?: string }> => {
     setContent(newContent);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(newContent));
-
-    const { binId, masterKey } = getBinConfig();
-    if (!binId || !masterKey) return { ok: true }; // local-only save
-
+    if (!BIN_ID) return { ok: true };
     setSyncStatus('loading');
-    const result = await pushToJsonbin(binId, masterKey, newContent);
+    const result = await pushToCloud(newContent);
     setSyncStatus(result.ok ? 'synced' : 'error');
     return result;
   };
@@ -110,12 +88,9 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
   const resetContent = async (): Promise<{ ok: boolean; error?: string }> => {
     setContent(defaultContent);
     localStorage.removeItem(STORAGE_KEY);
-
-    const { binId, masterKey } = getBinConfig();
-    if (!binId || !masterKey) return { ok: true };
-
+    if (!BIN_ID) return { ok: true };
     setSyncStatus('loading');
-    const result = await pushToJsonbin(binId, masterKey, defaultContent);
+    const result = await pushToCloud(defaultContent);
     setSyncStatus(result.ok ? 'synced' : 'error');
     return result;
   };
