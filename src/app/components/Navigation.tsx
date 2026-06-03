@@ -44,25 +44,33 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.7 }}
-            className="flex flex-col gap-0.5 z-50 shrink-0"
+            className="flex items-center gap-3 z-50 shrink-0"
           >
-            <span
-              className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500 whitespace-nowrap"
-              style={{
-                fontSize: "clamp(20px, 4vw, 26px)",
-                fontWeight: 500,
-                letterSpacing: "0.12em",
-                color: navBg ? "#1B1B1B" : "#F5F1EA",
-              }}
-            >
-              {content.navigation.brandName}
-            </span>
-            <span
-              className="font-['Inter'] hidden sm:block whitespace-nowrap transition-colors duration-500"
-              style={{ fontSize: "9px", fontWeight: 400, letterSpacing: "0.28em", color: navBg ? "#8C6A4A" : "rgba(216,203,184,0.7)" }}
-            >
-              {content.navigation.tagline}
-            </span>
+            <img
+              src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780515323/WhatsApp_Image_2026-06-04_at_01.04.41_pjau9l.jpg"
+              alt="Yellow Yards Interiors"
+              className="rounded-sm object-cover shrink-0"
+              style={{ width: "36px", height: "36px" }}
+            />
+            <div className="flex flex-col gap-0.5">
+              <span
+                className="font-['Cormorant_Garamond'] tracking-wider transition-colors duration-500 whitespace-nowrap"
+                style={{
+                  fontSize: "clamp(16px, 3vw, 22px)",
+                  fontWeight: 500,
+                  letterSpacing: "0.1em",
+                  color: navBg ? "#1B1B1B" : "#F5F1EA",
+                }}
+              >
+                {content.navigation.brandName}
+              </span>
+              <span
+                className="font-['Inter'] hidden sm:block whitespace-nowrap transition-colors duration-500"
+                style={{ fontSize: "8px", fontWeight: 400, letterSpacing: "0.25em", color: navBg ? "#8C6A4A" : "rgba(216,203,184,0.7)" }}
+              >
+                {content.navigation.tagline}
+              </span>
+            </div>
           </motion.div>
 
           {/* Desktop navigation */}
@@ -114,7 +122,7 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-[#F5F1EA] flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 z-40 bg-[#F5F1EA] flex flex-col items-center justify-center gap-8 md:hidden px-6"
           >
             {navLinks.map((link, i) => (
               <motion.a

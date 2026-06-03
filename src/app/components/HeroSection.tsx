@@ -23,7 +23,7 @@ export function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
-    <section ref={ref} id="hero" className="relative h-screen w-full overflow-hidden bg-[#1B1B1B]">
+    <section ref={ref} id="hero" className="relative min-h-screen w-full overflow-hidden bg-[#1B1B1B]">
       {/* Parallax background */}
       <motion.div
         style={{ y: imageY, scale: imageScale }}
@@ -55,10 +55,10 @@ export function HeroSection() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{ y: contentY, opacity, paddingTop: "88px" }}
-        className="relative h-full flex flex-col items-center justify-center px-8 text-center"
+        style={{ y: contentY, opacity }}
+        className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 text-center pt-24 pb-28 md:pt-[88px] md:pb-24"
       >
-        <div className="max-w-5xl w-full mb-24">
+        <div className="max-w-5xl w-full">
           <motion.p
             variants={itemVariants}
             className="font-['Inter'] mb-6"
@@ -69,9 +69,9 @@ export function HeroSection() {
 
           <motion.h1
             variants={itemVariants}
-            className="font-['Cormorant_Garamond'] mb-8"
+            className="font-['Cormorant_Garamond'] mb-6 md:mb-8"
             style={{
-              fontSize: "clamp(48px, 7vw, 96px)",
+              fontSize: "clamp(34px, 6vw, 96px)",
               fontWeight: 500,
               lineHeight: 1.15,
               letterSpacing: "0.02em",
@@ -84,7 +84,7 @@ export function HeroSection() {
 
           <motion.p
             variants={itemVariants}
-            className="font-['Inter'] mb-12 max-w-2xl mx-auto"
+            className="font-['Inter'] mb-8 md:mb-12 max-w-2xl mx-auto"
             style={{
               fontSize: "clamp(16px, 1.1vw, 18px)",
               fontWeight: 400,
@@ -138,7 +138,7 @@ export function HeroSection() {
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-8"
+            className="flex flex-wrap justify-center gap-x-5 gap-y-2 mt-6 md:mt-8 px-2"
           >
             {content.hero.trustItems.map((item) => (
               <span
@@ -157,7 +157,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="absolute bottom-10 flex flex-col items-center gap-3"
+          className="hidden sm:flex fixed bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20"
         >
           <span className="font-['Inter'] text-[9px] uppercase tracking-[0.45em] text-[#D8CBB8]/70">
             Discover More
