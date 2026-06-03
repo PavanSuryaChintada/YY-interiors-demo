@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { SiteContent, defaultContent } from '../data/defaultContent';
 
 const STORAGE_KEY = 'yy_site_content';
+const CACHE_TIMESTAMP_KEY = 'yy_content_cached_at';
+const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
 const BIN_ID = import.meta.env.VITE_JSONBIN_BIN_ID as string | undefined;
 
 export type SyncStatus = 'idle' | 'loading' | 'synced' | 'error' | 'no-config';
@@ -21,6 +23,28 @@ const ContentContext = createContext<ContentContextValue>({
   resetContent: async () => ({ ok: true }),
   refreshFromCloud: async () => {},
 });
+
+function isCacheValid(): boolean {
+  try {
+    const ts = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+    if (!ts) return false;
+    return Date.now() - parseInt(ts, 10) < CACHE_TTL_MS;
+  } catch {
+    return false;
+  }
+}
+
+function stampCache() {
+  try {
+    localStorage.setItem(CACHE_TIMESTAMP_KEY, String(Date.now()));
+  } catch {}
+}
+
+function invalidateCache() {
+  try {
+    localStorage.removeItem(CACHE_TIMESTAMP_KEY);
+  } catch {}
+}
 
 async function fetchFromCloud(): Promise<SiteContent | null> {
   if (!BIN_ID) return null;
@@ -60,6 +84,7 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
 
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('idle');
 
+  // Force-fetch from cloud, ignoring cache (used by admin after saves)
   const refreshFromCloud = async () => {
     if (!BIN_ID) { setSyncStatus('no-config'); return; }
     setSyncStatus('loading');
@@ -67,13 +92,23 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
     if (remote) {
       setContent(remote);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(remote));
+      stampCache();
       setSyncStatus('synced');
     } else {
       setSyncStatus('error');
     }
   };
 
-  useEffect(() => { refreshFromCloud(); }, []); // eslint-disable-line
+  // On mount: only fetch from cloud if cache is stale
+  useEffect(() => {
+    if (!BIN_ID) { setSyncStatus('no-config'); return; }
+    if (isCacheValid()) {
+      // Cache still fresh — serve from localStorage, no request needed
+      setSyncStatus('synced');
+      return;
+    }
+    refreshFromCloud();
+  }, []); // eslint-disable-line
 
   const updateContent = async (newContent: SiteContent): Promise<{ ok: boolean; error?: string }> => {
     setContent(newContent);
@@ -81,6 +116,9 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
     if (!BIN_ID) return { ok: true };
     setSyncStatus('loading');
     const result = await pushToCloud(newContent);
+    if (result.ok) {
+      stampCache(); // Fresh save = reset the 10-min window
+    }
     setSyncStatus(result.ok ? 'synced' : 'error');
     return result;
   };
@@ -88,9 +126,11 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
   const resetContent = async (): Promise<{ ok: boolean; error?: string }> => {
     setContent(defaultContent);
     localStorage.removeItem(STORAGE_KEY);
+    invalidateCache();
     if (!BIN_ID) return { ok: true };
     setSyncStatus('loading');
     const result = await pushToCloud(defaultContent);
+    if (result.ok) stampCache();
     setSyncStatus(result.ok ? 'synced' : 'error');
     return result;
   };
