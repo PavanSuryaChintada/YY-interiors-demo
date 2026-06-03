@@ -49,8 +49,8 @@ export function Navigation() {
             <img
               src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780515323/WhatsApp_Image_2026-06-04_at_01.04.41_pjau9l.jpg"
               alt="Yellow Yards Interiors"
-              className="rounded-sm object-cover shrink-0"
-              style={{ width: "36px", height: "36px" }}
+              className="object-contain shrink-0"
+              style={{ height: "40px", width: "auto", maxWidth: "120px" }}
             />
             <div className="flex flex-col gap-0.5">
               <span
