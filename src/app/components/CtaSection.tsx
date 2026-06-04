@@ -67,7 +67,7 @@ export function CtaSection({ darkTheme = true }: CtaSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex flex-col sm:flex-row gap-4 items-center"
         >
           <motion.button
             whileHover={{ scale: 1.02 }}
