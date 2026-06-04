@@ -56,7 +56,7 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
         style={{ y: contentY, opacity }}
-        className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 text-center pt-24 pb-28 md:pt-[88px] md:pb-24"
+        className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 text-center pt-24 pb-36 md:pt-[88px] md:pb-32"
       >
         <div className="max-w-5xl w-full">
           <motion.p
@@ -157,7 +157,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="hidden sm:flex fixed bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20"
+          className="hidden sm:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20 pointer-events-none"
         >
           <span className="font-['Inter'] text-[9px] uppercase tracking-[0.45em] text-[#D8CBB8]/70">
             Discover More
