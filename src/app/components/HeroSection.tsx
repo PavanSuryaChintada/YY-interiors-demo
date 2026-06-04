@@ -61,7 +61,7 @@ export function HeroSection() {
         <div className="max-w-5xl w-full">
           <motion.p
             variants={itemVariants}
-            className="font-['Inter'] mb-6"
+            className="font-['Inter'] mb-6 mt-8"
             style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.32em", color: "#D8CBB8", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
           >
             {content.hero.eyebrow}
@@ -92,6 +92,7 @@ export function HeroSection() {
               letterSpacing: "0.03em",
               color: "#D8CBB8",
               textShadow: "0 1px 8px rgba(0,0,0,0.3)",
+              whiteSpace: "pre-wrap",
             }}
           >
             {content.hero.subheading}
@@ -157,7 +158,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="hidden sm:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20 pointer-events-none"
+          className="hidden sm:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20 pointer-events-none"
         >
           <span className="font-['Inter'] text-[9px] uppercase tracking-[0.45em] text-[#D8CBB8]/70">
             Discover More

@@ -133,7 +133,7 @@ export const defaultContent: SiteContent = {
     eyebrow: "AWARD-WINNING LUXURY DESIGN STUDIO",
     heading: "Luxury Interiors Designed Around Your Lifestyle, Not Templates",
     subheading:
-      "From concept to execution, we create premium home interiors that combine elegant design, intelligent storage, and flawless craftsmanship—tailored specifically to your floor plan and lifestyle.",
+      "From concept to execution,\nwe create premium home interiors that combine elegant design, intelligent storage, and flawless craftsmanship—tailored specifically to your floor plan and lifestyle.",
     cta1: "Book Free Design Consultation",
     cta2: "View Our Projects",
     trustItems: ["8+ Years Experience", "End-to-End Execution", "Customized Designs", "Premium Materials & Finishes"],
