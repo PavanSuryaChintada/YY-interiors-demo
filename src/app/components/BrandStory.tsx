@@ -1,7 +1,32 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, useInView } from "motion/react";
+import { useRef, useEffect, useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useContent } from "../../context/ContentContext";
+
+function CountUp({ value }: { value: string }) {
+  const match = value.match(/^(\d+)(.*)$/);
+  const target = match ? parseInt(match[1]) : 0;
+  const suffix = match ? match[2] : value;
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const duration = 1800;
+    const startTime = performance.now();
+    const animate = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(animate);
+      else setCount(target);
+    };
+    requestAnimationFrame(animate);
+  }, [isInView, target]);
+
+  return <div ref={ref}>{count}{suffix}</div>;
+}
 
 const containerVariants = {
   hidden: {},
@@ -21,7 +46,7 @@ export function BrandStory() {
   const blockY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <section ref={ref} className="py-20 md:py-32 px-6 md:px-8 bg-[#F5F1EA] overflow-hidden">
+    <section ref={ref} className="py-10 md:py-16 px-6 md:px-8 bg-[#F5F1EA] overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text column — LEFT */}
@@ -66,7 +91,7 @@ export function BrandStory() {
                   className="flex flex-col items-center sm:items-start text-center sm:text-left"
                 >
                   <div className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(36px, 3.5vw, 48px)", fontWeight: 500, color: "#8C6A4A" }}>
-                    {stat.number}
+                    <CountUp value={stat.number} />
                   </div>
                   <div className="font-['Inter']" style={{ fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", color: "#1B1B1B" }}>
                     {stat.label}

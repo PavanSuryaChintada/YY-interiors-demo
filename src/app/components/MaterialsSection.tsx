@@ -5,14 +5,14 @@ import { useContent } from "../../context/ContentContext";
 export function MaterialsSection() {
   const { content } = useContent();
   return (
-    <section className="py-32 px-8 bg-[#1B1B1B]">
+    <section className="py-14 px-4 sm:px-8 bg-[#1B1B1B]">
       <div className="max-w-[1600px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-20"
+          className="mb-10"
         >
           <p className="font-['Inter'] mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
             MATERIALS & TEXTURES

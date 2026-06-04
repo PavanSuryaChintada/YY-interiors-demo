@@ -5,14 +5,14 @@ export function ProcessSection() {
   const { content } = useContent();
   const stages = content.process;
   return (
-    <section id="process" className="py-20 md:py-32 px-4 sm:px-6 md:px-8 bg-[#F5F1EA]">
+    <section id="process" className="py-10 md:py-16 px-4 sm:px-6 md:px-8 bg-[#F5F1EA]">
       <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-8 md:mb-12"
         >
           <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
             OUR PROCESS
@@ -62,7 +62,7 @@ export function ProcessSection() {
             className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-[#8C6A4A] origin-top z-10"
           />
 
-          <div className="space-y-24">
+          <div className="space-y-10 md:space-y-14">
             {stages.map((stage, index) => (
               <motion.div
                 key={stage.id}
@@ -73,7 +73,7 @@ export function ProcessSection() {
                 className={`flex items-center gap-12 ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
               >
                 <div className="flex-1" style={{ textAlign: index % 2 === 0 ? "right" : "left" }}>
-                  <div className="font-['Cormorant_Garamond'] mb-3" style={{ fontSize: "clamp(48px, 6vw, 72px)", fontWeight: 400, color: "#8C6A4A", opacity: 0.25 }}>
+                  <div className="font-['Cormorant_Garamond'] mb-3" style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, color: "#8C6A4A", opacity: 0.25 }}>
                     {stage.number}
                   </div>
                   <h3 className="font-['Cormorant_Garamond'] mb-3" style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 500, color: "#1B1B1B" }}>

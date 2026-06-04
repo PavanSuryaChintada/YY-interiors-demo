@@ -21,7 +21,7 @@ export function CtaSection({ darkTheme = true }: CtaSectionProps) {
   };
 
   return (
-    <section className="py-24 px-8 relative overflow-hidden" style={{ backgroundColor: bg }}>
+    <section className="py-12 md:py-16 px-4 sm:px-8 relative overflow-hidden" style={{ backgroundColor: bg }}>
       {/* Subtle grid background */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{
         backgroundImage: `linear-gradient(${fg} 1px, transparent 1px), linear-gradient(90deg, ${fg} 1px, transparent 1px)`,

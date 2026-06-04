@@ -9,14 +9,14 @@ export function ProjectsSection() {
   const projects = content.projects;
   const { projectsSection } = content;
   return (
-    <section id="portfolio" className="py-20 md:py-32 px-4 sm:px-6 md:px-8 bg-[#F5F1EA]">
+    <section id="portfolio" className="py-10 md:py-16 px-4 sm:px-6 md:px-8 bg-[#F5F1EA]">
       <div className="max-w-[1600px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12 md:mb-20 text-center md:text-left"
+          className="mb-8 md:mb-12 text-center md:text-left"
         >
           <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
             {projectsSection.eyebrow}

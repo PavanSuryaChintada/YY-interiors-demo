@@ -61,7 +61,7 @@ export function HeroSection() {
         <div className="max-w-5xl w-full">
           <motion.p
             variants={itemVariants}
-            className="font-['Inter'] mb-6 mt-8"
+            className="font-['Inter'] mb-6 mt-16 md:mt-6"
             style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.32em", color: "#D8CBB8", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
           >
             {content.hero.eyebrow}

@@ -17,7 +17,7 @@ export function ArchitectureSection() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[120vh] flex items-center justify-center bg-[#F5F1EA] overflow-hidden py-32 px-8"
+      className="relative flex items-center justify-center bg-[#F5F1EA] overflow-hidden py-14 md:py-20 px-4 sm:px-8"
     >
       <ArchitecturalElements />
       

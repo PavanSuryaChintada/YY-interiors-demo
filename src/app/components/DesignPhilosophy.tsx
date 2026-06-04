@@ -21,7 +21,7 @@ export function DesignPhilosophy() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#1B1B1B] overflow-hidden py-24 md:py-40"
+      className="relative bg-[#1B1B1B] overflow-hidden py-12 md:py-20"
     >
       {/* Faint large watermark numeral */}
       <div

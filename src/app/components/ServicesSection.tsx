@@ -32,14 +32,14 @@ export function ServicesSection() {
   }, [isPaused]);
 
   return (
-    <section id="services" className="py-20 md:py-32 px-6 md:px-8 bg-[#1B1B1B]">
+    <section id="services" className="py-10 md:py-16 px-4 sm:px-6 md:px-8 bg-[#1B1B1B]">
       <div className="max-w-[1800px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12 md:mb-20"
+          className="mb-8 md:mb-12"
         >
           <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
             SERVICES
