@@ -47,7 +47,7 @@ export function Navigation() {
             className="flex items-center gap-3 z-50 shrink-0"
           >
             <img
-              src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780568561/WhatsApp_Image_2026-06-04_at_15.52.17_httthb.jpg"
+              src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780515323/WhatsApp_Image_2026-06-04_at_01.04.41_pjau9l.jpg"
               alt="Yellow Yards Interiors"
               className="object-contain shrink-0"
               style={{ height: "40px", width: "auto", maxWidth: "120px" }}
