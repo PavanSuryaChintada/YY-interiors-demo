@@ -43,7 +43,7 @@ export function ProjectsCollection() {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               className="group"
             >
-              <Link to={`/project/${project.slug}`} className="block group">
+              <Link to={`/project/${project.slug || project.id}`} className="block group">
                 <div className="relative aspect-[3/4] overflow-hidden bg-[#1B1B1B]/5 mb-6">
                   <ImageWithFallback
                     src={project.mainImage || project.image}

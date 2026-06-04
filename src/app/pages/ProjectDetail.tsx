@@ -8,7 +8,7 @@ export function ProjectDetail() {
   const { slug } = useParams();
   const { content } = useContent();
   const projects = content.projects;
-  const project = projects.find((p) => p.slug === slug);
+  const project = projects.find((p) => (p.slug || p.id) === slug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -150,7 +150,7 @@ export function ProjectDetail() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 flex flex-col items-center text-center">
           <p className="font-['Inter'] text-[10px] uppercase tracking-[0.5em] text-[#8C6A4A] mb-6">Next Project</p>
           <Link
-            to={`/project/${nextProject.slug}`}
+            to={`/project/${nextProject.slug || nextProject.id}`}
             className="font-['Cormorant_Garamond'] italic font-light text-[#1B1B1B] hover:text-[#8C6A4A] transition-colors duration-500"
             style={{ fontSize: "clamp(32px, 7vw, 100px)" }}
           >

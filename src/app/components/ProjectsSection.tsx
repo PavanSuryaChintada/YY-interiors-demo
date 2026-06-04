@@ -40,7 +40,7 @@ export function ProjectsSection() {
                 transition={{ duration: 0.9, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="group relative overflow-hidden"
               >
-                <Link to={`/project/${project.slug}`} className="block">
+                <Link to={`/project/${project.slug || project.id}`} className="block">
                   <div className="relative overflow-hidden bg-[#1B1B1B]/5">
                     <motion.div
                       whileHover={{ scale: 1.05 }}

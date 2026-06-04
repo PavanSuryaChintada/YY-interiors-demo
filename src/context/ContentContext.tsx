@@ -52,7 +52,17 @@ async function fetchFromCloud(): Promise<SiteContent | null> {
     const res = await fetch('/api/get-content');
     if (!res.ok) return null;
     const data = await res.json();
-    return data.record ? ({ ...defaultContent, ...data.record } as SiteContent) : null;
+    if (!data.record) return null;
+
+    const record = data.record;
+
+    // Deep-merge projects so new fields (slug, mainImage, etc.) fill in from defaults
+    const mergedProjects = (record.projects || defaultContent.projects).map((p: Record<string, unknown>) => {
+      const defaultProject = defaultContent.projects.find((dp) => dp.id === p.id) || {};
+      return { ...defaultProject, ...p };
+    });
+
+    return { ...defaultContent, ...record, projects: mergedProjects } as SiteContent;
   } catch {
     return null;
   }
@@ -77,7 +87,14 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
   const [content, setContent] = useState<SiteContent>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) return { ...defaultContent, ...JSON.parse(stored) };
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        const mergedProjects = (parsed.projects || defaultContent.projects).map((p: Record<string, unknown>) => {
+          const defaultProject = defaultContent.projects.find((dp) => dp.id === p.id) || {};
+          return { ...defaultProject, ...p };
+        });
+        return { ...defaultContent, ...parsed, projects: mergedProjects };
+      }
     } catch {}
     return defaultContent;
   });
