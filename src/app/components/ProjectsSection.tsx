@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useContent } from "../../context/ContentContext";
@@ -37,45 +38,45 @@ export function ProjectsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.9, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="group cursor-pointer relative overflow-hidden"
+                className="group relative overflow-hidden"
               >
-                <div className="relative overflow-hidden bg-[#1B1B1B]/5">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-full"
-                  >
-                    <ImageWithFallback
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full object-cover"
-                    />
-                  </motion.div>
-
-                  <div className="absolute inset-0 bg-[#1B1B1B]/0 group-hover:bg-[#1B1B1B]/40 transition-all duration-700 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
-                    <div className="text-center translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
-                      <p className="font-['Inter'] text-[#F5F1EA]/60 text-[9px] uppercase tracking-[0.4em] mb-4">
-                        {project.location}
-                      </p>
-                      <div className="px-6 py-3 border border-[#F5F1EA]/20 bg-[#F5F1EA]/10 backdrop-blur-md">
-                        <p className="font-['Inter'] text-[#F5F1EA] text-[11px] uppercase tracking-[0.3em] font-medium">
-                          View Project —
+                <Link to={`/project/${project.slug}`} className="block">
+                  <div className="relative overflow-hidden bg-[#1B1B1B]/5">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                      className="w-full"
+                    >
+                      <ImageWithFallback
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full object-cover"
+                      />
+                    </motion.div>
+                    <div className="absolute inset-0 bg-[#1B1B1B]/0 group-hover:bg-[#1B1B1B]/40 transition-all duration-700 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
+                      <div className="text-center translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                        <p className="font-['Inter'] text-[#F5F1EA]/60 text-[9px] uppercase tracking-[0.4em] mb-4">
+                          {project.location}
                         </p>
+                        <div className="px-6 py-3 border border-[#F5F1EA]/20 bg-[#F5F1EA]/10 backdrop-blur-md">
+                          <p className="font-['Inter'] text-[#F5F1EA] text-[11px] uppercase tracking-[0.3em] font-medium">
+                            View Project →
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="pt-3 pb-2">
-                  <h3 className="font-['Cormorant_Garamond'] mb-1" style={{ fontSize: "clamp(18px, 2.5vw, 24px)", fontWeight: 500, color: "#1B1B1B" }}>
-                    {project.title}
-                  </h3>
-                  <div className="font-['Inter'] flex flex-wrap items-center gap-2" style={{ fontSize: "12px", fontWeight: 400, color: "#8C6A4A" }}>
-                    <span>{project.location}</span>
-                    <span>·</span>
-                    <span>{project.style}</span>
+                  <div className="pt-3 pb-2">
+                    <h3 className="font-['Cormorant_Garamond'] mb-1" style={{ fontSize: "clamp(18px, 2.5vw, 24px)", fontWeight: 500, color: "#1B1B1B" }}>
+                      {project.title}
+                    </h3>
+                    <div className="font-['Inter'] flex flex-wrap items-center gap-2" style={{ fontSize: "12px", fontWeight: 400, color: "#8C6A4A" }}>
+                      <span>{project.location}</span>
+                      <span>·</span>
+                      <span>{project.style}</span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </Masonry>

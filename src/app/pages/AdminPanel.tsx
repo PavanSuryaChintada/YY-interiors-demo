@@ -505,21 +505,49 @@ function ProjectsEditor({
   return (
     <ArrayEditor
       sectionTitle="Projects"
-      sectionSubtitle="Portfolio masonry grid items"
+      sectionSubtitle="Portfolio grid — each project links to its own detail page"
       items={draft.projects}
       createNew={() => ({
         id: `p${Date.now()}`,
+        slug: `new-project-${Date.now()}`,
         title: "New Project",
-        location: "",
-        style: "",
+        location: "Hyderabad, India",
+        style: "Contemporary",
+        category: "Residential Interiors",
+        client: "Private Client",
+        area: "",
+        year: "2024",
+        description: "",
         image: "",
+        mainImage: "",
+        images: ["", "", ""],
       })}
       renderFields={(item, onUpdate) => (
         <>
           <Field label="Title" value={item.title} onChange={(v) => onUpdate({ ...item, title: v })} />
+          <Field label="URL Slug (e.g. modern-villa)" value={item.slug} onChange={(v) => onUpdate({ ...item, slug: v.toLowerCase().replace(/\s+/g, "-") })} />
+          <Field label="Category" value={item.category} onChange={(v) => onUpdate({ ...item, category: v })} />
           <Field label="Location" value={item.location} onChange={(v) => onUpdate({ ...item, location: v })} />
           <Field label="Style" value={item.style} onChange={(v) => onUpdate({ ...item, style: v })} />
-          <ImageField label="Image URL" value={item.image} onChange={(v) => onUpdate({ ...item, image: v })} />
+          <Field label="Client" value={item.client} onChange={(v) => onUpdate({ ...item, client: v })} />
+          <Field label="Area (e.g. 2,800 sq ft)" value={item.area} onChange={(v) => onUpdate({ ...item, area: v })} />
+          <Field label="Year" value={item.year} onChange={(v) => onUpdate({ ...item, year: v })} />
+          <Field label="Description" value={item.description} onChange={(v) => onUpdate({ ...item, description: v })} multiline />
+          <ImageField label="Thumbnail (grid view)" value={item.image} onChange={(v) => onUpdate({ ...item, image: v })} />
+          <ImageField label="Hero image (detail page)" value={item.mainImage} onChange={(v) => onUpdate({ ...item, mainImage: v })} />
+          <p style={{ ...labelStyle, marginTop: "16px", marginBottom: "12px" }}>GALLERY IMAGES (3)</p>
+          {[0, 1, 2].map((i) => (
+            <ImageField
+              key={i}
+              label={`Gallery image ${i + 1}`}
+              value={(item.images || [])[i] || ""}
+              onChange={(v) => {
+                const imgs = [...(item.images || ["", "", ""])];
+                imgs[i] = v;
+                onUpdate({ ...item, images: imgs });
+              }}
+            />
+          ))}
         </>
       )}
       onSave={(items) => {

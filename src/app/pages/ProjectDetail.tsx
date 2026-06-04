@@ -1,11 +1,13 @@
 import { useParams, Link } from "react-router";
 import { motion } from "motion/react";
-import { projects } from "../data/projects";
+import { useContent } from "../../context/ContentContext";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { useEffect } from "react";
 
 export function ProjectDetail() {
   const { slug } = useParams();
+  const { content } = useContent();
+  const projects = content.projects;
   const project = projects.find((p) => p.slug === slug);
 
   useEffect(() => {
@@ -14,139 +16,143 @@ export function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="h-screen flex items-center justify-center bg-[#F5F1EA]">
-        <h1 className="font-['Cormorant_Garamond'] text-4xl">Project Not Found</h1>
-        <Link to="/" className="ml-4 underline">Go Home</Link>
+      <div className="h-screen flex items-center justify-center bg-[#F5F1EA] flex-col gap-4">
+        <h1 className="font-['Cormorant_Garamond'] text-4xl text-[#1B1B1B]">Project Not Found</h1>
+        <Link to="/" className="font-['Inter'] text-sm text-[#8C6A4A] underline underline-offset-4">Go Home</Link>
       </div>
     );
   }
 
-  // Calculate Next Project
   const currentIndex = projects.findIndex((p) => p.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
     <div className="bg-[#F5F1EA] min-h-screen pb-32">
-      {/* Hero Section */}
-      <section className="relative h-[90vh] overflow-hidden">
-        <motion.div 
+
+      {/* Hero */}
+      <section className="relative h-[70vh] md:h-[90vh] overflow-hidden">
+        <motion.div
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
           className="w-full h-full"
         >
           <ImageWithFallback
-            src={project.mainImage}
+            src={project.mainImage || project.image}
             alt={project.title}
             className="w-full h-full object-cover"
           />
         </motion.div>
-        <div className="absolute inset-0 bg-[#1B1B1B]/30" />
-        
-        <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-20">
+        <div className="absolute inset-0 bg-[#1B1B1B]/40" />
+
+        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            <p className="font-['Inter'] text-[#F5F1EA]/80 text-[11px] uppercase tracking-[0.5em] mb-6">
-              {project.category} • {project.location}
+            <p className="font-['Inter'] text-[#F5F1EA]/70 text-[11px] uppercase tracking-[0.4em] mb-4">
+              {project.category} · {project.location}
             </p>
-            <h1 className="font-['Cormorant_Garamond'] text-[clamp(64px,12vw,160px)] font-light leading-[0.9] text-[#F5F1EA] mb-12">
-              {project.title.split(' ').map((word, i) => (
-                <span key={i} className={i === 1 ? "italic font-extralight block" : "block"}>{word} </span>
-              ))}
+            <h1
+              className="font-['Cormorant_Garamond'] font-light leading-[1] text-[#F5F1EA]"
+              style={{ fontSize: "clamp(40px, 10vw, 120px)" }}
+            >
+              {project.title}
             </h1>
           </motion.div>
         </div>
+
+        {/* Back button */}
+        <Link
+          to="/"
+          className="absolute top-24 left-6 md:left-12 font-['Inter'] text-[11px] uppercase tracking-[0.3em] text-[#F5F1EA]/70 hover:text-[#F5F1EA] transition-colors flex items-center gap-2"
+        >
+          ← Back
+        </Link>
       </section>
 
-      {/* Magazine Content Section */}
-      <section className="max-w-[1400px] mx-auto px-6 md:px-12 mt-32">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-          {/* Left: Project Specs */}
-          <div className="lg:col-span-4">
-            <div className="sticky top-32 space-y-12">
-              <div className="space-y-8 border-t border-[#1B1B1B]/10 pt-12">
-                <div className="flex justify-between items-end">
-                  <span className="font-['Inter'] text-[10px] uppercase tracking-widest text-[#8C6A4A]">Client</span>
-                  <span className="font-['Cormorant_Garamond'] text-[24px] text-[#1B1B1B]">{project.client}</span>
-                </div>
-                <div className="flex justify-between items-end">
-                  <span className="font-['Inter'] text-[10px] uppercase tracking-widest text-[#8C6A4A]">Area</span>
-                  <span className="font-['Cormorant_Garamond'] text-[24px] text-[#1B1B1B]">{project.area}</span>
-                </div>
-                <div className="flex justify-between items-end">
-                  <span className="font-['Inter'] text-[10px] uppercase tracking-widest text-[#8C6A4A]">Year</span>
-                  <span className="font-['Cormorant_Garamond'] text-[24px] text-[#1B1B1B]">{project.year}</span>
-                </div>
-              </div>
+      {/* Content */}
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 mt-16 md:mt-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
 
-              <blockquote className="font-['Cormorant_Garamond'] text-[28px] italic leading-relaxed text-[#8C6A4A] pl-8 border-l-2 border-[#8C6A4A]/20">
-                "Architecture should speak of its time and place, but yearn for timelessness."
-              </blockquote>
+          {/* Left: specs */}
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-32 space-y-10 border-t border-[#1B1B1B]/10 pt-10">
+              {[
+                { label: "Client", value: project.client },
+                { label: "Area", value: project.area },
+                { label: "Year", value: project.year },
+                { label: "Style", value: project.style },
+              ].map(({ label, value }) => (
+                <div key={label} className="flex justify-between items-baseline gap-4">
+                  <span className="font-['Inter'] text-[10px] uppercase tracking-widest text-[#8C6A4A] shrink-0">{label}</span>
+                  <span className="font-['Cormorant_Garamond'] text-[22px] text-[#1B1B1B] text-right">{value}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right: Narrative Description */}
+          {/* Right: description */}
           <div className="lg:col-span-8">
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="space-y-12"
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-8"
             >
-              <h2 className="font-['Cormorant_Garamond'] text-[48px] lg:text-[72px] font-light leading-tight text-[#1B1B1B]">
-                The Design <span className="italic font-extralight">Narrative</span>
+              <h2
+                className="font-['Cormorant_Garamond'] font-light leading-tight text-[#1B1B1B]"
+                style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
+              >
+                The Design <span className="italic">Narrative</span>
               </h2>
-              <div className="columns-1 md:columns-2 gap-12 font-['Inter'] text-[16px] leading-[1.8] text-[#1B1B1B]/80 font-light space-y-8">
-                <p className="first-letter:text-6xl first-letter:font-['Cormorant_Garamond'] first-letter:float-left first-letter:mr-4 first-letter:text-[#8C6A4A] first-letter:mt-2">
-                  {project.description}
-                </p>
-                <p>
-                  Every element of the {project.title} was meticulously sourced and curated to reflect a specific mood. We focused on the tactile experience—from the temperature of the marble floors to the grain of the reclaimed oak paneling.
-                </p>
-              </div>
+              <p className="font-['Inter'] text-[16px] md:text-[18px] leading-[1.9] text-[#1B1B1B]/80 font-light">
+                {project.description}
+              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Bento Layout Gallery */}
-      <section className="max-w-[1600px] mx-auto px-6 md:px-12 mt-48">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[300px] md:auto-rows-[400px]">
-          {project.images.map((img, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: idx * 0.1 }}
-              className={`relative overflow-hidden group ${
-                idx === 0 ? "md:col-span-8 md:row-span-2" : 
-                idx === 1 ? "md:col-span-4 md:row-span-1" :
-                idx === 2 ? "md:col-span-4 md:row-span-1" :
-                "md:col-span-6 md:row-span-1"
-              }`}
-            >
-              <ImageWithFallback
-                src={img}
-                alt={`${project.title} detail ${idx + 1}`}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
-              />
-              <div className="absolute inset-0 bg-[#1B1B1B]/0 group-hover:bg-[#1B1B1B]/20 transition-colors duration-500" />
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      {/* Gallery */}
+      {project.images && project.images.length > 0 && (
+        <section className="max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 mt-20 md:mt-40">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 auto-rows-[250px] md:auto-rows-[380px]">
+            {project.images.map((img, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: idx * 0.1 }}
+                className={`relative overflow-hidden group ${
+                  idx === 0 ? "md:col-span-8 md:row-span-2" :
+                  idx === 1 ? "md:col-span-4" :
+                  "md:col-span-4"
+                }`}
+              >
+                <ImageWithFallback
+                  src={img}
+                  alt={`${project.title} — image ${idx + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-[#1B1B1B]/0 group-hover:bg-[#1B1B1B]/15 transition-colors duration-500" />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
 
-      {/* Navigation Footer */}
-      <section className="mt-64 border-t border-[#1B1B1B]/10 pt-24 pb-32">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col items-center">
-          <p className="font-['Inter'] text-[10px] uppercase tracking-[0.5em] text-[#8C6A4A] mb-8">Next Project</p>
-          <Link 
-            to={`/project/${nextProject.slug}`} 
-            className="group font-['Cormorant_Garamond'] text-[clamp(40px,8vw,120px)] font-light italic text-[#1B1B1B] hover:text-[#8C6A4A] transition-colors duration-500 text-center"
+      {/* Next project */}
+      <section className="mt-32 md:mt-64 border-t border-[#1B1B1B]/10 pt-16 md:pt-24 pb-16">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 flex flex-col items-center text-center">
+          <p className="font-['Inter'] text-[10px] uppercase tracking-[0.5em] text-[#8C6A4A] mb-6">Next Project</p>
+          <Link
+            to={`/project/${nextProject.slug}`}
+            className="font-['Cormorant_Garamond'] italic font-light text-[#1B1B1B] hover:text-[#8C6A4A] transition-colors duration-500"
+            style={{ fontSize: "clamp(32px, 7vw, 100px)" }}
           >
             {nextProject.title} →
           </Link>
