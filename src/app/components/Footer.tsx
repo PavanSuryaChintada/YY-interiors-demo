@@ -4,7 +4,7 @@ import { useContent } from "../../context/ContentContext";
 export function Footer() {
   const { content } = useContent();
   return (
-    <footer className="py-12 px-4 sm:px-8 bg-[#1B1B1B] border-t border-[#F5F1EA]/10">
+    <footer className="py-8 px-4 sm:px-8 bg-[#1B1B1B] border-t border-[#F5F1EA]/10">
       <div className="max-w-[1600px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
           <motion.div

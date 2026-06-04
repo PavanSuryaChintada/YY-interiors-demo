@@ -50,7 +50,7 @@ export function ContactSection() {
   const inputStyle = { fontSize: "16px", fontWeight: 400, color: "#1B1B1B" };
 
   return (
-    <section id="contact" className="py-20 md:py-32 px-4 sm:px-6 md:px-8 bg-[#F5F1EA] relative overflow-hidden">
+    <section id="contact" className="pt-10 pb-10 md:pt-16 md:pb-12 px-4 sm:px-6 md:px-8 bg-[#F5F1EA] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#8C6A4A]/5 -z-0" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">

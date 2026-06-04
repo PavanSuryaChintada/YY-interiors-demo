@@ -10,20 +10,31 @@ function CountUp({ value }: { value: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
   const [count, setCount] = useState(0);
+  const hasStarted = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    if (!isInView) return;
-    const duration = 1800;
-    const startTime = performance.now();
-    const animate = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
+    // Guard: only run once, prevents double-fire when cloud content reloads
+    if (!isInView || hasStarted.current || target === 0) return;
+    hasStarted.current = true;
+
+    const steps = 60;
+    const stepMs = 1500 / steps;
+    let step = 0;
+
+    timerRef.current = setInterval(() => {
+      step++;
+      const progress = step / steps;
       const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(animate);
-      else setCount(target);
-    };
-    requestAnimationFrame(animate);
-  }, [isInView, target]);
+      setCount(Math.round(eased * target));
+      if (step >= steps) {
+        clearInterval(timerRef.current!);
+        setCount(target);
+      }
+    }, stepMs);
+
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [isInView]); // intentionally omit target — captured at first run via closure
 
   return <div ref={ref}>{count}{suffix}</div>;
 }

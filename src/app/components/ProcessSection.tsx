@@ -23,7 +23,7 @@ export function ProcessSection() {
         </motion.div>
 
         {/* Mobile: simple numbered list */}
-        <div className="flex flex-col gap-8 md:hidden">
+        <div className="flex flex-col gap-5 md:hidden">
           {stages.map((stage, index) => (
             <motion.div
               key={stage.id}
@@ -62,7 +62,7 @@ export function ProcessSection() {
             className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-[#8C6A4A] origin-top z-10"
           />
 
-          <div className="space-y-10 md:space-y-14">
+          <div className="space-y-4 md:space-y-6">
             {stages.map((stage, index) => (
               <motion.div
                 key={stage.id}
