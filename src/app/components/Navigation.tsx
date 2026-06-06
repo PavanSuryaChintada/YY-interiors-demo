@@ -35,7 +35,7 @@ export function Navigation() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-8 md:py-5 transition-all duration-500 ${
-          navBg ? "bg-[#F5F1EA]/92 backdrop-blur-xl shadow-sm" : "bg-[#1B1B1B]/20 backdrop-blur-sm"
+          navBg ? "bg-[#F5F1EA]/92 backdrop-blur-xl shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="max-w-[1600px] mx-auto flex items-center justify-between">
