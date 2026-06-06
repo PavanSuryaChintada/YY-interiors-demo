@@ -36,7 +36,7 @@ export function ArchitectureSection() {
             </p>
             <h2 className="font-['Cormorant_Garamond'] text-[clamp(40px,5vw,72px)] font-light leading-[1.1] text-[#1B1B1B] mb-8">
               {content.architecture.heading1} <br />
-              <span className="italic">{content.architecture.heading2}</span>
+              <span>{content.architecture.heading2}</span>
             </h2>
             <p className="font-['Inter'] text-[16px] leading-[1.8] text-[#1B1B1B]/70 font-light max-w-lg">
               {content.architecture.body}

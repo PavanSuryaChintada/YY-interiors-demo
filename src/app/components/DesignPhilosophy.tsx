@@ -66,7 +66,6 @@ export function DesignPhilosophy() {
               >
                 {content.philosophy.heading}{" "}
                 <span
-                  className="italic"
                   style={{ color: "#D8CBB8" }}
                 >
                   {content.philosophy.headingItalic}
