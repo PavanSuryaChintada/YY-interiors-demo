@@ -153,12 +153,12 @@ export function Preloader() {
             </motion.div>
           </div>
 
-          {/* Italic quote at bottom */}
+          {/* Quote at bottom */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="absolute bottom-14 font-['Cormorant_Garamond'] italic text-center px-8"
+            className="absolute bottom-14 font-['Cormorant_Garamond'] text-center px-8"
             style={{
               fontSize: "clamp(13px, 1.8vw, 18px)",
               fontWeight: 300,

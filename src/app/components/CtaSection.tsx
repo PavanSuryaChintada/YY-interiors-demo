@@ -48,7 +48,7 @@ export function CtaSection({ darkTheme = true }: CtaSectionProps) {
           className="font-['Cormorant_Garamond'] mb-10"
           style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 500, lineHeight: 1.1, color: fg }}
         >
-          {cta.heading} <span className="italic text-[#8C6A4A]">{cta.headingItalic}</span>
+          {cta.heading} <span className="text-[#8C6A4A]">{cta.headingItalic}</span>
         </motion.h2>
 
         <motion.p

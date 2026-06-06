@@ -36,7 +36,7 @@ export function TestimonialsSection() {
 
               <p
                 className="font-['Inter'] mb-8"
-                style={{ fontSize: "clamp(15px, 1vw, 17px)", fontWeight: 400, lineHeight: 1.9, color: "#F5F1EA", fontStyle: "italic" }}
+                style={{ fontSize: "clamp(15px, 1vw, 17px)", fontWeight: 400, lineHeight: 1.9, color: "#F5F1EA" }}
               >
                 "{testimonial.quote}"
               </p>

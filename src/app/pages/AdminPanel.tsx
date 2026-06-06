@@ -582,7 +582,7 @@ function ArchitectureEditor({
       <SectionHeader title="Architecture" subtitle="Spatial planning section with floor plan card" />
       <Field label="Eyebrow" value={a.eyebrow} onChange={set("eyebrow")} />
       <Field label="Heading line 1" value={a.heading1} onChange={set("heading1")} />
-      <Field label="Heading line 2 (italic)" value={a.heading2} onChange={set("heading2")} />
+      <Field label="Heading line 2" value={a.heading2} onChange={set("heading2")} />
       <Field label="Body text" value={a.body} onChange={set("body")} multiline />
       <Divider />
       <p style={{ ...labelStyle, marginBottom: "16px" }}>STATS GRID</p>
@@ -680,7 +680,7 @@ function PhilosophyEditor({
       <SectionHeader title="Philosophy" subtitle="Design intelligence section with pillars and image composition" />
       <Field label="Eyebrow" value={p.eyebrow} onChange={set("eyebrow")} />
       <Field label="Heading" value={p.heading} onChange={set("heading")} />
-      <Field label="Heading italic part" value={p.headingItalic} onChange={set("headingItalic")} />
+      <Field label="Heading secondary part" value={p.headingItalic} onChange={set("headingItalic")} />
       <ImageField label="Image 1 (main large)" value={p.image1} onChange={set("image1")} />
       <ImageField label="Image 2 (secondary small)" value={p.image2} onChange={set("image2")} />
       <Divider />
@@ -929,7 +929,7 @@ function CtaEditor({
       <SectionHeader title="CTA Sections" subtitle="Text shown in all Call-To-Action banners across the site" />
       <Field label="Eyebrow" value={c.eyebrow} onChange={set("eyebrow")} />
       <Field label="Heading" value={c.heading} onChange={set("heading")} />
-      <Field label="Heading italic part" value={c.headingItalic} onChange={set("headingItalic")} />
+      <Field label="Heading secondary part" value={c.headingItalic} onChange={set("headingItalic")} />
       <Field label="Body text" value={c.body} onChange={set("body")} multiline />
       <Field label="Primary button" value={c.button1} onChange={set("button1")} />
       <Field label="Secondary button" value={c.button2} onChange={set("button2")} />

@@ -106,7 +106,7 @@ export function ProjectDetail() {
                 className="font-['Cormorant_Garamond'] font-light leading-tight text-[#1B1B1B]"
                 style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
               >
-                The Design <span className="italic">Narrative</span>
+                The Design <span>Narrative</span>
               </h2>
               <p className="font-['Inter'] text-[16px] md:text-[18px] leading-[1.9] text-[#1B1B1B]/80 font-light">
                 {project.description}
@@ -151,7 +151,7 @@ export function ProjectDetail() {
           <p className="font-['Inter'] text-[10px] uppercase tracking-[0.5em] text-[#8C6A4A] mb-6">Next Project</p>
           <Link
             to={`/project/${nextProject.slug || nextProject.id}`}
-            className="font-['Cormorant_Garamond'] italic font-light text-[#1B1B1B] hover:text-[#8C6A4A] transition-colors duration-500"
+            className="font-['Cormorant_Garamond'] font-light text-[#1B1B1B] hover:text-[#8C6A4A] transition-colors duration-500"
             style={{ fontSize: "clamp(32px, 7vw, 100px)" }}
           >
             {nextProject.title} →

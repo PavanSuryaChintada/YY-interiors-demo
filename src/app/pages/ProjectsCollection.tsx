@@ -30,7 +30,7 @@ export function ProjectsCollection() {
             className="font-['Cormorant_Garamond'] font-light leading-none text-[#1B1B1B]"
             style={{ fontSize: "clamp(40px, 8vw, 120px)" }}
           >
-            The Complete <span className="italic">Collection.</span>
+            The Complete <span>Collection.</span>
           </motion.h1>
         </header>
 
