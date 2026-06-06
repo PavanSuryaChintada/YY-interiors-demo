@@ -98,3 +98,16 @@ public
 # Temporary folders
 tmp/
 temp/
+
+# Claude Code
+.claude/
+*.jsonl
+
+# Cursor / AI editors
+.cursor/
+.aider*
+.continue/
+
+# Misc editor artifacts
+*.bak
+*.orig

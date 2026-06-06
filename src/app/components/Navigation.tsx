@@ -47,7 +47,7 @@ export function Navigation() {
             className="flex items-center gap-3 z-50 shrink-0"
           >
             <img
-              src="/logo.svg"
+              src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780729284/WhatsApp_Image_2026-06-04_at_01.04.41-removebg-preview_hmzehs.png"
               alt="Yellow Yards Interiors"
               className="object-contain shrink-0"
               style={{ height: "40px", width: "auto", maxWidth: "120px" }}
@@ -118,34 +118,89 @@ export function Navigation() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-[#F5F1EA] flex flex-col items-center justify-center gap-8 md:hidden px-6"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 100% 0 0)" }}
+            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-40 bg-[#1B1B1B] flex flex-col md:hidden overflow-hidden"
           >
-            {navLinks.map((link, i) => (
-              <motion.a
-                key={link.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + i * 0.1 }}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="font-['Cormorant_Garamond'] text-4xl tracking-[0.2em] text-[#1B1B1B] hover:text-[#8C6A4A] transition-colors"
-              >
-                {link.name}
-              </motion.a>
-            ))}
-
-            <motion.p
+            {/* Top strip — logo echo */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="absolute bottom-12 font-['Inter'] text-[10px] tracking-[0.3em] text-[#1B1B1B]/40"
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="flex items-center gap-3 px-6 pt-6 pb-8"
             >
-              YY INTERIORS © 2026
-            </motion.p>
+              <img
+                src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780729284/WhatsApp_Image_2026-06-04_at_01.04.41-removebg-preview_hmzehs.png"
+                alt=""
+                className="object-contain opacity-90"
+                style={{ height: "32px", width: "auto" }}
+              />
+            </motion.div>
+
+            {/* Divider */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.25, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="h-[0.5px] bg-[#F5F1EA]/10 mx-6 origin-left"
+            />
+
+            {/* Nav items */}
+            <nav className="flex flex-col justify-center flex-1 px-6 gap-0">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ delay: 0.2 + i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="group flex items-baseline gap-5 py-5 border-b border-[#F5F1EA]/8 last:border-b-0"
+                >
+                  <span
+                    className="font-['Inter'] text-[#8C6A4A] shrink-0 transition-opacity duration-300 group-hover:opacity-100 opacity-60"
+                    style={{ fontSize: "10px", fontWeight: 500, letterSpacing: "0.2em" }}
+                  >
+                    0{i + 1}
+                  </span>
+                  <span
+                    className="font-['Cormorant_Garamond'] text-[#F5F1EA] group-hover:text-[#8C6A4A] transition-colors duration-300 leading-none"
+                    style={{ fontSize: "clamp(36px, 10vw, 52px)", fontWeight: 400, letterSpacing: "0.05em" }}
+                  >
+                    {link.name}
+                  </span>
+                  <motion.span
+                    className="ml-auto font-['Inter'] text-[#F5F1EA]/20 group-hover:text-[#8C6A4A]/60 transition-colors duration-300"
+                    style={{ fontSize: "18px" }}
+                  >
+                    →
+                  </motion.span>
+                </motion.a>
+              ))}
+            </nav>
+
+            {/* Bottom contact strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.5 }}
+              className="px-6 pb-10 pt-6 border-t border-[#F5F1EA]/10 flex items-center justify-between"
+            >
+              <div className="space-y-1">
+                <p className="font-['Inter'] text-[#F5F1EA]/30" style={{ fontSize: "9px", letterSpacing: "0.25em" }}>
+                  HYDERABAD, INDIA
+                </p>
+                <p className="font-['Inter'] text-[#D8CBB8]" style={{ fontSize: "11px", letterSpacing: "0.1em" }}>
+                  LUXURY INTERIORS
+                </p>
+              </div>
+              <p className="font-['Inter'] text-[#F5F1EA]/20" style={{ fontSize: "9px", letterSpacing: "0.2em" }}>
+                © 2026
+              </p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
