@@ -46,7 +46,7 @@ export function CtaSection({ darkTheme = true }: CtaSectionProps) {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="font-['Cormorant_Garamond'] mb-10"
-          style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 500, lineHeight: 1.1, color: fg }}
+          style={{ fontSize: "clamp(28px, 6vw, 68px)", fontWeight: 500, lineHeight: 1.1, color: fg }}
         >
           {cta.heading} <span className="text-[#8C6A4A]">{cta.headingItalic}</span>
         </motion.h2>
@@ -57,7 +57,7 @@ export function CtaSection({ darkTheme = true }: CtaSectionProps) {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="font-['Inter'] mb-12 max-w-[600px] mx-auto"
-          style={{ fontSize: "clamp(16px, 1.2vw, 18px)", fontWeight: 300, lineHeight: 1.6, color: darkTheme ? "rgba(245,241,234,0.7)" : "rgba(17,17,17,0.7)" }}
+          style={{ fontSize: "clamp(15px, 1.8vw, 18px)", fontWeight: 300, lineHeight: 1.6, color: darkTheme ? "rgba(245,241,234,0.7)" : "rgba(17,17,17,0.7)" }}
         >
           {cta.body}
         </motion.p>

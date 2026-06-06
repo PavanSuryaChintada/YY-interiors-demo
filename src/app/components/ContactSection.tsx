@@ -65,10 +65,10 @@ export function ContactSection() {
             <p className="font-['Inter'] mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
               {content.contact.eyebrow}
             </p>
-            <h2 className="font-['Cormorant_Garamond'] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
+            <h2 className="font-['Cormorant_Garamond'] mb-6" style={{ fontSize: "clamp(26px, 5.5vw, 60px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
               {content.contact.heading}
             </h2>
-            <p className="font-['Inter'] mb-12" style={{ fontSize: "clamp(16px, 1.1vw, 18px)", fontWeight: 400, lineHeight: 1.8, color: "#1B1B1B" }}>
+            <p className="font-['Inter'] mb-12" style={{ fontSize: "clamp(15px, 1.8vw, 18px)", fontWeight: 400, lineHeight: 1.8, color: "#1B1B1B" }}>
               {content.contact.subheading}
             </p>
 

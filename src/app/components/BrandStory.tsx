@@ -80,12 +80,12 @@ export function BrandStory() {
               <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
                 {content.brandStory.eyebrow}
               </p>
-              <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
+              <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(26px, 5.5vw, 60px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
                 {content.brandStory.heading}
               </h2>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="space-y-4 md:space-y-6 font-['Inter']" style={{ fontSize: "clamp(16px, 1.1vw, 18px)", fontWeight: 400, lineHeight: 1.9, color: "#1B1B1B" }}>
+            <motion.div variants={itemVariants} className="space-y-4 md:space-y-6 font-['Inter']" style={{ fontSize: "clamp(15px, 1.8vw, 18px)", fontWeight: 400, lineHeight: 1.9, color: "#1B1B1B" }}>
               <p>{content.brandStory.paragraph1}</p>
               <p>{content.brandStory.paragraph2}</p>
               <p>{content.brandStory.paragraph3}</p>
@@ -101,7 +101,7 @@ export function BrandStory() {
                   transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col items-center sm:items-start text-center sm:text-left"
                 >
-                  <div className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(36px, 3.5vw, 48px)", fontWeight: 500, color: "#8C6A4A" }}>
+                  <div className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 500, color: "#8C6A4A" }}>
                     <CountUp value={stat.number} />
                   </div>
                   <div className="font-['Inter']" style={{ fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", color: "#1B1B1B" }}>

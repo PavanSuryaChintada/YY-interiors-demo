@@ -44,7 +44,7 @@ export function ServicesSection() {
           <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
             SERVICES
           </p>
-          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#F5F1EA" }}>
+          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(26px, 5.5vw, 60px)", fontWeight: 500, lineHeight: 1.15, color: "#F5F1EA" }}>
             What We Create
           </h2>
         </motion.div>
@@ -84,10 +84,10 @@ export function ServicesSection() {
                   animate={{ y: hoveredIndex === index ? -10 : 0 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <h3 className="font-['Cormorant_Garamond'] mb-2 md:mb-3" style={{ fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 500, color: "#F5F1EA" }}>
+                  <h3 className="font-['Cormorant_Garamond'] mb-2 md:mb-3" style={{ fontSize: "clamp(18px, 3vw, 28px)", fontWeight: 500, color: "#F5F1EA" }}>
                     {service.title}
                   </h3>
-                  <p className="font-['Inter']" style={{ fontSize: "clamp(13px, 1vw, 16px)", fontWeight: 400, lineHeight: 1.7, color: "#D8CBB8" }}>
+                  <p className="font-['Inter']" style={{ fontSize: "clamp(13px, 1.5vw, 16px)", fontWeight: 400, lineHeight: 1.7, color: "#D8CBB8" }}>
                     {service.description}
                   </p>
                 </motion.div>

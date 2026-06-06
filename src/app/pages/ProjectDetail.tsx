@@ -56,7 +56,7 @@ export function ProjectDetail() {
             </p>
             <h1
               className="font-['Cormorant_Garamond'] font-light leading-[1] text-[#F5F1EA]"
-              style={{ fontSize: "clamp(40px, 10vw, 120px)" }}
+              style={{ fontSize: "clamp(30px, 9vw, 110px)" }}
             >
               {project.title}
             </h1>
@@ -104,7 +104,7 @@ export function ProjectDetail() {
             >
               <h2
                 className="font-['Cormorant_Garamond'] font-light leading-tight text-[#1B1B1B]"
-                style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
+                style={{ fontSize: "clamp(26px, 5.5vw, 60px)" }}
               >
                 The Design <span>Narrative</span>
               </h2>
@@ -152,7 +152,7 @@ export function ProjectDetail() {
           <Link
             to={`/project/${nextProject.slug || nextProject.id}`}
             className="font-['Cormorant_Garamond'] font-light text-[#1B1B1B] hover:text-[#8C6A4A] transition-colors duration-500"
-            style={{ fontSize: "clamp(32px, 7vw, 100px)" }}
+            style={{ fontSize: "clamp(24px, 7vw, 90px)" }}
           >
             {nextProject.title} →
           </Link>

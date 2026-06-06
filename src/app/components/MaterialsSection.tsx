@@ -17,7 +17,7 @@ export function MaterialsSection() {
           <p className="font-['Inter'] mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
             MATERIALS & TEXTURES
           </p>
-          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#F5F1EA" }}>
+          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(26px, 5.5vw, 60px)", fontWeight: 500, lineHeight: 1.15, color: "#F5F1EA" }}>
             The Art of Selection
           </h2>
         </motion.div>
@@ -56,7 +56,7 @@ export function MaterialsSection() {
               </div>
 
               <div className="text-center">
-                <h3 className="font-['Cormorant_Garamond'] mb-2" style={{ fontSize: "24px", fontWeight: 500, color: "#F5F1EA" }}>
+                <h3 className="font-['Cormorant_Garamond'] mb-2" style={{ fontSize: "clamp(20px, 2.5vw, 24px)", fontWeight: 500, color: "#F5F1EA" }}>
                   {material.name}
                 </h3>
                 <p className="font-['Inter']" style={{ fontSize: "14px", fontWeight: 400, color: "#D8CBB8" }}>

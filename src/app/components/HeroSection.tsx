@@ -71,7 +71,7 @@ export function HeroSection() {
             variants={itemVariants}
             className="font-['Cormorant_Garamond'] mb-6 md:mb-8"
             style={{
-              fontSize: "clamp(34px, 6vw, 96px)",
+              fontSize: "clamp(28px, 7vw, 88px)",
               fontWeight: 500,
               lineHeight: 1.15,
               letterSpacing: "0.02em",
@@ -86,7 +86,7 @@ export function HeroSection() {
             variants={itemVariants}
             className="font-['Inter'] mb-8 md:mb-12 max-w-2xl mx-auto"
             style={{
-              fontSize: "clamp(16px, 1.1vw, 18px)",
+              fontSize: "clamp(15px, 1.8vw, 18px)",
               fontWeight: 400,
               lineHeight: 1.85,
               letterSpacing: "0.03em",

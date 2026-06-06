@@ -28,7 +28,7 @@ export function ProjectsCollection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="font-['Cormorant_Garamond'] font-light leading-none text-[#1B1B1B]"
-            style={{ fontSize: "clamp(40px, 8vw, 120px)" }}
+            style={{ fontSize: "clamp(28px, 8vw, 110px)" }}
           >
             The Complete <span>Collection.</span>
           </motion.h1>
@@ -60,7 +60,7 @@ export function ProjectsCollection() {
                   <p className="font-['Inter'] text-[10px] text-[#8C6A4A] uppercase tracking-widest">
                     {project.category}
                   </p>
-                  <h3 className="font-['Cormorant_Garamond'] text-[28px] text-[#1B1B1B] font-light group-hover:text-[#8C6A4A] transition-colors">
+                  <h3 className="font-['Cormorant_Garamond'] text-[clamp(20px,2.5vw,28px)] text-[#1B1B1B] font-light group-hover:text-[#8C6A4A] transition-colors">
                     {project.title}
                   </h3>
                   <div className="flex justify-between items-center pt-3 border-t border-[#1B1B1B]/10">

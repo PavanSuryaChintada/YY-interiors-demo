@@ -58,7 +58,7 @@ export function DesignPhilosophy() {
               <h2
                 className="font-['Cormorant_Garamond']"
                 style={{
-                  fontSize: "clamp(38px, 5.5vw, 76px)",
+                  fontSize: "clamp(28px, 5.5vw, 72px)",
                   fontWeight: 500,
                   lineHeight: 1.1,
                   color: "#F5F1EA",
@@ -96,13 +96,13 @@ export function DesignPhilosophy() {
                   <div>
                     <h3
                       className="font-['Cormorant_Garamond'] mb-2"
-                      style={{ fontSize: "clamp(20px, 2vw, 26px)", fontWeight: 500, color: "#F5F1EA", lineHeight: 1.2 }}
+                      style={{ fontSize: "clamp(18px, 2.5vw, 26px)", fontWeight: 500, color: "#F5F1EA", lineHeight: 1.2 }}
                     >
                       {p.heading}
                     </h3>
                     <p
                       className="font-['Inter']"
-                      style={{ fontSize: "clamp(15px, 1vw, 17px)", fontWeight: 400, lineHeight: 1.85, color: "#D8CBB8" }}
+                      style={{ fontSize: "clamp(14px, 1.5vw, 17px)", fontWeight: 400, lineHeight: 1.85, color: "#D8CBB8" }}
                     >
                       {p.body}
                     </p>
@@ -189,7 +189,7 @@ export function DesignPhilosophy() {
             >
               <div
                 className="font-['Cormorant_Garamond'] mb-1"
-                style={{ fontSize: "clamp(36px, 4vw, 52px)", fontWeight: 500, color: "#F5F1EA", lineHeight: 1 }}
+                style={{ fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 500, color: "#F5F1EA", lineHeight: 1 }}
               >
                 {content.philosophy.statNumber}
               </div>

@@ -17,7 +17,7 @@ export function ProcessSection() {
           <p className="font-['Inter'] mb-3 md:mb-4" style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.28em", color: "#8C6A4A" }}>
             OUR PROCESS
           </p>
-          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
+          <h2 className="font-['Cormorant_Garamond']" style={{ fontSize: "clamp(26px, 5.5vw, 60px)", fontWeight: 500, lineHeight: 1.15, color: "#1B1B1B" }}>
             From Vision to Reality
           </h2>
         </motion.div>
@@ -37,10 +37,10 @@ export function ProcessSection() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#8C6A4A]" />
               </div>
               <div className="flex-1 pt-1">
-                <div className="font-['Cormorant_Garamond'] mb-1" style={{ fontSize: "36px", fontWeight: 400, color: "#8C6A4A", opacity: 0.25, lineHeight: 1 }}>
+                <div className="font-['Cormorant_Garamond'] mb-1" style={{ fontSize: "clamp(28px, 8vw, 36px)", fontWeight: 400, color: "#8C6A4A", opacity: 0.25, lineHeight: 1 }}>
                   {stage.number}
                 </div>
-                <h3 className="font-['Cormorant_Garamond'] mb-2" style={{ fontSize: "26px", fontWeight: 500, color: "#1B1B1B" }}>
+                <h3 className="font-['Cormorant_Garamond'] mb-2" style={{ fontSize: "clamp(20px, 6vw, 26px)", fontWeight: 500, color: "#1B1B1B" }}>
                   {stage.title}
                 </h3>
                 <p className="font-['Inter']" style={{ fontSize: "15px", fontWeight: 400, lineHeight: 1.8, color: "#1B1B1B" }}>
@@ -73,16 +73,16 @@ export function ProcessSection() {
                 className={`flex items-center gap-12 ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
               >
                 <div className="flex-1" style={{ textAlign: index % 2 === 0 ? "right" : "left" }}>
-                  <div className="font-['Cormorant_Garamond'] mb-3" style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, color: "#8C6A4A", opacity: 0.25 }}>
+                  <div className="font-['Cormorant_Garamond'] mb-3" style={{ fontSize: "clamp(26px, 4vw, 46px)", fontWeight: 400, color: "#8C6A4A", opacity: 0.25 }}>
                     {stage.number}
                   </div>
-                  <h3 className="font-['Cormorant_Garamond'] mb-3" style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 500, color: "#1B1B1B" }}>
+                  <h3 className="font-['Cormorant_Garamond'] mb-3" style={{ fontSize: "clamp(20px, 3vw, 30px)", fontWeight: 500, color: "#1B1B1B" }}>
                     {stage.title}
                   </h3>
                   <p
                     className="font-['Inter'] max-w-md"
                     style={{
-                      fontSize: "clamp(16px, 1.1vw, 18px)",
+                      fontSize: "clamp(15px, 1.8vw, 18px)",
                       fontWeight: 400,
                       lineHeight: 1.8,
                       color: "#1B1B1B",
