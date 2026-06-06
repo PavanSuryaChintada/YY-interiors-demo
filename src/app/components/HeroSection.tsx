@@ -105,6 +105,10 @@ export function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.14)" }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => {
+                const section = document.getElementById("contact");
+                if (section) section.scrollIntoView({ behavior: "smooth" });
+              }}
               className="px-10 py-4 font-['Inter']"
               style={{
                 fontSize: "12px",
@@ -123,6 +127,10 @@ export function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.03, backgroundColor: "#7a5c3f" }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => {
+                const section = document.getElementById("portfolio");
+                if (section) section.scrollIntoView({ behavior: "smooth" });
+              }}
               className="px-10 py-4 font-['Inter']"
               style={{
                 fontSize: "12px",
