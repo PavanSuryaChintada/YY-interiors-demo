@@ -50,7 +50,7 @@ export function Navigation() {
               src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780823592/YY_Logo_Squre_pofbfw.png"
               alt="Yellow Yards Interiors"
               className="object-contain shrink-0"
-              style={{ height: "40px", width: "auto", maxWidth: "120px" }}
+              style={{ height: "56px", width: "56px", objectFit: "contain" }}
             />
             <div className="flex flex-col gap-0.5">
               <span
@@ -135,7 +135,7 @@ export function Navigation() {
                 src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780823592/YY_Logo_Squre_pofbfw.png"
                 alt=""
                 className="object-contain opacity-90"
-                style={{ height: "32px", width: "auto" }}
+                style={{ height: "44px", width: "44px", objectFit: "contain" }}
               />
             </motion.div>
 
