@@ -34,7 +34,7 @@ export function ArchitectureSection() {
             <p className="font-['Inter'] mb-4 text-[#8C6A4A] text-[11px] uppercase tracking-[0.3em] font-medium">
               {content.architecture.eyebrow}
             </p>
-            <h2 className="font-['Cormorant_Garamond'] text-[clamp(26px,5vw,68px)] font-light leading-[1.1] text-[#1B1B1B] mb-8">
+            <h2 className="font-['Cormorant_Garamond'] not-italic text-[clamp(26px,5vw,68px)] font-light leading-[1.1] text-[#1B1B1B] mb-8">
               {content.architecture.heading1} <br />
               <span>{content.architecture.heading2}</span>
             </h2>

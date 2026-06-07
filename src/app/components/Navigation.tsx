@@ -47,7 +47,7 @@ export function Navigation() {
             className="flex items-center gap-3 z-50 shrink-0"
           >
             <img
-              src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780729284/WhatsApp_Image_2026-06-04_at_01.04.41-removebg-preview_hmzehs.png"
+              src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780823592/YY_Logo_Squre_pofbfw.png"
               alt="Yellow Yards Interiors"
               className="object-contain shrink-0"
               style={{ height: "40px", width: "auto", maxWidth: "120px" }}
@@ -132,7 +132,7 @@ export function Navigation() {
               className="flex items-center gap-3 px-6 pt-6 pb-8"
             >
               <img
-                src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780729284/WhatsApp_Image_2026-06-04_at_01.04.41-removebg-preview_hmzehs.png"
+                src="https://res.cloudinary.com/dsqeawg67/image/upload/v1780823592/YY_Logo_Squre_pofbfw.png"
                 alt=""
                 className="object-contain opacity-90"
                 style={{ height: "32px", width: "auto" }}
